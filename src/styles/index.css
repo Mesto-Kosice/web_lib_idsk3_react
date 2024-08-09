@@ -1136,7 +1136,7 @@
         @apply flex justify-center items-center bg-none rounded-md idsk-text-button underline active:ring-0 hover:ring-1 hover:ring-offset-0;
     }
     .idsk-link-button--basic {
-        @apply text-primary hover:ring-primary active:text-primary-dark disabled:text-neutral-600 disabled:ring-0;
+        @apply text-primary-medium hover:ring-primary-medium active:text-primary-dark disabled:text-neutral-600 disabled:ring-0;
     }
     .idsk-link-button--success {
         @apply text-alert-positive hover:ring-alert-positive active:text-alert-positive-dark disabled:text-neutral-600 disabled:ring-0;
@@ -1405,7 +1405,7 @@
     .idsk-primary-button[type='button']:enabled:not(:active),
     .idsk-primary-button[type='reset']:enabled:not(:active),
     .idsk-primary-button[type='submit']:enabled:not(:active) {
-        @apply bg-primary;
+        @apply bg-primary-medium;
     }
     .idsk-secondary-button[type='button']:enabled:not(:active),
     .idsk-secondary-button[type='reset']:enabled:not(:active),
@@ -1426,7 +1426,7 @@
         @apply flex justify-center items-center rounded-md idsk-text-button text-white hover:ring hover:ring-offset-0 disabled:ring-0;
     }
     .idsk-primary-button--basic {
-        @apply bg-primary hover:ring-primary-dark active:bg-primary-dark disabled:bg-neutral-500;
+        @apply bg-primary-medium hover:ring-primary-dark active:bg-primary-dark disabled:bg-neutral-500;
     }
     .idsk-primary-button--success {
         @apply bg-alert-positive hover:ring-alert-positive-dark active:bg-alert-positive-dark disabled:bg-neutral-500;
@@ -1479,7 +1479,7 @@
         @apply idsk-icon-button text-white;
     }
     .idsk-primary-icon-button--basic {
-        @apply idsk-primary-icon-button bg-primary hover:ring-primary-dark active:bg-primary-dark disabled:bg-neutral-500;
+        @apply idsk-primary-icon-button bg-primary-medium hover:ring-primary-dark active:bg-primary-dark disabled:bg-neutral-500;
     }
     .idsk-primary-icon-button--success {
         @apply idsk-primary-icon-button bg-alert-positive hover:ring-alert-positive-dark active:bg-alert-positive-dark disabled:bg-neutral-500;
