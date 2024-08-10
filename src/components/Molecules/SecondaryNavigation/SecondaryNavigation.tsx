@@ -4,7 +4,7 @@ import React, { useState, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { DropDown } from '../../Atoms';
-import { ArrowDropDownIcon } from '../../../svgIcons/Navigation';
+import { ExpandMoreIcon } from '../../../svgIcons/Navigation';
 
 export interface SecondaryNavProps extends React.AllHTMLAttributes<HTMLDivElement> {
   heading?: ReactNode;
@@ -65,7 +65,7 @@ const SecondaryNavigation = ({
                 ) : (
                   headingButton
                 )}{' '}
-                <ArrowDropDownIcon
+                <ExpandMoreIcon
                   className={classNames('idsk-secondary-navigation__heading-button-icon', {
                     'rotate-180': opened
                   })}
@@ -88,6 +88,7 @@ const SecondaryNavigation = ({
           dropDownTitle={dropDownTitle}
           className="idsk-secondary-navigation__dropdown"
           closeOnOptionClick={true}
+          arrowIcon={<ExpandMoreIcon />}
         >
           {dropDownOptions.length &&
             dropDownOptions.map((item, index) => React.cloneElement(item, { key: index }))}

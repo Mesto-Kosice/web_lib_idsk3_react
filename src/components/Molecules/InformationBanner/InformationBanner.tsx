@@ -124,7 +124,7 @@ const InformationBanner = ({
             <h3
               className={classNames('idsk-information-banner__title', {
                 'idsk-text-alert-positive-dark': variant == 'success',
-                'idsk-text-primary-dark': variant == 'information',
+                'idsk-text-alert-basic-dark': variant == 'information',
                 'idsk-text-alert-attention-dark': variant == 'alert',
                 'idsk-text-alert-warning-dark': variant == 'warning'
               })}

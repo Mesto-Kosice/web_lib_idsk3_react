@@ -1652,7 +1652,7 @@
     }
 
     .idsk-secondary-navigation {
-        @apply bg-blue-600;
+        @apply bg-primary-medium;
     }
     .idsk-secondary-navigation__header {
         @apply text-white min-h-[2.5rem] px-5 idsk-page-content relative inset-x-0 flex justify-between z-10;
@@ -1667,10 +1667,10 @@
         @apply inline-block py-2;
     }
     .idsk-secondary-navigation__heading-button {
-        @apply hover:underline font-bold tracking-[.5px] inline-flex items-center;
+        @apply hover:underline font-bold tracking-[.5px] inline-flex items-center text-yellow-400;
     }
     .idsk-secondary-navigation__heading-button-icon {
-        @apply text-2xl w-6 h-6;
+        @apply text-2xl w-6 h-6 text-white;
     }
     .idsk-secondary-navigation__heading-mobile {
         @apply tb1:hidden;

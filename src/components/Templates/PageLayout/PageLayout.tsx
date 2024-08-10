@@ -1,3 +1,4 @@
+'use client';
 import React, { ReactNode, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 
