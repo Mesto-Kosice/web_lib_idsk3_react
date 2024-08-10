@@ -1,3 +1,5 @@
+'use client';
+
 import React, { HTMLProps, forwardRef, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';

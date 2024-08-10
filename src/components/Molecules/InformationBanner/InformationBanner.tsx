@@ -1,3 +1,5 @@
+'use client';
+
 import React, { MouseEventHandler, ReactElement, ReactNode, SVGProps, useState } from 'react';
 import classNames from 'classnames';
 import { CloseIcon } from '../../../svgIcons/Navigation';

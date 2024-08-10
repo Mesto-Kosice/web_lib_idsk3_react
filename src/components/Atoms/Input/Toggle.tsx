@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import React, { ElementType, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';

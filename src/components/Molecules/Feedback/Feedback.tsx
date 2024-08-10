@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useState } from 'react';
 import { PrimaryButton, SecondaryButton } from '../../Atoms';
 import { CloseIcon } from '../../../svgIcons/Navigation';

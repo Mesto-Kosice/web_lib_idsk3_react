@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import CloseIcon from '../../../svgIcons/Navigation/Close';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useImperativeHandle, useRef } from 'react';
 import classNames from 'classnames';
 import { WarningIcon } from '../../../svgIcons/Alert';

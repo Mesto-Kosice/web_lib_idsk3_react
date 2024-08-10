@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useRef } from 'react';
 import FocusLock from 'react-focus-lock';
 import classNames from 'classnames';

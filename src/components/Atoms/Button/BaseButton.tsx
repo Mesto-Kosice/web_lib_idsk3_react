@@ -1,3 +1,5 @@
+'use client';
+
 import React, { MouseEventHandler, ReactElement, ReactNode, SVGProps, forwardRef } from 'react';
 import classNames from 'classnames';
 

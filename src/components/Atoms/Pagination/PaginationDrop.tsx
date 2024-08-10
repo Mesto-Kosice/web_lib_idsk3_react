@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, ReactElement, SVGProps, ReactNode } from 'react';
 import classNames from 'classnames';
 import KeyBoardArrowDownIcon from '../../../svgIcons/Hardware/KeyboardArrowDown';

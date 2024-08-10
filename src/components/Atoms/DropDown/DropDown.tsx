@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, ReactElement, SVGProps, ReactNode } from 'react';
 import classNames from 'classnames';
 

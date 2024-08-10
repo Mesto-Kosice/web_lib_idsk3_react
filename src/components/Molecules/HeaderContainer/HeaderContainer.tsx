@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useEffect, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import { ReactFocusLockProps } from 'react-focus-lock/interfaces';

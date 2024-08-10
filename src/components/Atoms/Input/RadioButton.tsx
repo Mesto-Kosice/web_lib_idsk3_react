@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import React, { Children, ReactNode } from 'react';
 import { RadioButtonCheckedIcon, RadioButtonUncheckedIcon } from '../../../svgIcons/Toggle';

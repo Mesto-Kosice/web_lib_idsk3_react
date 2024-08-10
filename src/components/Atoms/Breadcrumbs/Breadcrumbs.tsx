@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, Children } from 'react';
 import classNames from 'classnames';
 

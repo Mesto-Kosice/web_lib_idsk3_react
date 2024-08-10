@@ -1,3 +1,5 @@
+'use client';
+
 import React, { Children, useState, ReactNode, ReactElement, SVGProps } from 'react';
 import classNames from 'classnames';
 import { AddIcon, RemoveIcon } from '../../../svgIcons/Content';

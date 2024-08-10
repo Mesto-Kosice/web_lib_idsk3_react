@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 

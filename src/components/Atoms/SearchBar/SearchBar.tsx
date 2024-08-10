@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import BaseButton from '../Button/BaseButton';

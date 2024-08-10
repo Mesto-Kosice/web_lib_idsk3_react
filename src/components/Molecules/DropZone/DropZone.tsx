@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import { PrimaryButton, Progress } from '../../Atoms';
 import { CloudUploadIcon } from '../../../svgIcons/File';
