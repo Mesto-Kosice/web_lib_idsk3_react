@@ -1,6 +1,6 @@
 {
   "name": "@slovakia-kosice/idsk-react",
-  "version": "3.8.66",
+  "version": "3.8.67",
   "description": "React native components for IDSK 3.0",
   "scripts": {
     "clean-dist": "rm -rf ./dist",
@@ -12,8 +12,8 @@
     "build-styles-prod": "tailwindcss -i ./src/styles/index.css -o ./src/styles/idsk3_theme.css -m",
     "storybook": "concurrently \"npm run build-styles-dev\" \"start-storybook -p 6006\"",
     "build-storybook": "npm run build-styles-prod && build-storybook",
-    "build-svg-icons": "npx @svgr/cli --out-dir src/svgIcons --icon --index-template svgr-index-template.js --replace-attr-values '#000=currentColor' -- node_modules/@eslovensko/idsk-core/dist/assets/svgIcons",
-    "build-svg-images": "npx @svgr/cli --out-dir src/svgImages --no-dimensions --replace-attr-values '#000=currentColor' -- node_modules/@eslovensko/idsk-core/dist/assets/svgImages",
+    "build-svg-icons": "npx @svgr/cli --out-dir src/svgIcons --icon --index-template svgr-index-template.js --replace-attr-values '#000=currentColor' -- node_modules/@slovakia-kosice/idsk-core/dist/assets/svgIcons",
+    "build-svg-images": "npx @svgr/cli --out-dir src/svgImages --no-dimensions --replace-attr-values '#000=currentColor' -- node_modules/@slovakia-kosice/idsk-core/dist/assets/svgImages",
     "deploy": "npm run rollup && npm publish"
   },
   "repository": {
