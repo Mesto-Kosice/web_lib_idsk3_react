@@ -13,85 +13,87 @@ export interface SignpostProps
   withArrowIcon?: boolean;
   inGroup?: boolean;
   actionButton?: PrimaryButtonProps;
+  withoutTargetIcon?: boolean;
 }
 
-const Signpost = React.forwardRef<HTMLAnchorElement, SignpostProps>(
-  (
-    {
-      inGroup,
-      icon,
-      heading,
-      children,
-      arrowIcon = <ArrowForwardIcon />,
-      className,
-      layout = 'horizontal',
-      actionButton,
-      withArrowIcon = true,
-      href,
-      ...props
-    },
-    ref
-  ) => {
-    const renderAction = !!actionButton && layout === 'horizontal';
+const CardComponent: React.FC<SignpostProps> = ({
+  actionButton,
+  layout = 'horizontal',
+  inGroup,
+  href,
+  className,
+  icon,
+  heading,
+  children,
+  withoutTargetIcon = false,
+  withArrowIcon = true,
+  arrowIcon = <ArrowForwardIcon />,
+  ...props
+}) => {
+  const renderAction = !!actionButton && layout === 'horizontal';
 
-    const CardComponent = ({ openInNew }: { openInNew?: boolean }) => {
-      return (
-        <AnchorCard
-          className={classNames(
-            { 'idsk-signpost--in-group': inGroup, 'idsk-anchor-card--focusable': !!href },
-            className
-          )}
-          layout={layout}
+  return (
+    <AnchorCard
+      className={classNames(
+        { 'idsk-signpost--in-group': inGroup, 'idsk-anchor-card--focusable': !!href },
+        className
+      )}
+      layout={layout}
+    >
+      {!!icon && (
+        <div
+          className={classNames('idsk-signpost__icon', {
+            'idsk-signpost__icon--vertical': layout === 'vertical'
+          })}
         >
-          {!!icon && (
+          {icon}
+        </div>
+      )}
+      <div className="idsk-signpost__container">
+        <div>
+          <h3
+            className={classNames('idsk-anchor-card__heading', {
+              'idsk-sign-post__link': !!href
+            })}
+          >
+            <span>{heading}</span>
+            {props.target === '_blank' && !withoutTargetIcon && (
+              <OpenInNewIcon
+                data-testid="external-icon"
+                className="idsk-anchor-card__heading--external-icon"
+              />
+            )}
+          </h3>
+          {!!children && (
             <div
-              className={classNames('idsk-signpost__icon', {
-                'idsk-signpost__icon--vertical': layout === 'vertical'
+              className={classNames('idsk-anchor-card__description', {
+                'idsk-anchor-card__description--with-action': renderAction
               })}
             >
-              {icon}
+              {children}
             </div>
           )}
-          <div className="idsk-signpost__container">
-            <div>
-              <h3
-                className={classNames('idsk-anchor-card__heading', {
-                  'idsk-sign-post__link': !!href
-                })}
-              >
-                <span>{heading}</span>
-                {openInNew && (
-                  <OpenInNewIcon className="idsk-anchor-card__heading--external-icon" />
-                )}
-              </h3>
-              {!!children && (
-                <div
-                  className={classNames('idsk-anchor-card__description', {
-                    'idsk-anchor-card__description--with-action': renderAction
-                  })}
-                >
-                  {children}
-                </div>
-              )}
-              {renderAction && <PrimaryButton {...actionButton} />}
-            </div>
-            {layout === 'vertical' && withArrowIcon && (
-              <div className="idsk-signpost__arrow-icon">{arrowIcon}</div>
-            )}
-          </div>
-        </AnchorCard>
-      );
-    };
+          {renderAction && <PrimaryButton {...actionButton} />}
+        </div>
+        {layout === 'vertical' && withArrowIcon && (
+          <div className="idsk-signpost__arrow-icon">{arrowIcon}</div>
+        )}
+      </div>
+    </AnchorCard>
+  );
+};
 
-    return !!href ? (
-      <a href={href} ref={ref} {...props} className="idsk-signpost">
-        <CardComponent openInNew={props.target === '_blank'} />
-      </a>
-    ) : (
-      <CardComponent />
-    );
-  }
-);
+const Signpost = React.forwardRef<HTMLAnchorElement, SignpostProps>((props, ref) => {
+  const { href } = props;
+
+  return !!href ? (
+    <a href={href} ref={ref} {...props} className="idsk-signpost">
+      <CardComponent {...props} />
+    </a>
+  ) : (
+    <CardComponent {...props} />
+  );
+});
 
 export function SignpostsGroup({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const renderedChildren = Children.map<ReactNode, ReactNode>(children, (child) => {

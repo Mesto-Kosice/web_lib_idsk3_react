@@ -1672,6 +1672,9 @@
     .idsk-secondary-navigation__heading-button {
         @apply hover:underline font-bold tracking-[.5px] inline-flex items-center text-yellow-400;
     }
+    .idsk-secondary-navigation__heading-button--no-content {
+        @apply hover:no-underline;
+    }
     .idsk-secondary-navigation__heading-button-icon {
         @apply text-2xl w-6 h-6 text-white;
     }
