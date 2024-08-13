@@ -17,8 +17,10 @@ jobs:
         with:
           node-version: '21'
 
-      - name: Configure npm for GitHub Packages
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      - name: Setup .npmrc
+        run: |
+          echo "@slovakia-kosice:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
 
       - name: Install dependencies
         env:
@@ -33,3 +35,5 @@ jobs:
 
       - name: Deploy
         run: npm run deploy
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
