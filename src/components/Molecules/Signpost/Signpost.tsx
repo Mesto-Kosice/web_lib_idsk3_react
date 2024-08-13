@@ -59,8 +59,10 @@ const Signpost = React.forwardRef<HTMLAnchorElement, SignpostProps>(
                   'idsk-sign-post__link': !!href
                 })}
               >
-                {heading}
-                {openInNew && <OpenInNewIcon className="w-5" />}
+                <span>{heading}</span>
+                {openInNew && (
+                  <OpenInNewIcon className="idsk-anchor-card__heading--external-icon" />
+                )}
               </h3>
               {!!children && (
                 <div
