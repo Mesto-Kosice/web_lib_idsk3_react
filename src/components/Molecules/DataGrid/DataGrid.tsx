@@ -135,8 +135,8 @@ export function DataGridRow({
         </td>
       )}
       {children}
-      <td>
-        {moreOptions ? (
+      {moreOptions ? (
+        <td>
           <DropDown
             dropDownTitle={
               !!moreOptionsTooltip ? (
@@ -153,12 +153,10 @@ export function DataGridRow({
           >
             {moreOptions}
           </DropDown>
-        ) : customMoreButton ? (
-          customMoreButton
-        ) : (
-          <div className="idsk-data-grid-row__dropdown-space" />
-        )}
-      </td>
+        </td>
+      ) : customMoreButton ? (
+        customMoreButton
+      ) : null}
     </>
   );
 
