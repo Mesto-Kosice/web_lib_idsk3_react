@@ -17,6 +17,7 @@ export interface DialogProps extends ReactFocusLockProps {
   secondaryButton?: ReactNode;
   closeButtonAriaLabel?: string;
   disableClickOutside?: boolean;
+  children?: React.ReactNode;
 }
 
 const Dialog = ({
