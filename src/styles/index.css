@@ -978,7 +978,7 @@
         @apply w-5 h-5;
     }
     .idsk-searchbar__button {
-        @apply relative bg-primary rounded-r-lg rounded-l-none text-white flex items-center hover:ring hover:ring-offset-0 hover:ring-primary-dark active:bg-primary-dark disabled:bg-neutral-500 disabled:ring-transparent;
+        @apply relative bg-primary-medium rounded-r-lg rounded-l-none text-white flex items-center hover:ring hover:ring-offset-0 hover:ring-primary-dark active:bg-primary-dark disabled:bg-neutral-500 disabled:ring-transparent;
     }
     .idsk-searchbar__button--large {
         @apply text-2xl px-4  gap-2;

@@ -42,7 +42,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       fullWidth,
       placeholder,
       rows = 3,
-      maxLength = 200,
+      maxLength,
       onChange = () => {},
       className,
       errorMessageId,
