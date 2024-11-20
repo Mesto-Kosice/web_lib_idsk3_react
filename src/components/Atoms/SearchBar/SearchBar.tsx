@@ -104,6 +104,15 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       if (!!onCancel) onCancel();
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Escape') {
+        handleCancel();
+      } else if (e.key === 'Enter') {
+        const btn = buttonRef.current;
+        if (btn) btn.click();
+      }
+    };
+
     return (
       <div className={containerClassName}>
         {openable && (
@@ -124,6 +133,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
               id={id ? `${id}-input` : undefined}
               ref={inputRef}
               aria-describedby={id ? `${id}-error` : undefined}
+              onKeyDown={handleKeyDown}
               {...props}
             />
 

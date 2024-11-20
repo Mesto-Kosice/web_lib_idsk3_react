@@ -30,4 +30,20 @@ describe('SearchBar', () => {
     fireEvent.click(screen.getAllByRole('button')[0]);
     expect(mockActionClick).toHaveBeenCalled();
   });
+
+  test('Calls the onClick function when Enter is pressed', () => {
+    const mockActionClick = jest.fn();
+    render(<SearchBar buttonOnClick={mockActionClick} />);
+    const input = screen.getByRole('textbox');
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    expect(mockActionClick).toHaveBeenCalled();
+  });
+
+  test('Calls the onCancel function when Escape is pressed', () => {
+    const mockActionClick = jest.fn();
+    render(<SearchBar showCancelButton onCancel={mockActionClick} />);
+    const input = screen.getByRole('textbox');
+    fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
+    expect(mockActionClick).toHaveBeenCalled();
+  });
 });
