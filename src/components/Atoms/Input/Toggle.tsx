@@ -3,6 +3,7 @@
 import classNames from 'classnames';
 import React, { ElementType, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';
+import { CheckIcon, CloseIcon } from '../../../svgIcons';
 
 export interface ToggleProps {
   as?: ElementType;
@@ -47,7 +48,7 @@ const Toggle: React.FC<ToggleProps> = ({
     <Switch.Group>
       <div className="idsk-toggle__wrapper">
         <Switch checked={checked} className={switchClasses} disabled={disabled} {...props}>
-          <span className="idsk-toggle__dot" />
+          <span className="idsk-toggle__dot">{checked ? <CheckIcon /> : <CloseIcon />}</span>
         </Switch>
         {!!label && (
           <Switch.Label passive={passive} className={lableClasses}>

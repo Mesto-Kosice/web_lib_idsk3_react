@@ -422,28 +422,28 @@
         @apply flex items-center gap-2.5;
     }
     .idsk-toggle {
-        @apply relative inline-flex h-6 w-11 items-center rounded-full bg-neutral-700 hover:outline hover:outline-4 outline-blue-200;
+        @apply relative inline-flex h-8 w-14 items-center rounded-full bg-neutral-200 hover:outline hover:outline-4 outline-blue-200 border-2 border-neutral-700;
     }
     .idsk-toggle--checked {
-        @apply bg-primary;
+        @apply bg-primary-medium border-primary-medium;
     }
     .idsk-toggle__dot {
-        @apply inline-block h-[1.3rem] w-[1.3rem] transform rounded-full bg-white transition translate-x-[0.13rem];
+        @apply grid place-items-center h-6 w-6 transform rounded-full bg-neutral-700 text-neutral-200 transition translate-x-[0.13rem];
     }
     .idsk-toggle--disabled .idsk-toggle__dot {
         @apply bg-neutral-500;
     }
     .idsk-toggle--checked .idsk-toggle__dot {
-        @apply translate-x-[1.4rem] bg-white;
+        @apply translate-x-[1.625rem] bg-white text-primary-medium;
     }
     .idsk-toggle--small {
-        @apply h-5 w-10;
+        @apply h-6 w-10;
     }
     .idsk-toggle--small .idsk-toggle__dot {
-        @apply h-[1.05rem] w-[1.05rem];
+        @apply h-4 w-4;
     }
-    .idsk-toggle--checked.toggle--small .idsk-toggle__dot {
-        @apply translate-x-[1.3rem];
+    .idsk-toggle--checked.idsk-toggle--small .idsk-toggle__dot {
+        @apply translate-x-[1.125rem];
     }
     .idsk-toggle__label {
         @apply idsk-text-body-1;
@@ -452,10 +452,10 @@
         @apply idsk-text-body;
     }
     .idsk-toggle--disabled {
-        @apply bg-neutral-300;
+        @apply bg-neutral-300 border-neutral-500 outline-none;
     }
-    .idsk-toggle--disabled.toggle--checked {
-        @apply bg-blue-200;
+    .idsk-toggle--disabled.idsk-toggle--checked {
+        @apply bg-neutral-500 border-neutral-500;
     }
 
     .idsk-data-grid-row {
