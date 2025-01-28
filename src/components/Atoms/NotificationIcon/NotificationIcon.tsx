@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, SVGProps } from 'react';
-import { NotificationsIcon, NotificationsAlertIcon } from '../../../svgIcons/Social';
-import IconLink from '../IconLink';
+import { NotificationsIcon, NotificationsAlertIcon } from '@/svgIcons';
+import { IconLink } from '@/components';
 
 export interface NotificationIconProps extends SVGProps<SVGSVGElement> {
   alert?: boolean;
@@ -29,8 +29,9 @@ const NotificationIcon = ({
       aria-expanded={ariaExpanded}
       active={active}
       onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
-      children={alert ? <NotificationsAlertIcon {...props} /> : <NotificationsIcon {...props} />}
-    />
+    >
+      {alert ? <NotificationsAlertIcon {...props} /> : <NotificationsIcon {...props} />}
+    </IconLink>
   );
 };
 

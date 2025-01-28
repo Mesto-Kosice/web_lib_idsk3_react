@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
-
-import Progress from '../Progress';
+import { Progress } from '@/components';
 
 describe('Proggress', () => {
   test('renders progress', () => {

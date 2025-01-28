@@ -1,1 +1,1 @@
-export { default as ModalSideBar, ModalSideBarProps } from './ModalSideBar';
+export { default as ModalSideBar, type ModalSideBarProps } from './ModalSideBar';

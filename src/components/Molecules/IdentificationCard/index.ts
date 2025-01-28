@@ -1,1 +1,1 @@
-export { default, IdentificationCardProps } from './IdentificationCard';
+export { default as IdentificationCard, type IdentificationCardProps } from './IdentificationCard';

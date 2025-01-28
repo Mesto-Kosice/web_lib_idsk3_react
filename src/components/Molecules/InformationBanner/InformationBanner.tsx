@@ -1,13 +1,9 @@
-'use client';
-
 import React, { MouseEventHandler, ReactElement, ReactNode, SVGProps, useState } from 'react';
-import classNames from 'classnames';
-import { CloseIcon } from '../../../svgIcons/Navigation';
-import BaseButton from '../../Atoms/Button/BaseButton';
 import { v4 as uuidv4 } from 'uuid';
+import { BaseButton } from '@/components';
+import { cn } from '@/lib';
 
-import { InfoIcon, CheckCircleIcon } from '../../../svgIcons/Actions';
-import { WarningIcon } from '../../../svgIcons/Alert';
+import { WarningIcon, InfoIcon, CheckCircleIcon, CloseIcon } from '@/svgIcons';
 
 export interface InformationBannerProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -29,7 +25,6 @@ const defaultInformationBannerProps: InformationBannerProps = {
 };
 
 const InformationBanner = ({
-  id,
   icon,
   useDefaultIcon = true,
   title,
@@ -67,7 +62,7 @@ const InformationBanner = ({
         closeButtonOnClick(e);
       }}
       iconPosition={'left'}
-      className={classNames('idsk-information-banner__close-button', {
+      className={cn('idsk-information-banner__close-button', {
         'idsk-information-banner__close-button--positive': variant == 'success',
         'idsk-information-banner__close-button--primary': variant == 'information',
         'idsk-information-banner__close-button--attention': variant == 'alert',
@@ -79,12 +74,12 @@ const InformationBanner = ({
       <CloseIcon className="idsk-information-banner__close-button-icon" />
     </BaseButton>
   );
-  const infoClasses = classNames({
+  const infoClasses = cn({
     'idsk-information-banner': props.type == 'banner',
     'idsk-information-announcement': props.type == 'announcement',
     'idsk-information-banner--accent': accent && props.type == 'banner'
   });
-  const infoWrapperClasses = classNames({
+  const infoWrapperClasses = cn({
     'idsk-information-banner__wrapper': props.type == 'banner',
     'idsk-information-announcement__wrapper': props.type == 'announcement',
     'idsk-information-banner__wrapper--with-close-button': !actionButton && !hideCloseButton
@@ -92,7 +87,7 @@ const InformationBanner = ({
 
   return visible ? (
     <div
-      className={classNames(
+      className={cn(
         infoClasses,
         {
           'idsk-information-banner--information': variant == 'information',
@@ -112,7 +107,7 @@ const InformationBanner = ({
       <div className={infoWrapperClasses}>
         {!!icon &&
           React.cloneElement(icon, {
-            className: classNames('idsk-information-banner__icon', icon.props.className, {
+            className: cn('idsk-information-banner__icon', icon.props.className, {
               'idsk-information-banner__icon--primary': variant == 'information',
               'idsk-information-banner__icon--attention': variant == 'alert',
               'idsk-information-banner__icon--warning': variant == 'warning',
@@ -122,7 +117,7 @@ const InformationBanner = ({
         <div className="idsk-information-banner__title-wrapper">
           {!!title && (
             <h3
-              className={classNames('idsk-information-banner__title', {
+              className={cn('idsk-information-banner__title', {
                 'idsk-text-alert-positive-dark': variant == 'success',
                 'idsk-text-alert-basic-dark': variant == 'information',
                 'idsk-text-alert-attention-dark': variant == 'alert',
@@ -134,7 +129,7 @@ const InformationBanner = ({
           )}
           {!!children && (
             <div
-              className={classNames('idsk-information-banner__description', {
+              className={cn('idsk-information-banner__description', {
                 'idsk-information-banner__description--without-title': !title
               })}
             >

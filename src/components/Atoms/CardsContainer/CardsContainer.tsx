@@ -1,12 +1,13 @@
 import React from 'react';
+import { cn } from '@/lib';
 
-const CardsContainer = ({
+const CardsContainer: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   children,
   className = '',
   ...props
-}: React.AllHTMLAttributes<HTMLDivElement>) => {
+}) => {
   return (
-    <div className={`idsk-cards-container ${className}`} {...props}>
+    <div className={cn('idsk-cards-container', className)} {...props}>
       {children}
     </div>
   );

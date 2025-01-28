@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import {
   SecondaryNavigation,
   Navigation,
   NavigationLink,
   NavigationLinkOption,
-  IdentificationCard
-} from '../../src/components/Molecules';
-import {
+  IdentificationCard,
   MenuButton,
   HeaderContainer,
   NotificationIcon,
@@ -18,18 +16,19 @@ import {
   SearchBar,
   PrimaryButton,
   TextButton,
-  Logo
-} from '../../src/components/Atoms';
+  Logo,
+  MenuMobile
+} from '../../src/components';
+
 import { LogoImage } from '../../src/svgImages/Logos';
-import { CompareArrowsIcon, InfoIcon } from '../../src/svgIcons/Actions';
-import '/src/styles/idsk3_theme.css';
-import { MenuMobile } from '../../src/components';
+import { CompareArrowsIcon, InfoIcon } from '../../src/svgIcons';
+import '../../src/styles/idsk3_theme.css';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Molecules/HeaderContainer',
   component: HeaderContainer
-} as ComponentMeta<typeof HeaderContainer>;
+} as Meta<typeof HeaderContainer>;
 
 const NavigationContent = () => {
   const [selectedLink, setSelectedLink] = useState<string | null>('kalendar');
@@ -141,7 +140,7 @@ const MenuMobileChildrenPrivate = () => (
 );
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof HeaderContainer> = (args) => {
+const Template: StoryFn<typeof HeaderContainer> = (args) => {
   const [mobileNavOpened, setMobileNavOpened] = useState<boolean>(false);
   const [sideBarOpened, setSideBarOpened] = useState<boolean>(false);
 
@@ -250,22 +249,31 @@ const Template: ComponentStory<typeof HeaderContainer> = (args) => {
   );
 };
 
-export const InnerNavigation = Template.bind({});
-InnerNavigation.args = {
-  children: <ChildrenInnerNavigation />
+export const InnerNavigation = {
+  render: Template,
+
+  args: {
+    children: <ChildrenInnerNavigation />
+  }
 };
 
-export const BottomNavigation = Template.bind({});
-BottomNavigation.args = {
-  children: <ChildrenNotLoggedIn />,
-  largeMenu: (
-    <Navigation fullNav={true}>
-      <NavigationContent />
-    </Navigation>
-  )
+export const BottomNavigation = {
+  render: Template,
+
+  args: {
+    children: <ChildrenNotLoggedIn />,
+    largeMenu: (
+      <Navigation fullNav={true}>
+        <NavigationContent />
+      </Navigation>
+    )
+  }
 };
 
-export const LoggedInNavigation = Template.bind({});
-LoggedInNavigation.args = {
-  children: <ChildrenInnerNavigationLoggedIn />
+export const LoggedInNavigation = {
+  render: Template,
+
+  args: {
+    children: <ChildrenInnerNavigationLoggedIn />
+  }
 };

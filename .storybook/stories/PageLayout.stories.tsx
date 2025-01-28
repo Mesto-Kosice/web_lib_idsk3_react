@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { PageLayout } from '../../src/components/Templates';
-import '/src/styles/idsk3_theme.css';
-
-import {
-  EventCard,
-  InformationBanner,
-  Navigation,
-  SecondaryNavigation
-} from '../../src/components/Molecules';
+import { StoryFn, Meta } from '@storybook/react';
 import {
   AvatarCircle,
   Breadcrumbs,
@@ -19,17 +10,24 @@ import {
   ModalSideBar,
   NotificationIcon,
   FooterContainerSection,
-  FooterContainerSectionHeading
-} from '../../src/components/Atoms';
-import {
+  FooterContainerSectionHeading,
   NavigationLink,
   NavigationLinkOption,
   FooterContainer,
   PrimaryButton,
-  Logo
+  Logo,
+  EventCard,
+  InformationBanner,
+  Navigation,
+  SecondaryNavigation,
+  PageLayout
 } from '../../src/components';
+
 import { LogoImage } from '../../src/svgImages/Logos';
-import { InfoIcon } from '../../src/svgIcons/Actions';
+import { InfoIcon } from '../../src/svgIcons';
+import logoFooter from './images/logo-footer.svg';
+
+import '../../src/styles/idsk3_theme.css';
 
 export default {
   title: 'Templates/PageLayout',
@@ -37,7 +35,7 @@ export default {
   parameters: {
     layout: 'fullscreen'
   }
-} as ComponentMeta<typeof PageLayout>;
+} as Meta<typeof PageLayout>;
 
 const informationBanner = (
   <InformationBanner icon={<InfoIcon />} title="Oznam" variant="warning" type="announcement">
@@ -218,7 +216,6 @@ const Header = () => {
     </>
   );
 };
-const logoFooter = require('./images/logo-footer.svg');
 
 const pageFooter = (
   <FooterContainer
@@ -284,7 +281,7 @@ const pageFooter = (
   />
 );
 
-const Template: ComponentStory<typeof PageLayout> = (args) => (
+const Template: StoryFn<typeof PageLayout> = (args) => (
   <PageLayout {...args}>
     <CardsContainer>
       <EventCard {...eventCardProps} />
@@ -299,23 +296,29 @@ const Template: ComponentStory<typeof PageLayout> = (args) => (
   </PageLayout>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  heading: titleSection,
-  header: <Header />,
-  footer: pageFooter,
-  informationBanner: informationBanner,
-  breadcrumbs: breadcrumbs
+export const Default = {
+  render: Template,
+
+  args: {
+    heading: titleSection,
+    header: <Header />,
+    footer: pageFooter,
+    informationBanner: informationBanner,
+    breadcrumbs: breadcrumbs
+  }
 };
 
-export const HeadingButton = Template.bind({});
-HeadingButton.args = {
-  heading: (
-    <div className="flex justify-between">
-      {titleSection} <PrimaryButton>Pridať do kalendára</PrimaryButton>
-    </div>
-  ),
-  header: <Header />,
-  footer: pageFooter,
-  breadcrumbs: breadcrumbs
+export const HeadingButton = {
+  render: Template,
+
+  args: {
+    heading: (
+      <div className="flex justify-between">
+        {titleSection} <PrimaryButton>Pridať do kalendára</PrimaryButton>
+      </div>
+    ),
+    header: <Header />,
+    footer: pageFooter,
+    breadcrumbs: breadcrumbs
+  }
 };

@@ -1,1 +1,1 @@
-export { default, VerticalEventCardProps } from './VerticalEventCard';
+export { default as VerticalEventCard, type VerticalEventCardProps } from './VerticalEventCard';

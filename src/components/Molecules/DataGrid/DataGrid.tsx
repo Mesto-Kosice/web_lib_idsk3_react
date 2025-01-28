@@ -1,9 +1,7 @@
 import React, { Children, ReactNode } from 'react';
-import { MoreVertIcon } from '../../../svgIcons/Navigation';
-import classNames from 'classnames';
-import { Checkbox, DropDown, Tag, Tooltip } from '../../Atoms';
-import { InfoIcon } from '../../../svgIcons/Actions';
-import BaseButton, { BaseButtonProps } from '../../Atoms/Button/BaseButton';
+import { cn } from '@/lib';
+import { Checkbox, DropDown, Tag, Tooltip } from '@/components';
+import { InfoIcon, MoreVertIcon } from '@/svgIcons';
 
 interface DataGridTagsProps extends React.AllHTMLAttributes<HTMLDivElement> {
   tags?: { label?: string; key?: number }[];
@@ -35,7 +33,7 @@ export const DataGridRowValue = ({
 }: DataGridRowValueProps) => {
   return (
     <td
-      className={classNames(
+      className={cn(
         'idsk-data-grid__value',
         {
           'idsk-data-grid__value--right-align': align == 'right'
@@ -87,14 +85,14 @@ export function DataGridRow({
   id,
   ...props
 }: DataGridRowProps) {
-  const dataGridClasses = classNames(
+  const dataGridClasses = cn(
     'idsk-data-grid-row',
     { 'idsk-data-grid-row--active': active },
     { 'idsk-data-grid-row--checked': checked },
     { 'idsk-data-grid-row--clickable': !!buttonProps },
     className
   );
-  const noCheckboxClasses = classNames('idsk-data-grid-row__dot-wrapper', className);
+  const noCheckboxClasses = cn('idsk-data-grid-row__dot-wrapper', className);
   const Check = () => (
     <Checkbox
       name="checkbox"
@@ -116,7 +114,7 @@ export function DataGridRow({
     <>
       {checkbox && (
         <td>
-          {!!checkboxTooltip ? (
+          {checkboxTooltip ? (
             <Tooltip tooltip={checkboxTooltip} isInstructive>
               <Check />
             </Tooltip>
@@ -128,7 +126,7 @@ export function DataGridRow({
       {!!active && !!activeDotVisibility && (
         <td className={noCheckboxClasses}>
           <div
-            className={classNames('idsk-data-grid-row__dot', {
+            className={cn('idsk-data-grid-row__dot', {
               'idsk-data-grid-row__dot--active': active
             })}
           />
@@ -139,7 +137,7 @@ export function DataGridRow({
         <td>
           <DropDown
             dropDownTitle={
-              !!moreOptionsTooltip ? (
+              moreOptionsTooltip ? (
                 <Tooltip tooltip={moreOptionsTooltip} isInstructive>
                   {moreIcon}
                 </Tooltip>
@@ -188,7 +186,6 @@ export interface DataGridProps extends React.AllHTMLAttributes<HTMLDivElement> {
 function DataGrid({
   children,
   checked,
-  onChange,
   onSelectAllCheck,
   headRow,
   className,
@@ -216,13 +213,13 @@ function DataGrid({
     />
   );
   return (
-    <table className={classNames('idsk-data-grid', className)} id={id} {...props}>
+    <table className={cn('idsk-data-grid', className)} id={id} {...props}>
       {headRow && (
         <thead>
           <tr className="idsk-data-grid__head">
             {checkboxEverything && (
               <th>
-                {!!checkboxTooltip ? (
+                {checkboxTooltip ? (
                   <Tooltip tooltip={checkboxTooltip} isInstructive>
                     <CheckAll />
                   </Tooltip>
@@ -235,7 +232,7 @@ function DataGrid({
           </tr>
         </thead>
       )}
-      <tbody className={classNames({ 'idsk-data-grid__body--without-head': !headRow })}>
+      <tbody className={cn({ 'idsk-data-grid__body--without-head': !headRow })}>
         {renderedChildren}
       </tbody>
     </table>

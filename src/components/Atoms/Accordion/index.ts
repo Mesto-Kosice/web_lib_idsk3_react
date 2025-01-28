@@ -1,1 +1,1 @@
-export { default, AccordionListGroup, AccordionProps } from './Accordion';
+export { default as Accordion, AccordionListGroup, type AccordionProps } from './Accordion';

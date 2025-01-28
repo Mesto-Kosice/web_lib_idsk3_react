@@ -1,52 +1,57 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { PrimaryButton } from '../../src/components/Atoms';
-import '/src/styles/idsk3_theme.css';
-import { PlaceholderIcon } from '../../src/svgIcons';
-import { CheckCircleIcon, ReportProblemIcon } from '../../src/svgIcons/Actions';
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+import { PrimaryButton } from '../../src/components';
+import { CheckCircleIcon, PlaceholderIcon, ReportProblemIcon } from '../../src/svgIcons';
+import '../../src/styles/idsk3_theme.css';
+
+const meta = {
   title: 'Atoms/PrimaryButton',
-  component: PrimaryButton
-} as ComponentMeta<typeof PrimaryButton>;
+  component: PrimaryButton,
+  parameters: {
+    layout: 'centered'
+  },
+  tags: ['autodocs'],
+  args: { onClick: fn() }
+} satisfies Meta<typeof PrimaryButton>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof PrimaryButton> = (args) => <PrimaryButton {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const PrimaryBasic = Template.bind({});
-PrimaryBasic.args = {
-  label: 'Primary / Basic',
-  onClick: () => console.log('button clicked!')
+export const PrimaryBasic: Story = {
+  args: {
+    label: 'Primary / Basic'
+  }
 };
 
-export const PrimaryBasicWithIcon = Template.bind({});
-PrimaryBasicWithIcon.args = {
-  label: 'Primary / Basic',
-  icon: <PlaceholderIcon />,
-  onClick: () => console.log('button clicked!')
+export const PrimaryBasicWithIcon: Story = {
+  args: {
+    label: 'Primary / Basic',
+    icon: <PlaceholderIcon />
+  }
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Disabled',
-  disabled: true,
-  onClick: () => console.log('button clicked!')
+export const Disabled: Story = {
+  args: {
+    label: 'Disabled',
+    disabled: true
+  }
 };
 
-export const PrimarySuccessWithIcon = Template.bind({});
-PrimarySuccessWithIcon.args = {
-  label: 'Primary / Success',
-  variant: 'success',
-  icon: <CheckCircleIcon />,
-  iconPosition: 'right',
-  onClick: () => console.log('button clicked!')
+export const PrimarySuccessWithIcon: Story = {
+  args: {
+    label: 'Primary / Success',
+    variant: 'success',
+    icon: <CheckCircleIcon />,
+    iconPosition: 'right'
+  }
 };
 
-export const PrimaryWarningWithIcon = Template.bind({});
-PrimaryWarningWithIcon.args = {
-  label: 'Primary / Warning',
-  variant: 'warning',
-  icon: <ReportProblemIcon />,
-  onClick: () => console.log('button clicked!')
+export const PrimaryWarningWithIcon: Story = {
+  args: {
+    label: 'Primary / Warning',
+    variant: 'warning',
+    icon: <ReportProblemIcon />
+  }
 };

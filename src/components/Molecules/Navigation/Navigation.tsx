@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 import { NavigationLinkProps } from './NavigationLink';
 
@@ -16,7 +16,7 @@ const Navigation = ({
   label = '',
   ...props
 }: NavigationProps) => {
-  const navigationClasses = classNames(
+  const navigationClasses = cn(
     'idsk-navigation',
     {
       'idsk-navigation--full': fullNav

@@ -1,16 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { PrimaryButton } from '../../src/components';
-import '/src/styles/idsk3_theme.css';
+import { StoryFn, Meta } from '@storybook/react';
+import { PrimaryButton, SnackbarStack } from '../../src/components';
 import { useState } from '@storybook/addons';
-import { SnackbarStack } from '../../src/components/Atoms/Snackbar';
+import '../../src/styles/idsk3_theme.css';
 
 export default {
   title: 'Atoms/SnackbarStack',
   component: SnackbarStack
-} as ComponentMeta<typeof SnackbarStack>;
+} as Meta<typeof SnackbarStack>;
 
-const Template: ComponentStory<typeof SnackbarStack> = (args) => {
+const Template: StoryFn<typeof SnackbarStack> = (args) => {
   const [snackbars, setSnackbars] = useState<any[]>([]);
 
   return (
@@ -35,7 +34,10 @@ const Template: ComponentStory<typeof SnackbarStack> = (args) => {
   );
 };
 
-export const Stack = Template.bind({});
-Stack.args = {
-  maxCount: 5
+export const Stack = {
+  render: Template,
+
+  args: {
+    maxCount: 5
+  }
 };

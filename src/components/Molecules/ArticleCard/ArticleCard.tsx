@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { format } from 'date-fns';
-import classNames from 'classnames';
-import { AnchorCard, AnchorCardProps } from '../../Atoms';
+import { cn } from '@/lib';
+import { AnchorCard, AnchorCardProps } from '@/components';
 
 export interface ArticleCardProps
   extends AnchorCardProps,
@@ -64,7 +64,7 @@ const ArticleCard = React.forwardRef<HTMLAnchorElement, ArticleCardProps>(
     const AnchorCardComponent = () => {
       return (
         <AnchorCard
-          className={classNames(
+          className={cn(
             'idsk-article_card',
             'idsk-anchor-card--focusable',
             {
@@ -77,7 +77,7 @@ const ArticleCard = React.forwardRef<HTMLAnchorElement, ArticleCardProps>(
           grid={true}
         >
           {featuredImg && (
-            <div className={classNames('idsk-article-card__image-wrapper', imageWrapperClasses)}>
+            <div className={cn('idsk-article-card__image-wrapper', imageWrapperClasses)}>
               {featuredImg}
             </div>
           )}
@@ -89,7 +89,7 @@ const ArticleCard = React.forwardRef<HTMLAnchorElement, ArticleCardProps>(
             )}
             <div className="idsk-anchor-card__heading">
               <h3
-                className={classNames({
+                className={cn({
                   'idsk-sign-post__link': !!href
                 })}
               >
@@ -105,7 +105,7 @@ const ArticleCard = React.forwardRef<HTMLAnchorElement, ArticleCardProps>(
       );
     };
 
-    return !!href ? (
+    return href ? (
       <a href={href} ref={ref} className={anchorTagClasses} {...props}>
         <AnchorCardComponent />
       </a>
@@ -114,5 +114,7 @@ const ArticleCard = React.forwardRef<HTMLAnchorElement, ArticleCardProps>(
     );
   }
 );
+
+ArticleCard.displayName = 'ArticleCard';
 
 export default ArticleCard;

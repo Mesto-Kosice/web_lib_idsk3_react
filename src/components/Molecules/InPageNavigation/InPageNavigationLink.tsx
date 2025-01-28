@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { PlayArrowIcon } from '../../../svgIcons/Audio&Video';
+import { PlayArrowIcon } from '@/svgIcons';
 
 export interface InPageNavigationLinkProps {
   label?: ReactNode;
@@ -13,7 +13,7 @@ const InPageNavigationLink = React.forwardRef<HTMLAnchorElement, InPageNavigatio
   ({ label, className, href, onClick, linkElement }, ref) => {
     return (
       <>
-        {!!linkElement ? (
+        {linkElement ? (
           linkElement
         ) : (
           <a href={href} onClick={onClick} ref={ref} className={className}>
@@ -24,5 +24,7 @@ const InPageNavigationLink = React.forwardRef<HTMLAnchorElement, InPageNavigatio
     );
   }
 );
+
+InPageNavigationLink.displayName = 'InPageNavigationLink';
 
 export default InPageNavigationLink;

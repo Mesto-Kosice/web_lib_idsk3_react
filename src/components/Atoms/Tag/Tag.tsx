@@ -1,8 +1,7 @@
 import React, { ReactNode, ReactElement, SVGProps } from 'react';
-import classNames from 'classnames';
-import CheckIcon from '../../../svgIcons/Navigation/Check';
-import CloseIcon from '../../../svgIcons/Navigation/Close';
-import BaseButton from '../Button/BaseButton';
+import { CheckIcon, CloseIcon } from '@/svgIcons';
+import { BaseButton } from '@/components';
+import { cn } from '@/lib';
 
 type TagVariant = 'default' | 'basic' | 'warning' | 'success' | 'attention';
 
@@ -63,7 +62,7 @@ const Tag = ({
 
   const getVariantClass = () => {
     if (type === 'static' || type === 'action') {
-      return classNames({
+      return cn({
         'idsk-tag--success': variant === 'success',
         'idsk-tag--warning': variant === 'warning',
         'idsk-tag--attention': variant === 'attention',
@@ -77,7 +76,7 @@ const Tag = ({
   const getTagClasses = (): string => {
     if (disabled) return 'idsk-tag--disabled';
 
-    return classNames(getVariantClass(), {
+    return cn(getVariantClass(), {
       'idsk-tag--with-interactions': type === 'filter' || type === 'select',
       'idsk-tag--selected': selected,
       'idsk-tag--small': size == 'small'
@@ -86,7 +85,7 @@ const Tag = ({
 
   return (
     <div
-      className={classNames('idsk-tag', getTagClasses(), className)}
+      className={cn('idsk-tag', getTagClasses(), className)}
       tabIndex={type !== 'static' ? 0 : -1}
       {...(colors
         ? {

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface AnchorCardProps {
   layout?: 'horizontal' | 'vertical';
@@ -11,7 +11,7 @@ export interface AnchorCardProps {
 const AnchorCard = ({ children, className, layout = 'horizontal', grid }: AnchorCardProps) => {
   return (
     <div
-      className={classNames(
+      className={cn(
         'idsk-anchor-card',
         { 'idsk-anchor-card--vertical': layout === 'vertical', 'idsk-anchor-card--grid': grid },
         className

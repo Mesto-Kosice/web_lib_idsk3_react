@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
-import Person from '../../../svgIcons/Social/Person';
+import { cn } from '@/lib';
+import { PersonIcon } from '@/svgIcons';
 
 export interface AvatarCircleProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   firstName?: string;
@@ -69,9 +69,9 @@ const AvatarCircle = ({
   };
 
   return (
-    <div className={classNames('idsk-avatar-circle', className)}>
+    <div className={cn('idsk-avatar-circle', className)}>
       <button
-        className={classNames(
+        className={cn(
           'idsk-avatar-circle__circle',
           {
             'idsk-avatar-circle--custom-content': circleContent
@@ -81,7 +81,7 @@ const AvatarCircle = ({
         onClick={onClick}
         {...props}
       >
-        {circleContent == 'icon' ? <Person /> : circleContent ? circleContent : getInitials()}
+        {circleContent == 'icon' ? <PersonIcon /> : circleContent ? circleContent : getInitials()}
       </button>
       {(!!showName || !!showFullName || !!caption) && (
         <div className="idsk-avatar-circle__text">

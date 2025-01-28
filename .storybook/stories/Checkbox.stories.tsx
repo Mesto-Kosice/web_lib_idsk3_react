@@ -1,14 +1,14 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Checkbox } from '../../src/components/Atoms';
-import '/src/styles/idsk3_theme.css';
+import { StoryFn, Meta } from '@storybook/react';
+import { Checkbox } from '../../src/components';
+import '../../src/styles/idsk3_theme.css';
 
 export default {
   title: 'Atoms/Checkbox',
   component: Checkbox
-} as ComponentMeta<typeof Checkbox>;
+} as Meta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => (
+const Template: StoryFn<typeof Checkbox> = (args) => (
   <div>
     <Checkbox {...args} id="1" />
     <Checkbox {...args} id="2" />
@@ -16,26 +16,50 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
     <Checkbox {...args} id="4" />
   </div>
 );
-export const Default = Template.bind({});
-Default.args = {};
-export const Small = Template.bind({});
-Small.args = {
-  inputSize: 'small'
+
+export const Default = {
+  render: Template,
+  args: {}
 };
-export const WithLabel = Template.bind({});
-WithLabel.args = {
-  label: 'Text label'
+
+export const Small = {
+  render: Template,
+
+  args: {
+    inputSize: 'small'
+  }
 };
-export const WithLongLabel = Template.bind({});
-WithLongLabel.args = {
-  label: 'Text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label'
+
+export const WithLabel = {
+  render: Template,
+
+  args: {
+    label: 'Text label'
+  }
 };
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true
+
+export const WithLongLabel = {
+  render: Template,
+
+  args: {
+    label:
+      'Text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label text label'
+  }
 };
-export const DisabledWithLabel = Template.bind({});
-DisabledWithLabel.args = {
-  disabled: true,
-  label: 'Text label'
+
+export const Disabled = {
+  render: Template,
+
+  args: {
+    disabled: true
+  }
+};
+
+export const DisabledWithLabel = {
+  render: Template,
+
+  args: {
+    disabled: true,
+    label: 'Text label'
+  }
 };

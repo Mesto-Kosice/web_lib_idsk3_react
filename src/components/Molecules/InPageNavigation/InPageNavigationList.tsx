@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { InPageNavigationLinkProps } from './InPageNavigationLink';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface InPageNavigationListProps extends React.AllHTMLAttributes<HTMLElement> {
   children?: ReactElement<InPageNavigationLinkProps> | ReactElement<InPageNavigationLinkProps>[];
@@ -14,7 +14,7 @@ const InPageNavigationList = ({
   ...props
 }: InPageNavigationListProps) => {
   return (
-    <nav className={classNames('idsk-in-page-navigation__list', className)} {...props}>
+    <nav className={cn('idsk-in-page-navigation__list', className)} {...props}>
       {!!subtitle && <span className="idsk-in-page-navigation__subtitle">{subtitle}</span>}
       {children}
     </nav>

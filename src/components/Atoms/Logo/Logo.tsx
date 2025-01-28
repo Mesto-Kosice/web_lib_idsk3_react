@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
   image?: ReactNode;
@@ -19,7 +19,7 @@ const Logo = ({
   ...props
 }: LogoProps) => {
   return (
-    <div className={classNames('idsk-logo', className)} {...props}>
+    <div className={cn('idsk-logo', className)} {...props}>
       {image && <div className="idsk-logo__image">{image}</div>}
       {title && (
         <div className="idsk-logo__titles">

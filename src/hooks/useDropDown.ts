@@ -9,8 +9,8 @@ export interface UseDropDownOptions {
 }
 
 const useDropDown = (
-  triggerRef: React.RefObject<HTMLElement>,
-  optionsRef: React.RefObject<HTMLElement>,
+  triggerRef: React.RefObject<HTMLElement | null>,
+  optionsRef: React.RefObject<HTMLElement | null>,
   options?: UseDropDownOptions
 ) => {
   const [triggered, setTriggered] = useState<boolean>(false);
@@ -24,7 +24,7 @@ const useDropDown = (
     } else {
       setState('hidden');
     }
-    if (!!onTriggered) onTriggered(!triggered);
+    if (onTriggered) onTriggered(!triggered);
     setTriggered((p) => !p);
   };
 

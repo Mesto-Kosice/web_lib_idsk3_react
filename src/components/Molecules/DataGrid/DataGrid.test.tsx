@@ -6,7 +6,9 @@ describe('DataGrid', () => {
   test('renders children', () => {
     render(
       <DataGrid>
-        <DataGridRowValue>test</DataGridRowValue>
+        <DataGridRow>
+          <DataGridRowValue>test</DataGridRowValue>
+        </DataGridRow>
       </DataGrid>
     );
     expect(screen.getByText('test')).toBeDefined();
@@ -14,7 +16,9 @@ describe('DataGrid', () => {
   test('renders head', () => {
     render(
       <DataGrid headRow={<DataGridRowValue>Test head</DataGridRowValue>}>
-        <DataGridRow>Test item</DataGridRow>
+        <DataGridRow>
+          <DataGridRowValue>Test item</DataGridRowValue>
+        </DataGridRow>
       </DataGrid>
     );
     expect(screen.getByText('Test head')).toBeDefined();

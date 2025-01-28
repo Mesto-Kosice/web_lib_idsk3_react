@@ -1,1 +1,1 @@
-export { default, SecondaryNavProps } from './SecondaryNavigation';
+export { default as SecondaryNavigation, type SecondaryNavProps } from './SecondaryNavigation';

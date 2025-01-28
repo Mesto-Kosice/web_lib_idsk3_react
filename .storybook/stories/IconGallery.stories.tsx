@@ -1,10 +1,9 @@
 import React from 'react';
-import { addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs';
 import '../storybook_style.css';
 
 // Import all the icons from the TypeScript file
-import * as Icons from '../../src/svgIcons/index';
+import * as Icons from '../../src/svgIcons';
 
 export default {
   title: 'Core/Icons',
@@ -35,10 +34,3 @@ export const AllIcons = () => {
     </div>
   );
 };
-
-addParameters({
-  docs: {
-    page: DocsPage,
-    container: DocsContainer
-  }
-});

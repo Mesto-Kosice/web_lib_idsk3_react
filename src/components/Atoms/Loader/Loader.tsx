@@ -1,6 +1,6 @@
-import classNames from 'classnames';
 import React from 'react';
-import { SpinnerIcon } from '../../../svgIcons/Animated';
+import { SpinnerIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface LoaderProps extends React.AllHTMLAttributes<HTMLDivElement> {
   label?: string;
@@ -8,7 +8,7 @@ export interface LoaderProps extends React.AllHTMLAttributes<HTMLDivElement> {
 }
 
 const Loader = ({ label, spinnerClassName, ...props }: LoaderProps) => {
-  const spinnerClass = classNames('idsk-loader__icon', spinnerClassName);
+  const spinnerClass = cn('idsk-loader__icon', spinnerClassName);
 
   return (
     <div className="idsk-loader" {...props}>

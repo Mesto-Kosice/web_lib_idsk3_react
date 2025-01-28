@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { AvatarCircle } from '../../Atoms';
+import { AvatarCircle } from '@/components';
 
 export interface IdentificationCardProps extends React.AllHTMLAttributes<HTMLDivElement> {
   firstName: string;

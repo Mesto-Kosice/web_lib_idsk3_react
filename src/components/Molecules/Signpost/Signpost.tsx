@@ -1,8 +1,7 @@
 import React, { Children, ReactNode } from 'react';
-import classNames from 'classnames';
-import { AnchorCard, AnchorCardProps, PrimaryButton, PrimaryButtonProps } from '../../Atoms';
-import { ArrowForwardIcon } from '../../../svgIcons/Navigation';
-import OpenInNewIcon from '../../../svgIcons/Actions/OpenInNew';
+import { AnchorCard, AnchorCardProps, PrimaryButton, PrimaryButtonProps } from '@/components';
+import { OpenInNewIcon, ArrowForwardIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface SignpostProps
   extends Omit<AnchorCardProps, 'grid'>,
@@ -34,7 +33,7 @@ const CardComponent: React.FC<SignpostProps> = ({
 
   return (
     <AnchorCard
-      className={classNames(
+      className={cn(
         { 'idsk-signpost--in-group': inGroup, 'idsk-anchor-card--focusable': !!href },
         className
       )}
@@ -42,7 +41,7 @@ const CardComponent: React.FC<SignpostProps> = ({
     >
       {!!icon && (
         <div
-          className={classNames('idsk-signpost__icon', {
+          className={cn('idsk-signpost__icon', {
             'idsk-signpost__icon--vertical': layout === 'vertical'
           })}
         >
@@ -52,7 +51,7 @@ const CardComponent: React.FC<SignpostProps> = ({
       <div className="idsk-signpost__container">
         <div>
           <h3
-            className={classNames('idsk-anchor-card__heading', {
+            className={cn('idsk-anchor-card__heading', {
               'idsk-sign-post__link': !!href
             })}
           >
@@ -66,7 +65,7 @@ const CardComponent: React.FC<SignpostProps> = ({
           </h3>
           {!!children && (
             <div
-              className={classNames('idsk-anchor-card__description', {
+              className={cn('idsk-anchor-card__description', {
                 'idsk-anchor-card__description--with-action': renderAction
               })}
             >
@@ -86,7 +85,7 @@ const CardComponent: React.FC<SignpostProps> = ({
 const Signpost = React.forwardRef<HTMLAnchorElement, SignpostProps>((props, ref) => {
   const { href } = props;
 
-  return !!href ? (
+  return href ? (
     <a href={href} ref={ref} {...props} className="idsk-signpost">
       <CardComponent {...props} />
     </a>
@@ -109,5 +108,7 @@ export function SignpostsGroup({ children, ...props }: React.HTMLAttributes<HTML
     </div>
   );
 }
+
+Signpost.displayName = 'Signpost';
 
 export default Signpost;

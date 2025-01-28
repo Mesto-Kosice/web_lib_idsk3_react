@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface MenuMobileProps extends React.AllHTMLAttributes<HTMLDivElement> {
   heading?: ReactNode | string;
@@ -13,7 +13,7 @@ const MenuMobile = ({
   className,
   ...props
 }: MenuMobileProps) => {
-  const menuClasses = classNames(
+  const menuClasses = cn(
     'idsk-menu--mobile',
     {
       hidden: !opened

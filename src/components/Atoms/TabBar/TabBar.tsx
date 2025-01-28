@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 import { TabBarLinkProps } from './TabBarLink';
 
@@ -9,7 +9,7 @@ export interface TabBarProps extends React.AllHTMLAttributes<HTMLElement> {
 
 const TabBar = ({ children, className, ...props }: TabBarProps) => {
   return (
-    <nav className={classNames('idsk-tab-bar', className)} {...props}>
+    <nav className={cn('idsk-tab-bar', className)} {...props}>
       {children}
     </nav>
   );

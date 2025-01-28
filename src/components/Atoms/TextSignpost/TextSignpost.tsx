@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import React, { ReactNode } from 'react';
 
 export interface TextSignpostProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -9,7 +9,7 @@ export interface TextSignpostProps extends React.AnchorHTMLAttributes<HTMLAnchor
 const TextSignpost = React.forwardRef<HTMLAnchorElement, TextSignpostProps>(
   ({ heading, subtitle, children, className, ...props }, ref) => {
     return (
-      <div className={classNames('idsk-text-signpost', className)}>
+      <div className={cn('idsk-text-signpost', className)}>
         {typeof heading === 'string' ? (
           <h3>
             <a className="idsk-anchor-card__heading" {...props} ref={ref}>
@@ -25,5 +25,7 @@ const TextSignpost = React.forwardRef<HTMLAnchorElement, TextSignpostProps>(
     );
   }
 );
+
+TextSignpost.displayName = 'TextSignpost';
 
 export default TextSignpost;

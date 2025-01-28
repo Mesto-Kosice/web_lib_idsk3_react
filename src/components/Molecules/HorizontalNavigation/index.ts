@@ -1,6 +1,6 @@
 export {
-  default,
+  default as HorizontalNavigation,
   HorizontalNavigationItem,
-  HorizontalNavigationItemProps,
+  type HorizontalNavigationItemProps,
   HorizontalNavigationGroup
 } from './HorizontalNavigation';

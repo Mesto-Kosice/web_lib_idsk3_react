@@ -2,8 +2,8 @@ export {
   default as DataGrid,
   DataGridRow,
   DataGridRowValue,
-  DataGridProps,
-  DataGridRowProps,
-  DataGridRowValueProps,
+  type DataGridProps,
+  type DataGridRowProps,
+  type DataGridRowValueProps,
   DataGridTags
 } from './DataGrid';

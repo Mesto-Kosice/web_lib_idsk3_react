@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import Accordion, { AccordionListGroup } from './Accordion';
-import SvgCheck from '../../../svgIcons/Navigation/Check';
+import SvgCheck from '@/svgIcons/Navigation/Check';
+import '@testing-library/jest-dom';
 
 describe('Accordion', () => {
   test('opens content', () => {

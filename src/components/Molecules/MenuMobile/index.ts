@@ -1,1 +1,1 @@
-export { default as MenuMobile, MenuMobileProps } from './MenuMobile';
+export { default as MenuMobile, type MenuMobileProps } from './MenuMobile';

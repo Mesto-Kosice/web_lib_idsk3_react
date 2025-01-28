@@ -1,6 +1,5 @@
-'use client';
 import React, { ReactNode, useLayoutEffect } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface PageLayoutProps extends React.AllHTMLAttributes<HTMLElement> {
   header: ReactNode;
@@ -47,7 +46,7 @@ const PageLayout = ({
       {!!informationBanner && informationBannerPosition === 'top' && informationBanner}
       {header}
       {!!informationBanner && informationBannerPosition === 'bottom' && informationBanner}
-      <main className={classNames('idsk-page-layout__main', className)} ref={mainRef} {...props}>
+      <main className={cn('idsk-page-layout__main', className)} ref={mainRef} {...props}>
         {!!heroImage && (
           <div className="relative h-0 top-[-1.875rem]">
             <div
@@ -64,7 +63,7 @@ const PageLayout = ({
             {heading}
           </div>
         )}
-        <div className={classNames('idsk-page-layout__content', contentClassName)}>{children}</div>
+        <div className={cn('idsk-page-layout__content', contentClassName)}>{children}</div>
       </main>
       {footer}
     </div>

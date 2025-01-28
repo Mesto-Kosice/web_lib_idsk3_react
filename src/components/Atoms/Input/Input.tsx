@@ -1,5 +1,3 @@
-'use client';
-
 import React, {
   MouseEventHandler,
   ReactElement,
@@ -9,8 +7,8 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { WarningIcon } from '../../../svgIcons/Alert';
-import classNames from 'classnames';
+import { WarningIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -62,7 +60,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     if (!!actionButton && iconPosition === 'right') iconPosition = 'left';
 
-    const inputClasses: string = classNames(
+    const inputClasses: string = cn(
       'idsk-input',
       {
         'idsk-input--large': inputSize === 'large',
@@ -76,13 +74,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       className
     );
 
-    const inputWrapperClasses: string = classNames('idsk-input__wrapper', {
+    const inputWrapperClasses: string = cn('idsk-input__wrapper', {
       'idsk-input__wrapper--error': error,
       'idsk-input__wrapper--disabled': disabled,
       'w-full': fullWidth
     });
 
-    const actionButtonClasses: string = classNames('idsk-input__action', {
+    const actionButtonClasses: string = cn('idsk-input__action', {
       'idsk-input__action--large': inputSize === 'large',
       'idsk-input__action--medium': inputSize === 'medium',
       'idsk-input__action--small': inputSize === 'small',
@@ -91,9 +89,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const idForAria: string = errorMessageId || uuidv4();
 
-    const iconElement = !!icon
+    const iconElement = icon
       ? React.cloneElement(icon, {
-          className: classNames('idsk-input__icon', {
+          className: cn('idsk-input__icon', {
             'idsk-input__icon--large': inputSize === 'large',
             'idsk-input__icon--medium': inputSize === 'medium',
             'idsk-input__icon--small': inputSize === 'small',
@@ -113,10 +111,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        <div className={classNames({ 'w-full': fullWidth })}>
+        <div className={cn({ 'w-full': fullWidth })}>
           {!!label && (
             <label
-              className={classNames('idsk-input__label', { 'sr-only': labelSrOnly })}
+              className={cn('idsk-input__label', { 'sr-only': labelSrOnly })}
               htmlFor={props.id}
             >
               {label}
@@ -136,14 +134,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               aria-invalid={error}
               aria-errormessage={props.id ?? idForAria}
               style={{
-                paddingRight: !!rightPadding ? rightPadding + 'px' : undefined
+                paddingRight: rightPadding ? rightPadding + 'px' : undefined
               }}
               {...props}
             />
             {!!icon && iconElement}
             {!!error && !disabledErrorIcon && (
               <WarningIcon
-                className={classNames(
+                className={cn(
                   'idsk-input__icon',
                   {
                     'idsk-input__icon--large': inputSize === 'large',
@@ -168,7 +166,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </div>
         {(!!errorMsg || !!caption) && (
           <p
-            className={classNames('idsk-input__caption', {
+            className={cn('idsk-input__caption', {
               'idsk-input__caption--error': error && !disabled
             })}
           >
@@ -185,5 +183,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+Input.displayName = 'Input';
 
 export default Input;

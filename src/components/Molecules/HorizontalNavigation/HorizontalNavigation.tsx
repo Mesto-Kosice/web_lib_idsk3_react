@@ -1,8 +1,8 @@
 import React, { AllHTMLAttributes } from 'react';
-import classNames from 'classnames';
-import BaseButton, { BaseButtonProps } from '../../Atoms/Button/BaseButton';
-import { DropDown } from '../../Atoms';
-import { ExpandMoreIcon } from '../../../svgIcons/Navigation';
+import { BaseButton, BaseButtonProps } from '@/components';
+import { DropDown } from '@/components';
+import { ExpandMoreIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface HorizontalNavigationItemProps extends BaseButtonProps {
   active?: boolean;
@@ -14,7 +14,7 @@ export const HorizontalNavigationItem = ({
   hideLabelOnMobile = false,
   ...props
 }: HorizontalNavigationItemProps) => {
-  const elementClasses = classNames(
+  const elementClasses = cn(
     'idsk-horizontal-navigation-item',
     {
       'idsk-horizontal-navigation--hide-label-on-mobile': hideLabelOnMobile,
@@ -51,10 +51,14 @@ export const HorizontalNavigationGroup = ({
     <div
       role="tablist"
       {...props}
-      className={classNames('idsk-horizontal-navigation-group', {
-        'idsk-horizontal-navigation-group--hide-on-mobile': dropdownOnMobile,
-        'idsk-horizontal-navigation--hide-label-on-mobile': hideLabelOnMobile
-      })}
+      className={cn(
+        'idsk-horizontal-navigation-group',
+        {
+          'idsk-horizontal-navigation-group--hide-on-mobile': dropdownOnMobile,
+          'idsk-horizontal-navigation--hide-label-on-mobile': hideLabelOnMobile
+        },
+        className
+      )}
     >
       {dropdownOnMobile && (
         <DropDown
@@ -83,7 +87,7 @@ export const HorizontalNavigation = ({
   return (
     <div
       {...props}
-      className={classNames(
+      className={cn(
         'idsk-horizontal-navigation',
         {
           'idsk-horizontal-navigation--list-view': mobileView == 'list',

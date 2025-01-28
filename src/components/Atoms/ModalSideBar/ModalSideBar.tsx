@@ -1,13 +1,10 @@
-'use client';
-
 import React, { ReactNode, useRef } from 'react';
 import FocusLock from 'react-focus-lock';
-import classNames from 'classnames';
-
-import { CloseIcon } from '../../../svgIcons/Navigation';
-import { ReactFocusLockProps } from 'react-focus-lock/interfaces';
-import useClickOutside from '../../../utils/useClickOutside';
-import Tooltip from '../Tooltip/Tooltip';
+import { ReactFocusLockProps } from 'react-focus-lock';
+import { CloseIcon } from '@/svgIcons';
+import { useClickOutside } from '@/hooks';
+import { Tooltip } from '@/components';
+import { cn } from '@/lib';
 
 export interface ModalSideBarProps extends React.AllHTMLAttributes<HTMLDivElement> {
   opened: boolean;
@@ -35,10 +32,10 @@ const ModalSideBar = ({
   closeButtonTooltip,
   ...props
 }: ModalSideBarProps) => {
-  const shadowClasses = classNames('idsk-modal-sidebar__shadow', {
+  const shadowClasses = cn('idsk-modal-sidebar__shadow', {
     'idsk-modal-sidebar__shadow--hidden': !opened
   });
-  const sidebarClasses = classNames(
+  const sidebarClasses = cn(
     'idsk-modal-sidebar',
     {
       'idsk-modal-sidebar--hidden': !opened

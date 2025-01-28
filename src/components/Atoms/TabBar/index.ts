@@ -1,2 +1,2 @@
-export { default as TabBar, TabBarProps } from './TabBar';
-export { default as TabBarLink, TabBarLinkProps } from './TabBarLink';
+export { default as TabBar, type TabBarProps } from './TabBar';
+export { default as TabBarLink, type TabBarLinkProps } from './TabBarLink';

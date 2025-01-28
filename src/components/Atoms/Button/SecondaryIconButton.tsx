@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import BaseButton, { BaseButtonProps } from './BaseButton';
-import { PlaceholderIcon } from '../../../svgIcons';
+import { PlaceholderIcon } from '@/svgIcons';
 
 export interface SecondaryIconButtonProps extends BaseButtonProps {
   variant?: 'basic' | 'success' | 'warning' | 'contrast';
@@ -17,7 +17,7 @@ const SecondaryIconButton = forwardRef<HTMLButtonElement, SecondaryIconButtonPro
         {...props}
         ref={ref}
         icon={icon}
-        className={classNames(
+        className={cn(
           {
             'idsk-secondary-icon-button--basic': variant == 'basic',
             'idsk-secondary-icon-button--success': variant == 'success',
@@ -32,5 +32,7 @@ const SecondaryIconButton = forwardRef<HTMLButtonElement, SecondaryIconButtonPro
     );
   }
 );
+
+SecondaryIconButton.displayName = 'SecondaryIconButton';
 
 export default SecondaryIconButton;

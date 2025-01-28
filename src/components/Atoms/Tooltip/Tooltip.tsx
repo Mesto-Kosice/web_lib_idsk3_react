@@ -1,7 +1,5 @@
-'use client';
-
 import React, { ReactNode, useRef, useState } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface TooltipProps {
   tooltip: string;
@@ -25,7 +23,7 @@ const Tooltip = ({
   const ref = useRef<HTMLDivElement>(null);
   const waitingToEnterRef = useRef<boolean>(true);
 
-  const tooltipClasses = classNames('idsk-tooltip', {
+  const tooltipClasses = cn('idsk-tooltip', {
     'idsk-tooltip--left': !!alignLeft,
     'idsk-tooltip--up': !!positionUp,
     'idsk-tooltip--instructive': !!isInstructive

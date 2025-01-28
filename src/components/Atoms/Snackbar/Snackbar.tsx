@@ -1,8 +1,7 @@
-'use client';
+import React, { JSX, useCallback, useEffect, useMemo, useRef } from 'react';
+import { CloseIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
-import classNames from 'classnames';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import CloseIcon from '../../../svgIcons/Navigation/Close';
 export interface SnackbarProps {
   id?: string;
   open?: boolean;
@@ -46,9 +45,9 @@ const Snackbar: React.FC<SnackbarProps> = ({
   fixed = true,
   index = 0
 }) => {
-  const timerRef = useRef<NodeJS.Timer | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const snackbarClasses = classNames(
+  const snackbarClasses = cn(
     'idsk-snackbar',
     { 'idsk-snackbar--long-action': !!longAction },
     { 'idsk-snackbar--fixed': !!fixed },
@@ -60,7 +59,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
   );
 
   const handleClose = useCallback(() => {
-    if (!!onClose) onClose(index);
+    if (onClose) onClose(index);
   }, [onClose]);
 
   useEffect(() => {
@@ -71,13 +70,13 @@ const Snackbar: React.FC<SnackbarProps> = ({
     }
 
     return () => {
-      if (!!timerRef.current) {
+      if (timerRef.current) {
         clearInterval(timerRef.current);
       }
     };
   }, [autoHideDuration, open]);
 
-  if (!!open) {
+  if (open) {
     return (
       <div id={id} className={snackbarClasses}>
         <div className="idsk-snackbar__message">
@@ -86,13 +85,13 @@ const Snackbar: React.FC<SnackbarProps> = ({
         </div>
 
         <div
-          className={classNames('idsk-snackbar__actions-wrapper', {
+          className={cn('idsk-snackbar__actions-wrapper', {
             'idsk-snackbar__actions-wrapper--long-action': !!longAction
           })}
         >
           {!!action && (
             <button
-              className={classNames('idsk-snackbar__action-button', actionClassName)}
+              className={cn('idsk-snackbar__action-button', actionClassName)}
               onClick={onActionCall}
             >
               {action}
@@ -101,7 +100,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
           {!!closeButton && (
             <button onClick={handleClose}>
               <CloseIcon
-                className={classNames('idsk-snackbar__close-button', {
+                className={cn('idsk-snackbar__close-button', {
                   'idsk-snackbar__close-button--no-action-button': !action
                 })}
               />
@@ -122,7 +121,7 @@ export const SnackbarStack: React.FC<SnackbarStackProps> = ({
   maxCount = 10
 }) => {
   useEffect(() => {
-    if (!!snackbars.length) {
+    if (snackbars.length) {
       let shouldCleanup = true;
 
       for (const sn of snackbars) {
@@ -161,16 +160,16 @@ export const SnackbarStack: React.FC<SnackbarStackProps> = ({
   return (
     <>
       {!!indexedSnackbars.length && (
-        <div className={classNames('idsk-snackbar__stack', className)}>
+        <div className={cn('idsk-snackbar__stack', className)}>
           {indexedSnackbars.slice(minIndex, lastIndex).map((snackbar) => (
             <Snackbar
               {...snackbar}
               key={snackbar.index}
               index={snackbar.index}
-              className={classNames('bottom-0', snackbar.className)}
+              className={cn('bottom-0', snackbar.className)}
               fixed={false}
               onClose={(itemIndex) => {
-                if (!!snackbar.onClose) {
+                if (snackbar.onClose) {
                   snackbar.onClose();
                 }
 

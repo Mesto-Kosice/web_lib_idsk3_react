@@ -1,9 +1,7 @@
-'use client';
-
 import React, { ReactNode, useState } from 'react';
-import { PrimaryButton, SecondaryButton } from '../../Atoms';
-import { CloseIcon } from '../../../svgIcons/Navigation';
-import classNames from 'classnames';
+import { PrimaryButton, SecondaryButton } from '@/components';
+import { CloseIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface FeedbackProps extends React.AllHTMLAttributes<HTMLDivElement> {
   closeButton?: boolean;
@@ -26,7 +24,7 @@ const Feedback = ({ children, closeButton, id, captchaText, ...props }: Feedback
             <PrimaryButton
               type="button"
               {...props.yesButtonProps}
-              className={classNames(
+              className={cn(
                 'idsk-feedback__button',
                 'idsk-feedback__button--answer',
                 props.yesButtonProps?.className
@@ -37,7 +35,7 @@ const Feedback = ({ children, closeButton, id, captchaText, ...props }: Feedback
             </PrimaryButton>
             <SecondaryButton
               {...props.noButtonProps}
-              className={classNames(
+              className={cn(
                 'idsk-feedback__button',
                 'idsk-feedback__button--answer',
                 props.noButtonProps?.className
@@ -50,7 +48,7 @@ const Feedback = ({ children, closeButton, id, captchaText, ...props }: Feedback
           {!!props.reportButtonProps && (
             <SecondaryButton
               {...props.reportButtonProps}
-              className={classNames(
+              className={cn(
                 'idsk-feedback__button',
                 'idsk-feedback__button--report',
                 props.reportButtonProps?.className
@@ -67,7 +65,7 @@ const Feedback = ({ children, closeButton, id, captchaText, ...props }: Feedback
           <button
             type="button"
             {...props.closeButtonProps}
-            className={classNames('idsk-feedback__close-button', props.closeButtonProps?.className)}
+            className={cn('idsk-feedback__close-button', props.closeButtonProps?.className)}
             onClick={props.closeButtonProps?.onClick || (() => setVisibility(false))}
             id={id ? id + '-close-button' : undefined}
             data-testid="closeButton"

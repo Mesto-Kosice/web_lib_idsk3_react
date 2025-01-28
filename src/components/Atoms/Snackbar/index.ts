@@ -1,1 +1,6 @@
-export { default, SnackbarProps, SnackbarStack, SnackbarStackProps } from './Snackbar';
+export {
+  default as Snackbar,
+  type SnackbarProps,
+  SnackbarStack,
+  type SnackbarStackProps
+} from './Snackbar';

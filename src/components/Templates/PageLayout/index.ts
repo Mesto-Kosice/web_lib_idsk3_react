@@ -1,1 +1,1 @@
-export { default, PageLayoutProps } from './PageLayout';
+export { default as PageLayout, type PageLayoutProps } from './PageLayout';

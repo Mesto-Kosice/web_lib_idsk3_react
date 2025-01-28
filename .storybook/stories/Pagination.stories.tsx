@@ -1,17 +1,16 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Pagination } from '../../src/components/Atoms';
-import '/src/styles/idsk3_theme.css';
-import { PaginationDrop } from '../../src/components/Atoms/Pagination/PaginationDrop';
+import { StoryFn, Meta } from '@storybook/react';
+import { Pagination, PaginationDrop } from '../../src/components';
+import '../../src/styles/idsk3_theme.css';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Atoms/Pagination',
   component: Pagination
-} as ComponentMeta<typeof Pagination>;
+} as Meta<typeof Pagination>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Pagination> = (args) => (
+const Template: StoryFn<typeof Pagination> = (args) => (
   <>
     <div className="flex justify-between gap-3 flex-wrap">
       <Pagination {...args} />
@@ -31,40 +30,52 @@ const Template: ComponentStory<typeof Pagination> = (args) => (
   </>
 );
 
-export const PaginationDefault = Template.bind({});
-PaginationDefault.args = {
-  siblingsCount: 1,
-  pageCount: 15,
-  previousAriaLabel: 'Predchádzajúca stránka',
-  nextAriaLabel: 'Nasledujúca stránka',
-  ariaLabelBuilder: (page) => `Stránka ${page}`
+export const PaginationDefault = {
+  render: Template,
+
+  args: {
+    siblingsCount: 1,
+    pageCount: 15,
+    previousAriaLabel: 'Predchádzajúca stránka',
+    nextAriaLabel: 'Nasledujúca stránka',
+    ariaLabelBuilder: (page) => `Stránka ${page}`
+  }
 };
 
-export const PaginationLarge = Template.bind({});
-PaginationLarge.args = {
-  siblingsCount: 3,
-  pageCount: 150,
-  boundaryPagesCount: 3,
-  previousAriaLabel: 'Predchádzajúca stránka',
-  nextAriaLabel: 'Nasledujúca stránka',
-  ariaLabelBuilder: (page) => `Stránka ${page}`
+export const PaginationLarge = {
+  render: Template,
+
+  args: {
+    siblingsCount: 3,
+    pageCount: 150,
+    boundaryPagesCount: 3,
+    previousAriaLabel: 'Predchádzajúca stránka',
+    nextAriaLabel: 'Nasledujúca stránka',
+    ariaLabelBuilder: (page) => `Stránka ${page}`
+  }
 };
 
-export const PaginationInitialPage = Template.bind({});
-PaginationInitialPage.args = {
-  initialPage: 7,
-  siblingsCount: 1,
-  pageCount: 15,
-  previousAriaLabel: 'Predchádzajúca stránka',
-  nextAriaLabel: 'Nasledujúca stránka',
-  ariaLabelBuilder: (page) => `Stránka ${page}`
+export const PaginationInitialPage = {
+  render: Template,
+
+  args: {
+    initialPage: 7,
+    siblingsCount: 1,
+    pageCount: 15,
+    previousAriaLabel: 'Predchádzajúca stránka',
+    nextAriaLabel: 'Nasledujúca stránka',
+    ariaLabelBuilder: (page) => `Stránka ${page}`
+  }
 };
 
-export const PaginationWithCaption = Template.bind({});
-PaginationWithCaption.args = {
-  pageCount: 150,
-  caption: 'Zobrazené 1-5 zo 59 výsledkov',
-  previousAriaLabel: 'Predchádzajúca stránka',
-  nextAriaLabel: 'Nasledujúca stránka',
-  ariaLabelBuilder: (page) => `Stránka ${page}`
+export const PaginationWithCaption = {
+  render: Template,
+
+  args: {
+    pageCount: 150,
+    caption: 'Zobrazené 1-5 zo 59 výsledkov',
+    previousAriaLabel: 'Predchádzajúca stránka',
+    nextAriaLabel: 'Nasledujúca stránka',
+    ariaLabelBuilder: (page) => `Stránka ${page}`
+  }
 };

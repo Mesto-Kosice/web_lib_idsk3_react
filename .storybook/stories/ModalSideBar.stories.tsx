@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ModalSideBar } from '../../src/components/Atoms';
-import '/src/styles/idsk3_theme.css';
-import { PrimaryButton, SecondaryButton } from '../../src/components';
+import { StoryFn, Meta } from '@storybook/react';
+import { ModalSideBar, PrimaryButton, SecondaryButton } from '../../src/components';
 import { PlaceholderIcon } from '../../src/svgIcons';
+import '../../src/styles/idsk3_theme.css';
 
 export default {
   title: 'Atoms/ModalSideBar',
   component: ModalSideBar
-} as ComponentMeta<typeof ModalSideBar>;
+} as Meta<typeof ModalSideBar>;
 
-const Template: ComponentStory<typeof ModalSideBar> = (args) => {
+const Template: StoryFn<typeof ModalSideBar> = (args) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -20,54 +19,63 @@ const Template: ComponentStory<typeof ModalSideBar> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  heading: 'Profil',
-  closeButtonAriaLabel: 'Zavrieť'
+export const Default = {
+  render: Template,
+
+  args: {
+    heading: 'Profil',
+    closeButtonAriaLabel: 'Zavrieť'
+  }
 };
 
-export const WithFooterButtons = Template.bind({});
-WithFooterButtons.args = {
-  heading: 'Profil',
-  closeButtonAriaLabel: 'Zavrieť',
-  footer: (
-    <>
-      <PrimaryButton size="large" icon={<PlaceholderIcon />}>
-        Action
-      </PrimaryButton>
-      <SecondaryButton size="large">Subaction</SecondaryButton>
-    </>
-  )
+export const WithFooterButtons = {
+  render: Template,
+
+  args: {
+    heading: 'Profil',
+    closeButtonAriaLabel: 'Zavrieť',
+    footer: (
+      <>
+        <PrimaryButton size="large" icon={<PlaceholderIcon />}>
+          Action
+        </PrimaryButton>
+        <SecondaryButton size="large">Subaction</SecondaryButton>
+      </>
+    )
+  }
 };
 
-export const LongContent = Template.bind({});
-LongContent.args = {
-  heading: 'Profil',
-  closeButtonAriaLabel: 'Zavrieť',
-  footer: (
-    <>
-      <PrimaryButton size="large" icon={<PlaceholderIcon />}>
-        Action
-      </PrimaryButton>
-      <SecondaryButton size="large">Subaction</SecondaryButton>
-    </>
-  ),
-  children: (
-    <>
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-      <div className="bg-neutral-90 h-20" />
-      <div className="bg-neutral-100 h-20" />
-    </>
-  )
+export const LongContent = {
+  render: Template,
+
+  args: {
+    heading: 'Profil',
+    closeButtonAriaLabel: 'Zavrieť',
+    footer: (
+      <>
+        <PrimaryButton size="large" icon={<PlaceholderIcon />}>
+          Action
+        </PrimaryButton>
+        <SecondaryButton size="large">Subaction</SecondaryButton>
+      </>
+    ),
+    children: (
+      <>
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+        <div className="bg-neutral-90 h-20" />
+        <div className="bg-neutral-100 h-20" />
+      </>
+    )
+  }
 };

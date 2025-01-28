@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode, SVGProps } from 'react';
 
-import { CardWrapper, CardWrapperProps } from '../../Atoms';
-import classNames from 'classnames';
+import { CardWrapper, CardWrapperProps } from '@/components';
+import { cn } from '@/lib';
 
 export interface DeviceCardProps extends Omit<CardWrapperProps, 'innerClassNames'> {
   icon?: ReactElement<SVGProps<SVGSVGElement>>;
@@ -23,7 +23,7 @@ const DeviceCard = ({
 }: DeviceCardProps) => {
   const iconElement = icon
     ? React.cloneElement(icon, {
-        className: classNames('idsk-device-card__icon')
+        className: cn('idsk-device-card__icon')
       })
     : undefined;
 

@@ -1,16 +1,12 @@
-'use client';
-
-import classNames from 'classnames';
-import { PrimaryButton, Progress } from '../../Atoms';
-import { CloudUploadIcon } from '../../../svgIcons/File';
-import { AddIcon } from '../../../svgIcons/Content';
-import React, { ReactNode, useCallback, useImperativeHandle, useState } from 'react';
 import { Accept, FileRejection, useDropzone } from 'react-dropzone';
-import { CloseIcon } from '../../../svgIcons/Navigation';
-import { ErrorIcon } from '../../../svgIcons/Alert';
 import { format } from 'date-fns';
-import { formatBytes } from '../../../utils';
+import { PrimaryButton, Progress } from '@/components';
+import React, { ReactNode, useCallback, useImperativeHandle, useState } from 'react';
 import {
+  ErrorIcon,
+  CloseIcon,
+  AddIcon,
+  CloudUploadIcon,
   DocumentIcon,
   ExcelSpreadsheetIcon,
   FolderTypeIcon,
@@ -21,7 +17,9 @@ import {
   PresentationIcon,
   SpreadsheetIcon,
   WordDocumentIcon
-} from '../../../svgIcons/FileTypes';
+} from '@/svgIcons';
+import { formatBytes } from '@/lib';
+import { cn } from '@/lib';
 
 export interface DropZoneRefProps {
   value: File[];
@@ -58,9 +56,12 @@ export interface DropZoneProps extends React.AllHTMLAttributes<HTMLDivElement> {
   onCancelRejection?: () => void;
 }
 
-export function DropZoneAcceptedFile({ ...props }) {
+export const DropZoneAcceptedFile: React.FC<{
+  onCancel: () => void;
+  children: ReactNode;
+}> = ({ ...props }) => {
   return (
-    <div className="idsk-dropzone__file" key={props.key}>
+    <div className="idsk-dropzone__file">
       <div className="idsk-dropzone__file-container">{props.children}</div>
       <div className="idsk-dropzone-accepted-file__close-button">
         <button onClick={props.onCancel}>
@@ -69,9 +70,16 @@ export function DropZoneAcceptedFile({ ...props }) {
       </div>
     </div>
   );
-}
+};
 
-export function DropZoneRejectedFile({ ...props }) {
+export const DropZoneRejectedFile: React.FC<{
+  largeFileErrorMsg?: string;
+  invalidTypeMsg?: string;
+  errorMsg?: string;
+  children: ReactNode;
+  errorCode: string;
+  onCancelRejection?: () => void;
+}> = ({ ...props }) => {
   const [visibility, setVisibility] = useState('idsk-dropzone-rejected-file');
 
   const getErrMsg = (errorCode: string) => {
@@ -85,7 +93,7 @@ export function DropZoneRejectedFile({ ...props }) {
   };
 
   return (
-    <div className={visibility} key={props.key}>
+    <div className={visibility}>
       <div className="idsk-dropzone__file-container">
         <ErrorIcon className="idsk-dropzone-rejected-file__icon" />
         <div className="idsk-dropzone-rejected-file__container">
@@ -106,10 +114,10 @@ export function DropZoneRejectedFile({ ...props }) {
       </div>
     </div>
   );
-}
+};
 
 const DropZone = React.forwardRef<DropZoneRefProps, DropZoneProps>(
-  ({ icon, className, onChangeFiles, onChangeRejectedFiles, defaultValueFiles, ...props }, ref) => {
+  ({ className, onChangeFiles, onChangeRejectedFiles, defaultValueFiles, ...props }, ref) => {
     const [files, setFiles] = useState<File[]>(defaultValueFiles ?? []);
     const [filesRejected, setFilesRejected] = useState<FileRejection[]>([]);
 
@@ -178,29 +186,29 @@ const DropZone = React.forwardRef<DropZoneRefProps, DropZoneProps>(
       }
     };
 
-    const dropzoneClasses = classNames({
+    const dropzoneClasses = cn({
       'idsk-dropzone__container': !isDragAccept,
       'idsk-dropzone__container--active': isDragAccept,
       'idsk-dropzone__container--inactive': props.variant == 'inactive'
     });
-    const infoClasses = classNames({
+    const infoClasses = cn({
       'idsk-dropzone__file-info': !props.progress,
       'idsk-dropzone__file-info--flex': props.progress
     });
-    const infoDateClasses = classNames({
+    const infoDateClasses = cn({
       'idsk-dropzone__file-size-date': !props.progress,
       'idsk-dropzone__file-size-date--hidden': props.progress
     });
-    const progressClasses = classNames('idsk-dropzone__file-progress-container', {
+    const progressClasses = cn('idsk-dropzone__file-progress-container', {
       hidden: !props.progress
     });
 
-    const filesClasses = classNames('idsk-dropzone__files', {
+    const filesClasses = cn('idsk-dropzone__files', {
       hidden: !!props.hideFiles
     });
 
     return (
-      <div className={classNames('idsk-dropzone', className)}>
+      <div className={cn('idsk-dropzone', className)}>
         {typeof props.dropzoneTitle === 'string' ? (
           <h3>{props.dropzoneTitle}</h3>
         ) : (
@@ -279,7 +287,7 @@ const DropZone = React.forwardRef<DropZoneRefProps, DropZoneProps>(
             {!!filesRejected.length &&
               filesRejected.map((f, index) => (
                 <DropZoneRejectedFile
-                  errorMessage={props.errorMessage}
+                  errorMsg={props.errorMessage}
                   largeFileErrorMsg={props.largeFileErrorMsg}
                   invalidTypeMsg={props.invalidTypeMsg}
                   key={index}
@@ -302,4 +310,7 @@ const DropZone = React.forwardRef<DropZoneRefProps, DropZoneProps>(
     );
   }
 );
+
+DropZone.displayName = 'DropZone';
+
 export default DropZone;
