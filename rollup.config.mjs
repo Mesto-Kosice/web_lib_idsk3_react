@@ -11,10 +11,9 @@ export default [
     output: {
       dir: 'dist',
       format: 'cjs',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false,
-      exports: 'auto'
+      exports: 'auto',
+      preserveModules: false
     },
     plugins: [
       peerDepsExternal(),
