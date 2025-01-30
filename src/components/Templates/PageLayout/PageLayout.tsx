@@ -12,7 +12,7 @@ export interface PageLayoutProps extends React.AllHTMLAttributes<HTMLElement> {
   heroImage?: ReactNode;
 }
 
-const PageLayout = ({
+const PageLayout: React.FC<PageLayoutProps> = ({
   header,
   breadcrumbs,
   informationBanner,
@@ -24,7 +24,7 @@ const PageLayout = ({
   contentClassName,
   heroImage = <></>,
   ...props
-}: PageLayoutProps) => {
+}) => {
   const headingRef = React.useRef<HTMLDivElement>(null);
   const mainRef = React.useRef<HTMLDivElement>(null);
 

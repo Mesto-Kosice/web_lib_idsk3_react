@@ -16,7 +16,7 @@ export interface NotificationCardProps extends Omit<CardWrapperProps, 'innerClas
   dateFormatString?: string;
 }
 
-const NotificationCard = ({
+const NotificationCard: React.FC<NotificationCardProps> = ({
   title,
   date,
   highlighted,
@@ -24,7 +24,7 @@ const NotificationCard = ({
   actions = [],
   dateFormatString = 'dd.MM.yyyy',
   ...props
-}: NotificationCardProps) => {
+}) => {
   const dateObject = new Date(date);
 
   return (

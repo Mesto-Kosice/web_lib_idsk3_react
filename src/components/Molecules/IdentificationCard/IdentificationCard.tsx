@@ -9,7 +9,7 @@ export interface IdentificationCardProps extends React.AllHTMLAttributes<HTMLDiv
   children?: ReactNode;
 }
 
-const IdentificationCard = ({
+const IdentificationCard: React.FC<IdentificationCardProps> = ({
   firstName,
   lastName,
   fullName,
@@ -17,7 +17,7 @@ const IdentificationCard = ({
   children,
   className = '',
   ...props
-}: IdentificationCardProps) => {
+}) => {
   return (
     <div className={`idsk-identification-card ${className}`} {...props}>
       <AvatarCircle

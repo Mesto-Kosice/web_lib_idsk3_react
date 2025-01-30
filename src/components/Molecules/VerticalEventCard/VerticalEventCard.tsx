@@ -25,7 +25,7 @@ const defaultMonths: [string, ...string[]] & { length: 12 } = [
   'Dec'
 ];
 
-const VerticalEventCard = ({
+const VerticalEventCard: React.FC<VerticalEventCardProps> = ({
   title,
   date,
   color,
@@ -33,7 +33,7 @@ const VerticalEventCard = ({
   months = defaultMonths,
   alert,
   ...props
-}: VerticalEventCardProps) => {
+}) => {
   const dateObject = new Date(date);
 
   return (

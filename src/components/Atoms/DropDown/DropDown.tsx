@@ -19,7 +19,7 @@ export interface DropDownProps extends React.AllHTMLAttributes<HTMLDivElement> {
   hookOptions?: UseDropDownOptions;
 }
 
-const DropDown = ({
+const DropDown: React.FC<DropDownProps> = ({
   id,
   customTrigger,
   dropDownTitle,
@@ -33,7 +33,7 @@ const DropDown = ({
   withoutPseudoElement = false,
   hookOptions,
   ...props
-}: DropDownProps) => {
+}) => {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
 

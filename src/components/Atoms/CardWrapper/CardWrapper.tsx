@@ -6,13 +6,13 @@ export interface CardWrapperProps extends React.AllHTMLAttributes<HTMLDivElement
   innerClassNames?: string;
 }
 
-const CardWrapper = ({
+const CardWrapper: React.FC<CardWrapperProps> = ({
   color,
   children,
   innerClassNames,
   className,
   ...props
-}: CardWrapperProps) => {
+}) => {
   const cssClasses: string = cn(
     'idsk-card-wrapper',
     { 'idsk-card-wrapper--with-color': !!color },

@@ -8,12 +8,12 @@ export interface HorizontalNavigationItemProps extends BaseButtonProps {
   active?: boolean;
   hideLabelOnMobile?: boolean;
 }
-export const HorizontalNavigationItem = ({
+export const HorizontalNavigationItem: React.FC<HorizontalNavigationItemProps> = ({
   className,
   active = false,
   hideLabelOnMobile = false,
   ...props
-}: HorizontalNavigationItemProps) => {
+}) => {
   const elementClasses = cn(
     'idsk-horizontal-navigation-item',
     {
@@ -39,14 +39,14 @@ export interface HorizontalNavigationGroupProps extends AllHTMLAttributes<HTMLDi
   hideLabelOnMobile?: boolean;
 }
 
-export const HorizontalNavigationGroup = ({
+export const HorizontalNavigationGroup: React.FC<HorizontalNavigationGroupProps> = ({
   dropdownOnMobile = true,
   dropdownLabel = 'Missing label',
   hideLabelOnMobile = false,
   className,
   children,
   ...props
-}: HorizontalNavigationGroupProps) => {
+}) => {
   return (
     <div
       role="tablist"
@@ -78,12 +78,12 @@ export interface HorizontalNavigationProps extends AllHTMLAttributes<HTMLDivElem
   mobileView?: 'grid' | 'list';
 }
 
-export const HorizontalNavigation = ({
+export const HorizontalNavigation: React.FC<HorizontalNavigationProps> = ({
   children,
   className,
   mobileView = 'list',
   ...props
-}: HorizontalNavigationProps) => {
+}) => {
   return (
     <div
       {...props}

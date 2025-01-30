@@ -21,7 +21,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   errorMessageId?: string;
 }
 
-const Accordion = ({
+const Accordion: React.FC<AccordionProps> = ({
   subTitle,
   heading,
   headingAriaLabel,
@@ -39,7 +39,7 @@ const Accordion = ({
   fullWidthBody = false,
   errorMessageId,
   ...props
-}: AccordionProps) => {
+}) => {
   const [closed, setClosed] = useState<boolean>(initiallyClosed);
 
   const idForAria: string = errorMessageId || uuidv4();
@@ -146,7 +146,10 @@ const Accordion = ({
   );
 };
 
-export function AccordionListGroup({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export const AccordionListGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  ...props
+}) => {
   const renderedChildren = Children.map<ReactNode, ReactNode>(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, {
@@ -159,6 +162,6 @@ export function AccordionListGroup({ children, ...props }: React.HTMLAttributes<
       {renderedChildren}
     </div>
   );
-}
+};
 
 export default Accordion;

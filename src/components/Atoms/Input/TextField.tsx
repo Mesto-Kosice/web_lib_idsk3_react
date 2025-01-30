@@ -47,7 +47,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       optionalText,
       mandatory = false,
       ...props
-    }: TextFieldProps,
+    },
     ref
   ) => {
     const [currentLength, setCurrentLength] = useState(String(props.defaultValue ?? '').length);

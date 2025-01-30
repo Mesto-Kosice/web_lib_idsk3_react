@@ -9,13 +9,13 @@ export interface NavigationProps extends React.AllHTMLAttributes<HTMLElement> {
   label?: string;
 }
 
-const Navigation = ({
+const Navigation: React.FC<NavigationProps> = ({
   children,
   className,
   fullNav = false,
   label = '',
   ...props
-}: NavigationProps) => {
+}) => {
   const navigationClasses = cn(
     'idsk-navigation',
     {

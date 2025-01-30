@@ -15,7 +15,7 @@ export interface AvatarCircleProps extends React.ButtonHTMLAttributes<HTMLButton
   buttonClasses?: string;
 }
 
-const AvatarCircle = ({
+const AvatarCircle: React.FC<AvatarCircleProps> = ({
   firstName = '',
   lastName = '',
   fullName = '',
@@ -28,7 +28,7 @@ const AvatarCircle = ({
   className = '',
   buttonClasses = '',
   ...props
-}: AvatarCircleProps) => {
+}) => {
   const formatInitials = (name: string, company?: boolean) => {
     const words = name.split(' ');
 

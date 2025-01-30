@@ -21,7 +21,7 @@ export interface PaginationDropProps {
   selected?: boolean;
 }
 
-export const PaginationDrop = ({
+export const PaginationDrop: React.FC<PaginationDropProps> = ({
   title,
   arrowIcon = <KeyboardArrowDownIcon />,
   optionClassName,
@@ -30,7 +30,7 @@ export const PaginationDrop = ({
   id,
   onClick,
   items
-}: PaginationDropProps) => {
+}) => {
   const [dropTitle, setDropTitle] = useState(title);
   const [isOpen, setIsOpen] = useState(false);
 

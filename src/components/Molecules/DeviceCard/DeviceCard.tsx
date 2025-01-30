@@ -13,14 +13,14 @@ export interface DeviceCardProps extends Omit<CardWrapperProps, 'innerClassNames
   }[];
 }
 
-const DeviceCard = ({
+const DeviceCard: React.FC<DeviceCardProps> = ({
   icon = <></>,
   title,
   button,
   deviceData = [],
   children,
   ...props
-}: DeviceCardProps) => {
+}) => {
   const iconElement = icon
     ? React.cloneElement(icon, {
         className: cn('idsk-device-card__icon')

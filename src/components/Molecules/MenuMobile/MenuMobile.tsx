@@ -6,13 +6,13 @@ export interface MenuMobileProps extends React.AllHTMLAttributes<HTMLDivElement>
   opened?: boolean;
 }
 
-const MenuMobile = ({
+const MenuMobile: React.FC<MenuMobileProps> = ({
   heading,
   opened = false,
   children,
   className,
   ...props
-}: MenuMobileProps) => {
+}) => {
   const menuClasses = cn(
     'idsk-menu--mobile',
     {

@@ -11,7 +11,7 @@ export interface NotificationIconProps extends SVGProps<SVGSVGElement> {
   active?: boolean;
 }
 
-const NotificationIcon = ({
+const NotificationIcon: React.FC<NotificationIconProps> = ({
   alert,
   id,
   href,
@@ -20,7 +20,7 @@ const NotificationIcon = ({
   active,
   onClick,
   ...props
-}: NotificationIconProps) => {
+}) => {
   return (
     <IconLink
       id={id}

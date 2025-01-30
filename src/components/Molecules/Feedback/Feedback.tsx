@@ -12,7 +12,13 @@ export interface FeedbackProps extends React.AllHTMLAttributes<HTMLDivElement> {
   captchaText?: ReactNode;
 }
 
-const Feedback = ({ children, closeButton, id, captchaText, ...props }: FeedbackProps) => {
+const Feedback: React.FC<FeedbackProps> = ({
+  children,
+  closeButton,
+  id,
+  captchaText,
+  ...props
+}) => {
   const [visible, setVisibility] = useState(true);
 
   return visible ? (

@@ -11,7 +11,7 @@ export interface ErrorDialogProps extends React.HTMLAttributes<HTMLDivElement> {
   subtitle?: ReactNode;
 }
 
-const ErrorDialog = ({
+const ErrorDialog: React.FC<ErrorDialogProps> = ({
   opened,
   id,
   className,
@@ -20,7 +20,7 @@ const ErrorDialog = ({
   children,
   isLoading = false,
   img = <ErrorImage className="idsk-error-dialog__img" />
-}: ErrorDialogProps) => {
+}) => {
   const childrenClasses = cn('idsk-error-dialog__children', {
     'idsk-error-dialog__children-loading': isLoading
   });

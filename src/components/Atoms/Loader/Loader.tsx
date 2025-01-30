@@ -7,7 +7,7 @@ export interface LoaderProps extends React.AllHTMLAttributes<HTMLDivElement> {
   spinnerClassName?: string;
 }
 
-const Loader = ({ label, spinnerClassName, ...props }: LoaderProps) => {
+const Loader: React.FC<LoaderProps> = ({ label, spinnerClassName, ...props }) => {
   const spinnerClass = cn('idsk-loader__icon', spinnerClassName);
 
   return (

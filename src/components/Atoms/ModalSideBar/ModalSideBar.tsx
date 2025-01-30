@@ -16,7 +16,7 @@ export interface ModalSideBarProps extends React.AllHTMLAttributes<HTMLDivElemen
   closeButtonTooltip?: string;
 }
 
-const ModalSideBar = ({
+const ModalSideBar: React.FC<ModalSideBarProps> = ({
   opened,
   toggleOpened,
   heading,
@@ -29,7 +29,7 @@ const ModalSideBar = ({
   disableClickOutside = false,
   closeButtonTooltip,
   ...props
-}: ModalSideBarProps) => {
+}) => {
   const shadowClasses = cn('idsk-modal-sidebar__shadow', {
     'idsk-modal-sidebar__shadow--hidden': !opened
   });

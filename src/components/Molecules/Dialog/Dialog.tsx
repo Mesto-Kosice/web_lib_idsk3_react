@@ -18,7 +18,7 @@ export interface DialogProps extends FocusLockProps {
   className?: string;
 }
 
-const Dialog = ({
+const Dialog: React.FC<DialogProps> = ({
   opened,
   toggleOpened,
   id,
@@ -31,7 +31,7 @@ const Dialog = ({
   closeButtonAriaLabel,
   disableClickOutside = false,
   ...props
-}: DialogProps) => {
+}) => {
   const dialogClasses = cn(
     'idsk-dialog-screen',
     {

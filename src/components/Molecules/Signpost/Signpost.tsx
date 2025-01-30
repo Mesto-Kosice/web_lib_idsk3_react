@@ -94,7 +94,10 @@ const Signpost = React.forwardRef<HTMLAnchorElement, SignpostProps>((props, ref)
   );
 });
 
-export function SignpostsGroup({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export const SignpostsGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  ...props
+}) => {
   const renderedChildren = Children.map<ReactNode, ReactNode>(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, {
@@ -107,7 +110,7 @@ export function SignpostsGroup({ children, ...props }: React.HTMLAttributes<HTML
       {renderedChildren}
     </div>
   );
-}
+};
 
 Signpost.displayName = 'Signpost';
 

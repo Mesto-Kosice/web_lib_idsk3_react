@@ -29,7 +29,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       optionalText,
       mandatory,
       ...props
-    }: CheckboxProps,
+    },
     ref
   ) => {
     const [hover, setHover] = React.useState(false);

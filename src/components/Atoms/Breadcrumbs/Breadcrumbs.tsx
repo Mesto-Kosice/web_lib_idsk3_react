@@ -10,13 +10,13 @@ export interface BreadcrumbsProps extends React.AllHTMLAttributes<HTMLDivElement
   disableMobileVersion?: boolean;
 }
 
-const Breadcrumbs = ({
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   children,
   homeLink = <a href="/">Domov</a>,
   disableMobileVersion = false,
   className,
   ...props
-}: BreadcrumbsProps) => {
+}) => {
   const breadcrumbsClasses = cn(
     'idsk-breadcrumbs',
     { 'flex-wrap': disableMobileVersion },

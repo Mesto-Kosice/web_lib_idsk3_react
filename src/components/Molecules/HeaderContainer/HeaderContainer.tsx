@@ -13,7 +13,7 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   focusLockProps?: FocusLockProps;
 }
 
-const HeaderContainer = ({
+const HeaderContainer: React.FC<HeaderProps> = ({
   fixed = false,
   children,
   secondaryNavigation,
@@ -24,7 +24,7 @@ const HeaderContainer = ({
   focusLock = false,
   focusLockProps,
   ...props
-}: HeaderProps) => {
+}) => {
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
 
   const headerClasses = cn('idsk-header-container__wrapper', className);

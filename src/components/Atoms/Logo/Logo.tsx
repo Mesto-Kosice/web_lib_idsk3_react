@@ -9,7 +9,7 @@ export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
   shortSubtitle?: string;
 }
 
-const Logo = ({
+const Logo: React.FC<LogoProps> = ({
   image,
   title,
   subtitle,
@@ -17,7 +17,7 @@ const Logo = ({
   shortSubtitle,
   className = '',
   ...props
-}: LogoProps) => {
+}) => {
   return (
     <div className={cn('idsk-logo', className)} {...props}>
       {image && <div className="idsk-logo__image">{image}</div>}

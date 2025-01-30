@@ -26,7 +26,7 @@ const defaultMonths: [string, ...string[]] & { length: 12 } = [
   'Dec'
 ];
 
-const EventCard = ({
+const EventCard: React.FC<EventCardProps> = ({
   title,
   date,
   color,
@@ -35,7 +35,7 @@ const EventCard = ({
   months = defaultMonths,
   isComplete = false,
   ...props
-}: EventCardProps) => {
+}) => {
   const dateObject = new Date(date);
 
   const wrapperClasses = cn('idsk-event-card', {

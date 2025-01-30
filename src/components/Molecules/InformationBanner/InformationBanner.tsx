@@ -24,7 +24,7 @@ const defaultInformationBannerProps: InformationBannerProps = {
   type: 'banner'
 };
 
-const InformationBanner = ({
+const InformationBanner: React.FC<InformationBannerProps> = ({
   icon,
   useDefaultIcon = true,
   title,
@@ -39,7 +39,7 @@ const InformationBanner = ({
   errorMessageId,
   accent = true,
   ...props
-}: InformationBannerProps) => {
+}) => {
   const [visible, setVisibility] = useState(true);
 
   if (!icon && useDefaultIcon) {

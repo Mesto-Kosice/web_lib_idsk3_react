@@ -8,7 +8,12 @@ export interface AnchorCardProps {
   children?: ReactNode;
 }
 
-const AnchorCard = ({ children, className, layout = 'horizontal', grid }: AnchorCardProps) => {
+const AnchorCard: React.FC<AnchorCardProps> = ({
+  children,
+  className,
+  layout = 'horizontal',
+  grid
+}) => {
   return (
     <div
       className={cn(

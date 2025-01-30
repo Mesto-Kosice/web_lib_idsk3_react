@@ -10,11 +10,11 @@ export interface ProgressProps extends React.AllHTMLAttributes<HTMLDivElement> {
   fillingColor?: string;
 }
 
-const Progress = ({
+const Progress: React.FC<ProgressProps> = ({
   emptyColor = '#EFF5FE',
   fillingColor = '#126DFF',
   ...props
-}: ProgressProps) => {
+}) => {
   const progressClasses = cn('idsk-progress-percent', {
     'idsk-progress-percent-full': props.percent == '100%'
   });

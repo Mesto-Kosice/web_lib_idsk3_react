@@ -7,7 +7,12 @@ export interface InPageNavigationProps extends React.AllHTMLAttributes<HTMLEleme
   title?: string;
 }
 
-const InPageNavigation = ({ children, className, title = '', ...props }: InPageNavigationProps) => {
+const InPageNavigation: React.FC<InPageNavigationProps> = ({
+  children,
+  className,
+  title = '',
+  ...props
+}) => {
   const inPageNavigationClasses = cn('idsk-in-page-navigation', className);
 
   return (

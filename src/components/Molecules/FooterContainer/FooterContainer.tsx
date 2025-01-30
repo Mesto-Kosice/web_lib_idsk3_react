@@ -25,14 +25,14 @@ export const FooterContainerSection: React.FC<React.HTMLAttributes<HTMLDivElemen
   </div>
 );
 
-const FooterContainer = ({
+const FooterContainer: React.FC<FooterContainerProps> = ({
   className,
   children,
   linksList = [],
   bottomSection,
   logo,
   ...props
-}: FooterContainerProps) => {
+}) => {
   return (
     <footer className={cn('idsk-footer-container', className)} {...props}>
       <div className="idsk-footer-container__content">

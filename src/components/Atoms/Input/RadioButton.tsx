@@ -13,16 +13,7 @@ export interface RadioButtonProps extends React.InputHTMLAttributes<HTMLInputEle
 }
 
 const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
-  (
-    {
-      name = 'name',
-      inputSize = 'large',
-      disabled = false,
-      error = false,
-      ...props
-    }: RadioButtonProps,
-    ref
-  ) => {
+  ({ name = 'name', inputSize = 'large', disabled = false, error = false, ...props }, ref) => {
     const textSizeClasses = cn('idsk-radio-button__text', {
       'idsk-radio-button__text--large': inputSize === 'large',
       'idsk-radio-button__text--small': inputSize === 'small'
@@ -85,7 +76,7 @@ export interface RadioButtonGroupProps extends React.HTMLAttributes<HTMLDivEleme
   errorMsg?: string;
 }
 
-export function RadioButtonGroup({
+export const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({
   children,
   label,
   mandatory,
@@ -94,7 +85,7 @@ export function RadioButtonGroup({
   error,
   errorMsg,
   ...props
-}: RadioButtonGroupProps) {
+}) => {
   const renderedChildren = Children.map(children, (child) => {
     if (React.isValidElement<RadioButtonProps>(child)) {
       const newProps: RadioButtonProps = { error, disabled };
@@ -120,7 +111,7 @@ export function RadioButtonGroup({
       )}
     </div>
   );
-}
+};
 
 RadioButton.displayName = 'RadioButton';
 

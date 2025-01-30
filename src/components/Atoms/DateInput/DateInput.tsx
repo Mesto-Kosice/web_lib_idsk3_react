@@ -82,7 +82,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       onValueUpdate,
       onRevalidation,
       ...props
-    }: DateInputProps,
+    },
     ref
   ) => {
     const dateStringFormat = 'yyyy-MM-dd';

@@ -45,7 +45,7 @@ interface FilterTagProps extends BaseTagProps {
 
 export type TagProps = SelectTagProps | StaticTagProps | ActionTagProps | FilterTagProps;
 
-const Tag = ({
+const Tag: React.FC<TagProps> = ({
   label,
   leftIcon,
   rightIcon,
@@ -55,7 +55,7 @@ const Tag = ({
   variant = 'default',
   className,
   ...props
-}: TagProps) => {
+}) => {
   const { colors, ...propsWithSelect } = props as StaticTagProps;
   const { selected, ...propsWithOnClose } = propsWithSelect as SelectTagProps;
   const { onClose, ...divProps } = propsWithOnClose as ActionTagProps;

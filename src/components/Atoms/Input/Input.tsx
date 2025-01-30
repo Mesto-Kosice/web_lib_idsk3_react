@@ -55,7 +55,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       mandatory = false,
       disabledErrorIcon = false,
       ...props
-    }: InputProps,
+    },
     ref
   ) => {
     if (!!actionButton && iconPosition === 'right') iconPosition = 'left';

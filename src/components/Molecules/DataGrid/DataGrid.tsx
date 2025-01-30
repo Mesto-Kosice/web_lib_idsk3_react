@@ -7,7 +7,7 @@ interface DataGridTagsProps extends React.AllHTMLAttributes<HTMLDivElement> {
   tags?: { label?: string; key?: number }[];
 }
 
-export const DataGridTags = ({ tags }: DataGridTagsProps) => {
+export const DataGridTags: React.FC<DataGridTagsProps> = ({ tags }) => {
   return (
     <>
       {tags?.length &&
@@ -24,13 +24,13 @@ export interface DataGridRowValueProps extends React.AllHTMLAttributes<HTMLDivEl
   className?: string;
 }
 
-export const DataGridRowValue = ({
+export const DataGridRowValue: React.FC<DataGridRowValueProps> = ({
   align,
   className,
   children,
   information,
   ...props
-}: DataGridRowValueProps) => {
+}) => {
   return (
     <td
       className={cn(
@@ -68,7 +68,7 @@ export interface DataGridRowProps extends React.AllHTMLAttributes<HTMLDivElement
   buttonProps?: ClickableRowProps;
 }
 
-export function DataGridRow({
+export const DataGridRow: React.FC<DataGridRowProps> = ({
   children,
   moreIcon = <MoreVertIcon />,
   moreOptions,
@@ -84,7 +84,7 @@ export function DataGridRow({
   activeDotVisibility = false,
   id,
   ...props
-}: DataGridRowProps) {
+}) => {
   const dataGridClasses = cn(
     'idsk-data-grid-row',
     { 'idsk-data-grid-row--active': active },
@@ -173,7 +173,7 @@ export function DataGridRow({
       {dataGridRowBody}
     </tr>
   );
-}
+};
 
 export interface DataGridProps extends React.AllHTMLAttributes<HTMLDivElement> {
   checkboxEverything?: boolean;
@@ -183,7 +183,7 @@ export interface DataGridProps extends React.AllHTMLAttributes<HTMLDivElement> {
   hasUncheckIcon?: boolean;
 }
 
-function DataGrid({
+const DataGrid: React.FC<DataGridProps> = ({
   children,
   checked,
   onSelectAllCheck,
@@ -194,7 +194,7 @@ function DataGrid({
   hasUncheckIcon,
   id,
   ...props
-}: DataGridProps) {
+}) => {
   const renderedChildren = Children.map<ReactNode, ReactNode>(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child);
@@ -237,6 +237,6 @@ function DataGrid({
       </tbody>
     </table>
   );
-}
+};
 
 export default DataGrid;

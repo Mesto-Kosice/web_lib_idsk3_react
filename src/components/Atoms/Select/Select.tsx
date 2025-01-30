@@ -43,7 +43,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       defaultSelectValue = 'default',
       value,
       ...props
-    }: SelectProps,
+    },
     ref
   ) => {
     const [placeholderIsActive, setPlaceholderIsActive] = useState(!value && !!placeholder);

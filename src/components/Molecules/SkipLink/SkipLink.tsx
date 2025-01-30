@@ -4,7 +4,7 @@ export interface SkipLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
 }
 
-const SkipLink = ({ href = '#', children, ...props }: SkipLinkProps) => {
+const SkipLink: React.FC<SkipLinkProps> = ({ href = '#', children, ...props }) => {
   return (
     <div className="idsk-skip-link__wrapper">
       <a className="idsk-skip-link" href={href} {...props}>

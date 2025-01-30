@@ -7,12 +7,12 @@ export interface InPageNavigationListProps extends React.AllHTMLAttributes<HTMLE
   subtitle?: string;
 }
 
-const InPageNavigationList = ({
+const InPageNavigationList: React.FC<InPageNavigationListProps> = ({
   children,
   className,
   subtitle = '',
   ...props
-}: InPageNavigationListProps) => {
+}) => {
   return (
     <nav className={cn('idsk-in-page-navigation__list', className)} {...props}>
       {!!subtitle && <span className="idsk-in-page-navigation__subtitle">{subtitle}</span>}

@@ -8,14 +8,14 @@ export interface MenuButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   closedTitle: string;
 }
 
-const MenuButton = ({
+const MenuButton: React.FC<MenuButtonProps> = ({
   opened,
   toggleOpened,
   closedTitle,
   openedTitle,
   className = '',
   ...props
-}: MenuButtonProps) => {
+}) => {
   return (
     <button className={`idsk-menu-button ${className}`} onClick={toggleOpened} {...props}>
       <span>{opened ? openedTitle : closedTitle}</span>{' '}

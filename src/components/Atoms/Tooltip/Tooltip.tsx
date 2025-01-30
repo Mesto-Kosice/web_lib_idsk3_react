@@ -10,7 +10,7 @@ export interface TooltipProps {
   hideOnClick?: boolean;
 }
 
-const Tooltip = ({
+const Tooltip: React.FC<TooltipProps> = ({
   tooltip,
   children,
   hideOnClick = true,
@@ -18,7 +18,7 @@ const Tooltip = ({
   positionUp,
   alignLeft,
   ...props
-}: TooltipProps) => {
+}) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   const waitingToEnterRef = useRef<boolean>(true);

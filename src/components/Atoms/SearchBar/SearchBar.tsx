@@ -48,7 +48,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       suggestions,
       suggestionOnClick,
       ...props
-    }: SearchBarProps,
+    },
     ref
   ) => {
     const [searchbarOpened, setSearchbarOpened] = useState<boolean>(false);

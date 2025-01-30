@@ -9,7 +9,7 @@ export interface TableProps extends React.AllHTMLAttributes<HTMLDivElement> {
   actions?: ReactNode;
   align?: 'left' | 'right';
 }
-export function Table({
+export const Table: React.FC<TableProps> = ({
   children,
   heading,
   headRow,
@@ -17,7 +17,7 @@ export function Table({
   actions,
   className,
   ...props
-}: TableProps) {
+}) => {
   return (
     <>
       {heading && <h3 className="idsk-table__heading">{heading}</h3>}
@@ -44,9 +44,9 @@ export function Table({
       {actions && <div className="idsk-table__actions">{actions}</div>}
     </>
   );
-}
+};
 
-export const TableRow = ({ children, className, ...props }: TableProps) => {
+export const TableRow: React.FC<TableProps> = ({ children, className, ...props }) => {
   return (
     <tr {...props} className={cn('idsk-table__row', className)}>
       {children}
@@ -54,7 +54,7 @@ export const TableRow = ({ children, className, ...props }: TableProps) => {
   );
 };
 
-export const TableRowValue = ({ align, className, children, ...props }: TableProps) => {
+export const TableRowValue: React.FC<TableProps> = ({ align, className, children, ...props }) => {
   return (
     <td
       {...props}
@@ -71,7 +71,7 @@ export const TableRowValue = ({ align, className, children, ...props }: TablePro
   );
 };
 
-export const TableHeadValue = ({ align, className, children, ...props }: TableProps) => {
+export const TableHeadValue: React.FC<TableProps> = ({ align, className, children, ...props }) => {
   return (
     <th
       {...props}
