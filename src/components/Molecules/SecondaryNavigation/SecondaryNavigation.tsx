@@ -77,8 +77,8 @@ const SecondaryNavigation: React.FC<SecondaryNavProps> = (props) => {
     dropDownOptions = [],
     className,
     bodyClassName,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     headingButton,
+    mobileHeadingButton,
     id,
     ...other
   } = props;
@@ -94,7 +94,13 @@ const SecondaryNavigation: React.FC<SecondaryNavProps> = (props) => {
             {!!heading && (
               <span className="idsk-secondary-navigation__heading-desktop">{heading} </span>
             )}
-            <HeadingButton opened={opened} setOpened={setOpened} {...props} />
+            <HeadingButton
+              opened={opened}
+              setOpened={setOpened}
+              mobileHeadingButton={mobileHeadingButton}
+              headingButton={headingButton}
+              {...props}
+            />
           </div>
           {!!children && (
             <div

@@ -1,6 +1,4 @@
-module.exports = {
-  testEnvironment: 'jsdom',
-  moduleNameMapper: {
-    '@/(.*)$': '<rootDir>/src/$1'
-  }
+export const testEnvironment = 'jsdom';
+export const moduleNameMapper = {
+  '@/(.*)$': '<rootDir>/src/$1'
 };

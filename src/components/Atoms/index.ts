@@ -7,6 +7,7 @@ export * from './CardWrapper';
 export * from './CardsContainer';
 export * from './DateInput';
 export * from './DropDown';
+export * from './FocusLock';
 export * from './IconLink';
 export * from './Input';
 export * from './Loader';

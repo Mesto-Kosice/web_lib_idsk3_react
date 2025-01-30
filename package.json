@@ -1,6 +1,6 @@
 {
   "name": "@slovakia-kosice/idsk-react",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "React native components for IDSK 3.0",
   "scripts": {
     "clean-dist": "rm -rf ./dist",
@@ -28,6 +28,9 @@
   },
   "homepage": "https://github.com/Mesto-Kosice/web_lib_idsk3_react#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
     "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.19.0",
     "@headlessui/react": "^2.2.0",

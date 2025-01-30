@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import FocusLock, { ReactFocusLockProps } from 'react-focus-lock';
+import { FocusLock, FocusLockProps } from '@/components';
 import { cn } from '@/lib';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,7 +10,7 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   largeMenu?: ReactNode;
   mobileMenu?: ReactNode;
   focusLock?: boolean;
-  focusLockProps?: ReactFocusLockProps;
+  focusLockProps?: FocusLockProps;
 }
 
 const HeaderContainer = ({

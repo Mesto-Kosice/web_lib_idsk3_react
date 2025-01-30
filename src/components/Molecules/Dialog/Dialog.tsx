@@ -1,11 +1,10 @@
 import React, { ReactNode, useRef } from 'react';
-import { ReactFocusLockProps } from 'react-focus-lock';
-import FocusLock from 'react-focus-lock';
+import { FocusLock, FocusLockProps } from '@/components';
 import { CloseIcon } from '@/svgIcons';
 import { cn } from '@/lib';
 import { useClickOutside } from '@/hooks';
 
-export interface DialogProps extends ReactFocusLockProps {
+export interface DialogProps extends FocusLockProps {
   opened: boolean;
   id?: string;
   title?: string;
@@ -52,7 +51,7 @@ const Dialog = ({
   return (
     <>
       {opened && (
-        <FocusLock {...props} className={dialogClasses} lockProps={{ id: id }}>
+        <FocusLock {...props} className={dialogClasses}>
           <div className="idsk-dialog-wrapper">
             <div ref={modalRef} className="idsk-dialog" role="dialog" aria-modal="true">
               {!!title && (

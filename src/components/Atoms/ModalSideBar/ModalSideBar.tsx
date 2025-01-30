@@ -1,9 +1,7 @@
 import React, { ReactNode, useRef } from 'react';
-import FocusLock from 'react-focus-lock';
-import { ReactFocusLockProps } from 'react-focus-lock';
 import { CloseIcon } from '@/svgIcons';
 import { useClickOutside } from '@/hooks';
-import { Tooltip } from '@/components';
+import { Tooltip, FocusLock, FocusLockProps } from '@/components';
 import { cn } from '@/lib';
 
 export interface ModalSideBarProps extends React.AllHTMLAttributes<HTMLDivElement> {
@@ -13,7 +11,7 @@ export interface ModalSideBarProps extends React.AllHTMLAttributes<HTMLDivElemen
   footer?: ReactNode | undefined;
   id?: string;
   closeButtonAriaLabel?: string;
-  focusLockProps?: ReactFocusLockProps;
+  focusLockProps?: FocusLockProps;
   disableClickOutside?: boolean;
   closeButtonTooltip?: string;
 }
