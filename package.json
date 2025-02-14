@@ -1,6 +1,6 @@
 {
   "name": "@slovakia-kosice/idsk-react",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "React native components for IDSK 3.0",
   "scripts": {
     "clean-dist": "rm -rf ./dist",
