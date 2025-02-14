@@ -2,7 +2,6 @@
   "name": "@slovakia-kosice/idsk-react",
   "version": "4.1.1",
   "description": "React native components for IDSK 3.0",
-  "type": "module",
   "scripts": {
     "clean-dist": "rm -rf ./dist",
     "rollup": "npm run clean-dist && npm run build-styles-prod && rollup -c",
