@@ -1,7 +1,5 @@
-'use client';
-
 import React, { MouseEventHandler, ReactElement, ReactNode, SVGProps, forwardRef } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface BaseButtonProps {
   id?: string;
@@ -29,7 +27,7 @@ const BaseButton = forwardRef(
   (props: BaseButtonProps, ref: React.ForwardedRef<HTMLButtonElement>) => {
     const icon = props.icon
       ? React.cloneElement(props.icon, {
-          className: classNames('idsk-button__icon', {
+          className: cn('idsk-button__icon', {
             'idsk-button__icon--left':
               props.iconPosition == 'left' || props.iconPosition == undefined,
             'idsk-button__icon--right': props.iconPosition == 'right'
@@ -37,7 +35,7 @@ const BaseButton = forwardRef(
         })
       : undefined;
 
-    const buttonClasses: string = classNames('idsk-button', props.className, {
+    const buttonClasses: string = cn('idsk-button', props.className, {
       'idsk-button--w-full': props.fullWidth
     });
 
@@ -72,5 +70,7 @@ const BaseButton = forwardRef(
     );
   }
 );
+
+BaseButton.displayName = 'BaseButton';
 
 export default BaseButton;

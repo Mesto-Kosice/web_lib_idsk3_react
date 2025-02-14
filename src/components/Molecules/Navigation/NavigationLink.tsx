@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
-import { DropDown } from '../../Atoms';
-import { ExpandMoreIcon } from '../../../svgIcons/Navigation';
+import { DropDown } from '@/components';
+import { ExpandMoreIcon } from '@/svgIcons';
 import { NavigationLinkOptionProps } from './NavigationLinkOption';
 
 export interface NavigationLinkProps extends NavigationLinkOptionProps {
@@ -14,17 +14,17 @@ export interface NavigationLinkProps extends NavigationLinkOptionProps {
 
 const NavigationLink = React.forwardRef<HTMLAnchorElement, NavigationLinkProps>(
   ({ id, label, href, onClick, alert, selected, linkElement, children, title }, ref) => {
-    if (!!children) {
+    if (children) {
       return (
         <DropDown
           id={id}
           dropDownTitle={label}
           arrowIcon={<ExpandMoreIcon className="idsk-navigation__arrow-icon" />}
-          className={classNames('idsk-navigation__dropdown', {
+          className={cn('idsk-navigation__dropdown', {
             'idsk-navigation__link--dropdown': selected
           })}
           optionClassName="idsk-navigation__dropdown-options"
-          buttonClassName={classNames('idsk-navigation__dropdown-button', {
+          buttonClassName={cn('idsk-navigation__dropdown-button', {
             'idsk-navigation__link--dropdown-link': selected
           })}
         >
@@ -33,14 +33,14 @@ const NavigationLink = React.forwardRef<HTMLAnchorElement, NavigationLinkProps>(
       );
     }
 
-    const linkClasses = classNames('idsk-navigation__link', {
+    const linkClasses = cn('idsk-navigation__link', {
       'idsk-navigation__link--clicked': selected,
       'idsk-navigation__link--alerted': alert
     });
 
     return (
       <span className={linkClasses}>
-        {!!linkElement ? (
+        {linkElement ? (
           linkElement
         ) : (
           <a ref={ref} href={href} onClick={onClick} title={title}>
@@ -52,5 +52,7 @@ const NavigationLink = React.forwardRef<HTMLAnchorElement, NavigationLinkProps>(
     );
   }
 );
+
+NavigationLink.displayName = 'NavigationLink';
 
 export default NavigationLink;

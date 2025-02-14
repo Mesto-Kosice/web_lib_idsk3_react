@@ -1,9 +1,7 @@
-'use client';
-
 import React, { useState, useImperativeHandle, useRef } from 'react';
-import classNames from 'classnames';
-import { WarningIcon } from '../../../svgIcons/Alert';
 import { v4 as uuidv4 } from 'uuid';
+import { WarningIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface TextFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   inputSize?: 'large' | 'medium' | 'small';
@@ -49,7 +47,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       optionalText,
       mandatory = false,
       ...props
-    }: TextFieldProps,
+    },
     ref
   ) => {
     const [currentLength, setCurrentLength] = useState(String(props.defaultValue ?? '').length);
@@ -57,10 +55,10 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
     const innerRef = useRef<TextFieldRef>(null);
 
     useImperativeHandle(ref, () => {
-      if (!!innerRef.current) {
+      if (innerRef.current) {
         innerRef.current.reset = () => {
           setCurrentLength(0);
-          if (!!innerRef.current?.value) innerRef.current.value = '';
+          if (innerRef.current?.value) innerRef.current.value = '';
         };
       }
       return innerRef.current as TextFieldRef;
@@ -71,7 +69,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       onChange(event);
     }
 
-    const inputClasses: string = classNames(
+    const inputClasses: string = cn(
       'idsk-input',
       {
         'idsk-input--large': inputSize === 'large',
@@ -84,7 +82,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       className
     );
 
-    const inputWrapperClasses: string = classNames('idsk-input__wrapper', {
+    const inputWrapperClasses: string = cn('idsk-input__wrapper', {
       'idsk-input__wrapper--error': error,
       'idsk-input__wrapper--disabled': disabled,
       'w-full': fullWidth
@@ -94,10 +92,10 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
 
     return (
       <>
-        <div className={classNames('mb-3', { 'w-full': fullWidth })}>
+        <div className={cn('mb-3', { 'w-full': fullWidth })}>
           {!!label && (
             <label
-              className={classNames('idsk-input__label', { 'sr-only': labelSrOnly })}
+              className={cn('idsk-input__label', { 'sr-only': labelSrOnly })}
               htmlFor={props.id}
             >
               {label}
@@ -122,7 +120,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
             />
             {!!error && (
               <WarningIcon
-                className={classNames(
+                className={cn(
                   'idsk-input__icon idsk-input__icon-textarea',
                   {
                     'idsk-input__icon--large': inputSize === 'large',
@@ -141,7 +139,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
           </div>
           {(!!errorMsg || !!caption) && (
             <p
-              className={classNames('idsk-input__caption', {
+              className={cn('idsk-input__caption', {
                 'idsk-input__caption--error': error && !disabled
               })}
             >
@@ -159,5 +157,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
     );
   }
 );
+
+TextField.displayName = 'TextField';
 
 export default TextField;

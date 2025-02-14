@@ -1,7 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-
-import { CardWrapper, CardWrapperProps } from '../../Atoms';
+import { CardWrapper, CardWrapperProps } from '@/components';
 
 export interface NotificationCardProps extends Omit<CardWrapperProps, 'innerClassNames'> {
   date: string | number | Date;
@@ -17,7 +16,7 @@ export interface NotificationCardProps extends Omit<CardWrapperProps, 'innerClas
   dateFormatString?: string;
 }
 
-const NotificationCard = ({
+const NotificationCard: React.FC<NotificationCardProps> = ({
   title,
   date,
   highlighted,
@@ -25,7 +24,7 @@ const NotificationCard = ({
   actions = [],
   dateFormatString = 'dd.MM.yyyy',
   ...props
-}: NotificationCardProps) => {
+}) => {
   const dateObject = new Date(date);
 
   return (
@@ -51,8 +50,8 @@ const NotificationCard = ({
             <a
               className="idsk-notification-card__link"
               key={index}
-              href={!!item.href ? item.href : undefined}
-              onClick={!!item.onClick ? item.onClick : undefined}
+              href={item.href ? item.href : undefined}
+              onClick={item.onClick ? item.onClick : undefined}
               target={item.target}
               aria-label={item.ariaLabel}
             >

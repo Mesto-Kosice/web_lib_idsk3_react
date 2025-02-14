@@ -1,1 +1,1 @@
-export { default, EventCardProps } from './EventCard';
+export { default as EventCard, type EventCardProps } from './EventCard';

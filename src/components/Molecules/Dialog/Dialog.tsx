@@ -1,13 +1,10 @@
-'use client';
-
 import React, { ReactNode, useRef } from 'react';
-import FocusLock from 'react-focus-lock';
-import { CloseIcon } from '../../../svgIcons/Navigation';
-import classNames from 'classnames';
-import { ReactFocusLockProps } from 'react-focus-lock/interfaces';
-import useClickOutside from '../../../utils/useClickOutside';
+import { FocusLock, FocusLockProps } from '@/components';
+import { CloseIcon } from '@/svgIcons';
+import { cn } from '@/lib';
+import { useClickOutside } from '@/hooks';
 
-export interface DialogProps extends ReactFocusLockProps {
+export interface DialogProps extends FocusLockProps {
   opened: boolean;
   id?: string;
   title?: string;
@@ -18,9 +15,10 @@ export interface DialogProps extends ReactFocusLockProps {
   closeButtonAriaLabel?: string;
   disableClickOutside?: boolean;
   children?: React.ReactNode;
+  className?: string;
 }
 
-const Dialog = ({
+const Dialog: React.FC<DialogProps> = ({
   opened,
   toggleOpened,
   id,
@@ -33,8 +31,8 @@ const Dialog = ({
   closeButtonAriaLabel,
   disableClickOutside = false,
   ...props
-}: DialogProps) => {
-  const dialogClasses = classNames(
+}) => {
+  const dialogClasses = cn(
     'idsk-dialog-screen',
     {
       'idsk-dialog-screen--hidden': !opened
@@ -53,7 +51,7 @@ const Dialog = ({
   return (
     <>
       {opened && (
-        <FocusLock {...props} className={dialogClasses} lockProps={{ id: id }}>
+        <FocusLock {...props} className={dialogClasses}>
           <div className="idsk-dialog-wrapper">
             <div ref={modalRef} className="idsk-dialog" role="dialog" aria-modal="true">
               {!!title && (

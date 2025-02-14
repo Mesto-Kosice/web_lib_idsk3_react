@@ -1,1 +1,1 @@
-export { default, ArticleCardProps } from './ArticleCard';
+export { default as ArticleCard, type ArticleCardProps } from './ArticleCard';

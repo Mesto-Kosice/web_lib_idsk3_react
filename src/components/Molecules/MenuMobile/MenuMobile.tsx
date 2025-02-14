@@ -1,19 +1,19 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface MenuMobileProps extends React.AllHTMLAttributes<HTMLDivElement> {
   heading?: ReactNode | string;
   opened?: boolean;
 }
 
-const MenuMobile = ({
+const MenuMobile: React.FC<MenuMobileProps> = ({
   heading,
   opened = false,
   children,
   className,
   ...props
-}: MenuMobileProps) => {
-  const menuClasses = classNames(
+}) => {
+  const menuClasses = cn(
     'idsk-menu--mobile',
     {
       hidden: !opened

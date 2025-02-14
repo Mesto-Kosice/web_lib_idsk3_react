@@ -1,13 +1,15 @@
-'use client';
-
 import React from 'react';
-import classNames from 'classnames';
-import { PrimaryButton, PrimaryButtonProps, TextButton, TextButtonProps } from '../../Atoms';
-import { SearchIcon } from '../../../svgIcons/Actions';
 import { v4 as uuidv4 } from 'uuid';
-import { CancelIcon } from '../../../svgIcons/Navigation';
-import { useForwardRef } from '../../../utils';
-import BaseButton from '../../Atoms/Button/BaseButton';
+import { useForwardRef } from '@/hooks';
+import { CancelIcon, SearchIcon } from '@/svgIcons';
+import {
+  BaseButton,
+  PrimaryButton,
+  PrimaryButtonProps,
+  TextButton,
+  TextButtonProps
+} from '@/components';
+import { cn } from '@/lib';
 
 export interface SearchContainerProps extends React.InputHTMLAttributes<HTMLInputElement> {
   title?: string;
@@ -46,9 +48,9 @@ const SearchContainer = React.forwardRef<HTMLInputElement, SearchContainerProps>
     },
     ref
   ) => {
-    const containerClasses: string = classNames('idsk-search-container', containerClassName);
+    const containerClasses: string = cn('idsk-search-container', containerClassName);
 
-    const inputClasses: string = classNames(
+    const inputClasses: string = cn(
       'idsk-input',
       'idsk-input--medium',
       'idsk-input--w-full',
@@ -58,12 +60,12 @@ const SearchContainer = React.forwardRef<HTMLInputElement, SearchContainerProps>
       className
     );
 
-    const primaryButtonClasses: string = classNames(
+    const primaryButtonClasses: string = cn(
       'idsk-search-container__button',
       searchButton?.className
     );
 
-    const advancedSearchButtonClasses: string = classNames(
+    const advancedSearchButtonClasses: string = cn(
       'idsk-search-container__button',
       advancedSearchButton?.className
     );
@@ -73,11 +75,11 @@ const SearchContainer = React.forwardRef<HTMLInputElement, SearchContainerProps>
     const inputRef = useForwardRef<HTMLInputElement>(ref);
 
     const handleCancel = () => {
-      if (!!inputRef.current) {
+      if (inputRef.current) {
         inputRef.current.value = '';
       }
 
-      if (!!onCancel) onCancel();
+      if (onCancel) onCancel();
     };
 
     return (
@@ -125,7 +127,7 @@ const SearchContainer = React.forwardRef<HTMLInputElement, SearchContainerProps>
           </div>
           {(!!errorMsg || !!caption) && (
             <p
-              className={classNames('idsk-input__caption', {
+              className={cn('idsk-input__caption', {
                 'idsk-input__caption--error': error
               })}
             >
@@ -152,5 +154,7 @@ const SearchContainer = React.forwardRef<HTMLInputElement, SearchContainerProps>
     );
   }
 );
+
+SearchContainer.displayName = 'SearchContainer';
 
 export default SearchContainer;

@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { PrimaryButton, Snackbar } from '../../src/components';
-import '/src/styles/idsk3_theme.css';
 import { useState } from '@storybook/addons';
+import '../../src/styles/idsk3_theme.css';
 
 export default {
   title: 'Atoms/Snackbar',
   component: Snackbar
-} as ComponentMeta<typeof Snackbar>;
+} as Meta<typeof Snackbar>;
 
-const Template: ComponentStory<typeof Snackbar> = (args) => {
+const Template: StoryFn<typeof Snackbar> = (args) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -34,60 +34,87 @@ const Template: ComponentStory<typeof Snackbar> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  message: 'Default single line snackbar',
-  autoHideDuration: 6000
+export const Default = {
+  render: Template,
+
+  args: {
+    message: 'Default single line snackbar',
+    autoHideDuration: 6000
+  }
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  message: 'This action was performed successfully',
-  variant: 'success'
+export const Success = {
+  render: Template,
+
+  args: {
+    message: 'This action was performed successfully',
+    variant: 'success'
+  }
 };
 
-export const Warning = Template.bind({});
-Warning.args = {
-  message: 'Warning! An error has occurred',
-  variant: 'warning'
+export const Warning = {
+  render: Template,
+
+  args: {
+    message: 'Warning! An error has occurred',
+    variant: 'warning'
+  }
 };
 
-export const Info = Template.bind({});
-Info.args = {
-  message: 'This is important information',
-  variant: 'info'
+export const Info = {
+  render: Template,
+
+  args: {
+    message: 'This is important information',
+    variant: 'info'
+  }
 };
 
-export const Attention = Template.bind({});
-Attention.args = {
-  message: 'This message requires yout attention',
-  variant: 'attention'
+export const Attention = {
+  render: Template,
+
+  args: {
+    message: 'This message requires yout attention',
+    variant: 'attention'
+  }
 };
 
-export const WithAction = Template.bind({});
-WithAction.args = {
-  message: 'Single line snackbar with action',
-  action: 'Back',
-  closeButton: true
+export const WithAction = {
+  render: Template,
+
+  args: {
+    message: 'Single line snackbar with action',
+    action: 'Back',
+    closeButton: true
+  }
 };
 
-export const TwoLine = Template.bind({});
-TwoLine.args = {
-  message: 'Two line snackbar',
-  secondLineMessage: 'without action button'
+export const TwoLine = {
+  render: Template,
+
+  args: {
+    message: 'Two line snackbar',
+    secondLineMessage: 'without action button'
+  }
 };
 
-export const TwoLineWithAction = Template.bind({});
-TwoLineWithAction.args = {
-  message: 'Two line snackbar',
-  secondLineMessage: 'with action button',
-  action: 'Undo'
+export const TwoLineWithAction = {
+  render: Template,
+
+  args: {
+    message: 'Two line snackbar',
+    secondLineMessage: 'with action button',
+    action: 'Undo'
+  }
 };
 
-export const TwoLineWithLongAction = Template.bind({});
-TwoLineWithLongAction.args = {
-  message: 'Two line snackbar with longer',
-  secondLineMessage: 'action button',
-  action: 'Longer action',
-  longAction: true
+export const TwoLineWithLongAction = {
+  render: Template,
+
+  args: {
+    message: 'Two line snackbar with longer',
+    secondLineMessage: 'action button',
+    action: 'Longer action',
+    longAction: true
+  }
 };

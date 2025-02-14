@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface TableProps extends React.AllHTMLAttributes<HTMLDivElement> {
   heading?: ReactNode;
@@ -9,24 +9,23 @@ export interface TableProps extends React.AllHTMLAttributes<HTMLDivElement> {
   actions?: ReactNode;
   align?: 'left' | 'right';
 }
-export function Table({
+export const Table: React.FC<TableProps> = ({
   children,
   heading,
   headRow,
   headRowBordered,
   actions,
-  id,
   className,
   ...props
-}: TableProps) {
+}) => {
   return (
     <>
       {heading && <h3 className="idsk-table__heading">{heading}</h3>}
-      <table {...props} className={classNames('idsk-table', className)}>
+      <table {...props} className={cn('idsk-table', className)}>
         {headRow && (
           <thead>
             <tr
-              className={classNames('idsk-table__head', {
+              className={cn('idsk-table__head', {
                 'idsk-table__head--bordered': headRowBordered
               })}
             >
@@ -35,7 +34,7 @@ export function Table({
           </thead>
         )}
         <tbody
-          className={classNames('idsk-table__rows', {
+          className={cn('idsk-table__rows', {
             'idsk-table__rows--bordered-head': headRowBordered
           })}
         >
@@ -45,21 +44,21 @@ export function Table({
       {actions && <div className="idsk-table__actions">{actions}</div>}
     </>
   );
-}
+};
 
-export const TableRow = ({ children, className, ...props }: TableProps) => {
+export const TableRow: React.FC<TableProps> = ({ children, className, ...props }) => {
   return (
-    <tr {...props} className={classNames('idsk-table__row', className)}>
+    <tr {...props} className={cn('idsk-table__row', className)}>
       {children}
     </tr>
   );
 };
 
-export const TableRowValue = ({ align, className, children, ...props }: TableProps) => {
+export const TableRowValue: React.FC<TableProps> = ({ align, className, children, ...props }) => {
   return (
     <td
       {...props}
-      className={classNames(
+      className={cn(
         'idsk-table__value',
         {
           'idsk-table__value--right-align': align == 'right'
@@ -72,11 +71,11 @@ export const TableRowValue = ({ align, className, children, ...props }: TablePro
   );
 };
 
-export const TableHeadValue = ({ align, className, children, ...props }: TableProps) => {
+export const TableHeadValue: React.FC<TableProps> = ({ align, className, children, ...props }) => {
   return (
     <th
       {...props}
-      className={classNames(
+      className={cn(
         'idsk-table__value',
         {
           'idsk-table__value--right-align': align == 'right'

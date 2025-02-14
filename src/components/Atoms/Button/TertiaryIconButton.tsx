@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import BaseButton, { BaseButtonProps } from './BaseButton';
-import { PlaceholderIcon } from '../../../svgIcons';
+import { PlaceholderIcon } from '@/svgIcons';
 
 export interface TertiaryIconButtonProps extends BaseButtonProps {
   variant?: 'basic' | 'success' | 'warning' | 'neutral';
@@ -17,7 +17,7 @@ const TertiaryIconButton = forwardRef<HTMLButtonElement, TertiaryIconButtonProps
         {...props}
         ref={ref}
         icon={icon}
-        className={classNames(
+        className={cn(
           'idsk-tertiary-icon-button',
           {
             'idsk-tertiary-icon-button--basic': variant == 'basic',
@@ -33,5 +33,7 @@ const TertiaryIconButton = forwardRef<HTMLButtonElement, TertiaryIconButtonProps
     );
   }
 );
+
+TertiaryIconButton.displayName = 'TertiaryIconButton';
 
 export default TertiaryIconButton;

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { CardWrapper, CardWrapperProps } from '../../Atoms';
-import { NotificationsActiveIcon, NotificationsNoneIcon } from '../../../svgIcons/Social';
+import { CardWrapper, CardWrapperProps } from '@/components';
+import { NotificationsActiveIcon, NotificationsNoneIcon } from '@/svgIcons';
 
 export interface VerticalEventCardProps extends Omit<CardWrapperProps, 'innerClassNames'> {
   date: string | number | Date;
@@ -25,7 +25,7 @@ const defaultMonths: [string, ...string[]] & { length: 12 } = [
   'Dec'
 ];
 
-const VerticalEventCard = ({
+const VerticalEventCard: React.FC<VerticalEventCardProps> = ({
   title,
   date,
   color,
@@ -33,7 +33,7 @@ const VerticalEventCard = ({
   months = defaultMonths,
   alert,
   ...props
-}: VerticalEventCardProps) => {
+}) => {
   const dateObject = new Date(date);
 
   return (
@@ -49,7 +49,7 @@ const VerticalEventCard = ({
           <p className="idsk-vertical-event-card__month">{months[dateObject.getMonth()]}</p>
         </div>
         <span style={{ color: color }} className="idsk-vertical-event-card__alert-icon">
-          {!!alert ? <NotificationsActiveIcon /> : <NotificationsNoneIcon />}
+          {alert ? <NotificationsActiveIcon /> : <NotificationsNoneIcon />}
         </span>
       </div>
       <div className="idsk-vertical-event-card__body">

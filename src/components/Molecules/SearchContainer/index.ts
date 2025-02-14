@@ -1,1 +1,1 @@
-export { default, SearchContainerProps } from './SearchContainer';
+export { default as SearchContainer, type SearchContainerProps } from './SearchContainer';

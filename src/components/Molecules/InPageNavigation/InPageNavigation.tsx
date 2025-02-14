@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import { InPageNavigationLinkProps } from './InPageNavigationLink';
 
 export interface InPageNavigationProps extends React.AllHTMLAttributes<HTMLElement> {
@@ -7,8 +7,13 @@ export interface InPageNavigationProps extends React.AllHTMLAttributes<HTMLEleme
   title?: string;
 }
 
-const InPageNavigation = ({ children, className, title = '', ...props }: InPageNavigationProps) => {
-  const inPageNavigationClasses = classNames('idsk-in-page-navigation', className);
+const InPageNavigation: React.FC<InPageNavigationProps> = ({
+  children,
+  className,
+  title = '',
+  ...props
+}) => {
+  const inPageNavigationClasses = cn('idsk-in-page-navigation', className);
 
   return (
     <div className="idsk-in-page-navigation__line">

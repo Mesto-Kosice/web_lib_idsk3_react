@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface TabBarLinkProps {
   href?: string;
@@ -10,7 +10,7 @@ export interface TabBarLinkProps {
 
 const TabBarLink = React.forwardRef<HTMLAnchorElement, TabBarLinkProps>(
   ({ href, onClick, children, selected }, ref) => {
-    const linkClasses = classNames('idsk-tab-bar__link', {
+    const linkClasses = cn('idsk-tab-bar__link', {
       'idsk-tab-bar__link--clicked': selected
     });
     return (
@@ -20,5 +20,7 @@ const TabBarLink = React.forwardRef<HTMLAnchorElement, TabBarLinkProps>(
     );
   }
 );
+
+TabBarLink.displayName = 'TabBarLink';
 
 export default TabBarLink;

@@ -1,1 +1,1 @@
-export { default, DeviceCardProps } from './DeviceCard';
+export { default as DeviceCard, type DeviceCardProps } from './DeviceCard';

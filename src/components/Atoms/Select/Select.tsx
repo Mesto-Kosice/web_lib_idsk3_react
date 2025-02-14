@@ -1,9 +1,7 @@
-'use client';
-
 import React, { ChangeEvent, ReactElement, SVGProps, useState } from 'react';
-import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
-import { ExpandMoreIcon } from '../../../svgIcons/Navigation';
+import { ExpandMoreIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   inputSize?: 'large' | 'medium' | 'small';
@@ -45,19 +43,19 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       defaultSelectValue = 'default',
       value,
       ...props
-    }: SelectProps,
+    },
     ref
   ) => {
     const [placeholderIsActive, setPlaceholderIsActive] = useState(!value && !!placeholder);
 
     const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
-      if (!!placeholder) {
+      if (placeholder) {
         setPlaceholderIsActive(e.target.value === defaultSelectValue);
       }
-      if (!!onChange) onChange(e);
+      if (onChange) onChange(e);
     };
 
-    const selectClasses: string = classNames(
+    const selectClasses: string = cn(
       'idsk-select',
       {
         'idsk-input--large': inputSize === 'large',
@@ -71,7 +69,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       className
     );
 
-    const selectWrapperClasses: string = classNames('idsk-input__wrapper', {
+    const selectWrapperClasses: string = cn('idsk-input__wrapper', {
       'idsk-input__wrapper--error': error,
       'idsk-input__wrapper--disabled': disabled,
       'w-full': fullWidth
@@ -79,9 +77,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
 
     const idForAria: string = errorMessageId || uuidv4();
 
-    const iconElement = !!icon
+    const iconElement = icon
       ? React.cloneElement(icon, {
-          className: classNames('idsk-input__icon idsk-input__icon--left', {
+          className: cn('idsk-input__icon idsk-input__icon--left', {
             'idsk-input__icon--large': inputSize === 'large',
             'idsk-input__icon--medium': inputSize === 'medium',
             'idsk-input__icon--small': inputSize === 'small'
@@ -90,7 +88,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       : undefined;
     return (
       <>
-        <label className={classNames({ 'w-full': fullWidth })}>
+        <label className={cn({ 'w-full': fullWidth })}>
           {!!label && (
             <p className="idsk-input__label">
               {label} {mandatory && <span className="idsk-input__label--mandatory"> *</span>}
@@ -122,7 +120,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         </label>
         {(!!errorMsg || !!caption) && (
           <p
-            className={classNames('idsk-input__caption', {
+            className={cn('idsk-input__caption', {
               'idsk-input__caption--error': error && !disabled
             })}
           >
@@ -139,5 +137,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     );
   }
 );
+
+Select.displayName = 'Select';
 
 export default Select;

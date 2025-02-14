@@ -1,10 +1,10 @@
-export { default as Checkbox, CheckboxProps } from './Checkbox';
-export { default as Input, InputProps } from './Input';
+export { default as Checkbox, type CheckboxProps } from './Checkbox';
+export { default as Input, type InputProps } from './Input';
 export {
   default as RadioButton,
   RadioButtonGroup,
-  RadioButtonProps,
-  RadioButtonGroupProps
+  type RadioButtonProps,
+  type RadioButtonGroupProps
 } from './RadioButton';
-export { default as TextField, TextFieldProps, TextFieldRef } from './TextField';
-export { default as Toggle, ToggleProps } from './Toggle';
+export { default as TextField, type TextFieldProps, type TextFieldRef } from './TextField';
+export { default as Toggle, type ToggleProps } from './Toggle';

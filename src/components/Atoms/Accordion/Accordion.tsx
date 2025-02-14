@@ -1,11 +1,8 @@
-'use client';
-
 import React, { Children, useState, ReactNode, ReactElement, SVGProps } from 'react';
-import classNames from 'classnames';
-import { AddIcon, RemoveIcon } from '../../../svgIcons/Content';
 import { v4 as uuidv4 } from 'uuid';
-import { PrimaryIconButton, TextButton } from '../Button';
-import SvgCheck from '../../../svgIcons/Navigation/Check';
+import { PrimaryIconButton, TextButton } from '@/components';
+import { AddIcon, RemoveIcon, CheckIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   heading: ReactNode;
@@ -24,7 +21,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   errorMessageId?: string;
 }
 
-const Accordion = ({
+const Accordion: React.FC<AccordionProps> = ({
   subTitle,
   heading,
   headingAriaLabel,
@@ -42,7 +39,7 @@ const Accordion = ({
   fullWidthBody = false,
   errorMessageId,
   ...props
-}: AccordionProps) => {
+}) => {
   const [closed, setClosed] = useState<boolean>(initiallyClosed);
 
   const idForAria: string = errorMessageId || uuidv4();
@@ -52,12 +49,12 @@ const Accordion = ({
     setClosed((p) => !p);
   };
 
-  const contentClasses = classNames('idsk-accordion__content', {
+  const contentClasses = cn('idsk-accordion__content', {
     'idsk-accordion__content--open': !closed
   });
 
   if (!!listItemIcon || listItemVariant == 'success') {
-    listItemIcon = React.cloneElement(listItemIcon ?? <SvgCheck />, {
+    listItemIcon = React.cloneElement(listItemIcon ?? <CheckIcon />, {
       className: 'idsk-accordion__list-icon'
     });
   }
@@ -66,8 +63,8 @@ const Accordion = ({
 
   return (
     <div
-      role={!!inGroup ? 'listitem' : ''}
-      className={classNames(
+      role={inGroup ? 'listitem' : ''}
+      className={cn(
         'idsk-accordion',
         {
           'idsk-accordion--in-list-group': inGroup,
@@ -79,21 +76,17 @@ const Accordion = ({
     >
       {!!inGroup && (
         <>
-          {!!listItemIcon && !!index ? (
-            !!listItemButtonProps ? (
+          {listItemIcon && index ? (
+            listItemButtonProps ? (
               <PrimaryIconButton
                 variant={listItemVariant}
                 icon={listItemIcon}
                 {...listItemButtonProps}
-                className={classNames(
-                  roundedClassNames,
-                  'absolute',
-                  listItemButtonProps?.className
-                )}
+                className={cn(roundedClassNames, 'absolute', listItemButtonProps?.className)}
               />
             ) : (
               <div
-                className={classNames(roundedClassNames, {
+                className={cn(roundedClassNames, {
                   'idsk-accordion--list--success': listItemVariant == 'success'
                 })}
               >
@@ -106,7 +99,7 @@ const Accordion = ({
                 <TextButton
                   variant={listItemVariant}
                   {...listItemButtonProps}
-                  className={classNames(
+                  className={cn(
                     roundedClassNames,
                     'pt-1.5 absolute',
                     listItemButtonProps?.className
@@ -116,7 +109,7 @@ const Accordion = ({
                 </TextButton>
               ) : (
                 <div
-                  className={classNames('idsk-accordion--list', {
+                  className={cn('idsk-accordion--list', {
                     'idsk-accordion--list-bullet': !index
                   })}
                 >
@@ -142,7 +135,7 @@ const Accordion = ({
       </div>
       <div id={idForAria} className={contentClasses}>
         <div
-          className={classNames('idsk-accordion__content-body', {
+          className={cn('idsk-accordion__content-body', {
             'idsk-accordion__content-body--full-width': fullWidthBody
           })}
         >
@@ -153,7 +146,10 @@ const Accordion = ({
   );
 };
 
-export function AccordionListGroup({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export const AccordionListGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  ...props
+}) => {
   const renderedChildren = Children.map<ReactNode, ReactNode>(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, {
@@ -166,6 +162,6 @@ export function AccordionListGroup({ children, ...props }: React.HTMLAttributes<
       {renderedChildren}
     </div>
   );
-}
+};
 
 export default Accordion;

@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-
-import { CardWrapper, CardWrapperProps } from '../../Atoms';
+import { CardWrapper, CardWrapperProps } from '@/components';
 
 export interface UserCardProps extends Omit<CardWrapperProps, 'innerClassNames'> {
   title?: string;
@@ -8,7 +7,7 @@ export interface UserCardProps extends Omit<CardWrapperProps, 'innerClassNames'>
   button?: ReactNode;
 }
 
-const UserCard = ({ title = '', name, button, children, ...props }: UserCardProps) => {
+const UserCard: React.FC<UserCardProps> = ({ title = '', name, button, children, ...props }) => {
   return (
     <CardWrapper innerClassNames="idsk-user-card" {...props}>
       <div className="idsk-user-card__body">

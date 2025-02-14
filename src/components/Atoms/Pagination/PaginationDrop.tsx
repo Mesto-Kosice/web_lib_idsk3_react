@@ -1,10 +1,7 @@
-'use client';
-
 import React, { useState, ReactElement, SVGProps, ReactNode } from 'react';
-import classNames from 'classnames';
-import KeyBoardArrowDownIcon from '../../../svgIcons/Hardware/KeyboardArrowDown';
-import BaseButton from '../Button/BaseButton';
-import DropDown from '../DropDown';
+import { KeyboardArrowDownIcon } from '@/svgIcons';
+import { BaseButton, DropDown } from '@/components';
+import { cn } from '@/lib';
 
 type DropDownItem = {
   label: ReactNode;
@@ -24,16 +21,16 @@ export interface PaginationDropProps {
   selected?: boolean;
 }
 
-export const PaginationDrop = ({
+export const PaginationDrop: React.FC<PaginationDropProps> = ({
   title,
-  arrowIcon = <KeyBoardArrowDownIcon />,
+  arrowIcon = <KeyboardArrowDownIcon />,
   optionClassName,
   buttonClassName,
   caption,
   id,
   onClick,
   items
-}: PaginationDropProps) => {
+}) => {
   const [dropTitle, setDropTitle] = useState(title);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -52,16 +49,16 @@ export const PaginationDrop = ({
         customTrigger={
           <BaseButton
             id={dropdownButtonId}
-            className={classNames('idsk-pagination-drop__button', buttonClassName)}
+            className={cn('idsk-pagination-drop__button', buttonClassName)}
           >
             <span className="idsk-pagination-drop__title">{dropTitle}</span>
             {React.cloneElement(arrowIcon, {
-              className: classNames('idsk-pagination-drop__icon', { 'rotate-180': isOpen })
+              className: cn('idsk-pagination-drop__icon', { 'rotate-180': isOpen })
             })}
           </BaseButton>
         }
         arrowIcon={<></>}
-        optionClassName={classNames('idsk-pagination-drop__options', optionClassName)}
+        optionClassName={cn('idsk-pagination-drop__options', optionClassName)}
         hookOptions={{
           onTriggered: (opened) => setIsOpen(opened)
         }}

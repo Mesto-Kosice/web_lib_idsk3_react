@@ -1,14 +1,12 @@
-'use client';
-
 import React, { HTMLProps, forwardRef, useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import { v4 as uuidv4 } from 'uuid';
 import { Input } from '../Input';
-import DateRange from '../../../svgIcons/Actions/DateRange';
-import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import { DateRangeIcon } from '@/svgIcons';
+import DatePicker, { DatePickerProps } from 'react-datepicker';
 import { format, setDate, setMonth, setYear } from 'date-fns';
 import { useRifm } from 'rifm';
-import Tooltip from '../Tooltip';
+import { Tooltip } from '@/components';
 
 export interface DatePickerCustomInputProps extends HTMLProps<HTMLButtonElement> {
   opened: boolean;
@@ -35,7 +33,7 @@ export interface DateInputProps extends React.HTMLAttributes<HTMLFieldSetElement
   monthPlaceholder?: string;
   yearPlaceholder?: string;
   datePickerLabel?: string;
-  datePickerProps?: ReactDatePickerProps;
+  datePickerProps?: DatePickerProps;
   datePickerTooltip?: string;
   inputLabelsSrOnly?: boolean;
   inputClasses?: string;
@@ -84,7 +82,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       onValueUpdate,
       onRevalidation,
       ...props
-    }: DateInputProps,
+    },
     ref
   ) => {
     const dateStringFormat = 'yyyy-MM-dd';
@@ -111,8 +109,8 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       setInputYear(initialDate ? format(initialDate, 'yyyy') : '');
     }, [initialDate]);
 
-    const setRef = (newRef: React.RefObject<HTMLInputElement>) => {
-      if (!!ref) {
+    const setRef = (newRef: React.RefObject<HTMLInputElement | null>) => {
+      if (ref) {
         return ref;
       }
       return newRef;
@@ -188,12 +186,15 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       }
     };
 
-    const handleDatepickerChange = (date: Date) => {
+    const handleDatepickerChange = (date: Date | null) => {
+      if (!date) return;
+
       setInputDay(format(date, 'dd'));
       setInputMonth(format(date, 'MM'));
       setInputYear(format(date, 'yyyy'));
       handleNewDate(date, format(date, dateStringFormat));
     };
+
     const validation: boolean =
       (isNaN(Date.parse(dateString)) && dateString !== '--') ||
       new Date(dateString).toDateString().includes(day) === false ||
@@ -210,23 +211,23 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       !!error;
 
     useEffect(() => {
-      if (!!onRevalidation) {
+      if (onRevalidation) {
         onRevalidation(validation);
       }
     }, [onRevalidation, validation]);
 
-    const datePickerClasses: string = classNames('idsk-date-input__date-picker', {
+    const datePickerClasses: string = cn('idsk-date-input__date-picker', {
       'idsk-date-input__date-picker': day == '' || month == '' || year == '',
       'idsk-date-input__date-picker--open':
         ((day != '' && month != '' && year != '') || open) && !disabled
     });
 
-    const dateInputWrapperClasses: string = classNames('idsk-date-input__wrapper', {
+    const dateInputWrapperClasses: string = cn('idsk-date-input__wrapper', {
       'idsk-input__wrapper--error': validation,
       'idsk-input__wrapper--disabled': disabled
     });
 
-    const allInputClasses: string = classNames(
+    const allInputClasses: string = cn(
       { input: !isNaN(Date.parse(dateString)) && dateString == '--' },
       {
         'idsk-input--error': validation
@@ -253,7 +254,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
             onClick={onClick}
             ref={pickerRef}
           >
-            <DateRange className="idsk-date-input__date-range" />
+            <DateRangeIcon className="idsk-date-input__date-range" />
           </button>
         );
         return (
@@ -270,6 +271,8 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       }
     );
 
+    DatePickerCustomInput.displayName = 'DatePickerCustomInput';
+
     return (
       <fieldset className="idsk-date-input" id={id} {...props}>
         <legend className="idsk-input__label">
@@ -285,7 +288,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
               id={id ? id + '-day' : undefined}
               label={dayLabel}
               labelSrOnly={inputLabelsSrOnly}
-              className={classNames(allInputClasses, 'idsk-date-input__day-n-month')}
+              className={cn(allInputClasses, 'idsk-date-input__day-n-month')}
               disabled={disabled}
               onChange={dayInputMask.onChange}
               value={dayInputMask.value}
@@ -299,11 +302,11 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
           )}
           {!hideMonth && (
             <Input
-              ref={!!hideDay ? setRef(monthRef) : monthRef}
+              ref={hideDay ? setRef(monthRef) : monthRef}
               id={id ? id + '-month' : undefined}
               label={monthLabel}
               labelSrOnly={inputLabelsSrOnly}
-              className={classNames(allInputClasses, 'idsk-date-input__day-n-month')}
+              className={cn(allInputClasses, 'idsk-date-input__day-n-month')}
               disabled={disabled}
               onChange={monthInputMask.onChange}
               value={monthInputMask.value}
@@ -321,7 +324,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
               id={id ? id + '-year' : undefined}
               label={yearLabel}
               labelSrOnly={inputLabelsSrOnly}
-              className={classNames(allInputClasses, 'idsk-date-input__year')}
+              className={cn(allInputClasses, 'idsk-date-input__year')}
               disabled={disabled}
               onChange={yearInputMask.onChange}
               value={yearInputMask.value}
@@ -333,6 +336,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
               }}
             />
           )}
+          {/* @ts-ignore */}
           <DatePicker
             {...datePickerProps}
             locale={datePickerProps?.locale}
@@ -349,7 +353,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
         </div>
         {(!!errorMsg || !!caption) && (
           <p
-            className={classNames('idsk-input__caption', {
+            className={cn('idsk-input__caption', {
               'idsk-input__caption--error': (validation && !disabled) || error
             })}
           >
@@ -366,5 +370,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
     );
   }
 );
+
+DateInput.displayName = 'DateInput';
 
 export default DateInput;

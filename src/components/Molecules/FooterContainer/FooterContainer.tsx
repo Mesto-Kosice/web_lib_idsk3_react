@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface FooterContainerProps extends React.AllHTMLAttributes<HTMLElement> {
   linksList: ReactNode[];
@@ -7,36 +7,34 @@ export interface FooterContainerProps extends React.AllHTMLAttributes<HTMLElemen
   logo?: ReactNode;
 }
 
-export const FooterContainerSectionHeading = ({
-  children,
-  className,
-  ...props
-}: React.AllHTMLAttributes<HTMLParagraphElement>) => (
-  <h2 className={classNames('idsk-footer-container__section-heading', className)} {...props}>
+export const FooterContainerSectionHeading: React.FC<
+  React.HTMLAttributes<HTMLParagraphElement>
+> = ({ children, className, ...props }) => (
+  <h2 className={cn('idsk-footer-container__section-heading', className)} {...props}>
     {children}
   </h2>
 );
 
-export const FooterContainerSection = ({
+export const FooterContainerSection: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   children,
   className,
   ...props
-}: React.AllHTMLAttributes<HTMLDivElement>) => (
-  <div className={classNames('idsk-footer-container__section', className)} {...props}>
+}) => (
+  <div className={cn('idsk-footer-container__section', className)} {...props}>
     {children}
   </div>
 );
 
-const FooterContainer = ({
+const FooterContainer: React.FC<FooterContainerProps> = ({
   className,
   children,
   linksList = [],
   bottomSection,
   logo,
   ...props
-}: FooterContainerProps) => {
+}) => {
   return (
-    <footer className={classNames('idsk-footer-container', className)} {...props}>
+    <footer className={cn('idsk-footer-container', className)} {...props}>
       <div className="idsk-footer-container__content">
         {children}
         <aside className="idsk-footer-container__aside">

@@ -13,7 +13,11 @@ describe('SecondaryNavigation', () => {
     render(
       <SecondaryNavigation
         dropDownTitle="test title"
-        dropDownOptions={[<a href="testHref1">Test Option 1</a>]}
+        dropDownOptions={[
+          <a key={0} href="testHref1">
+            Test Option 1
+          </a>
+        ]}
       />
     );
     fireEvent.click(screen.getByText('test title'));

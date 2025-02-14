@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import '/src/styles/idsk3_theme.css';
-import {
-  InPageNavigation,
-  InPageNavigationList,
-  InPageNavigationLink
-} from '../../src/components/Molecules';
-import classNames from 'classnames';
+import { StoryFn, Meta } from '@storybook/react';
+import { InPageNavigation, InPageNavigationList, InPageNavigationLink } from '../../src/components';
 import { PlayArrowIcon } from '../../src/svgIcons';
+import { cn } from '@/lib';
+import '../../src/styles/idsk3_theme.css';
 
 export default {
   title: 'Molecules/InPageNavigation',
   component: InPageNavigation
-} as ComponentMeta<typeof InPageNavigation>;
+} as Meta<typeof InPageNavigation>;
 
-const Template: ComponentStory<typeof InPageNavigation> = (args) => {
+const Template: StoryFn<typeof InPageNavigation> = (args) => {
   const [selectedLink, setSelectedLink] = useState<string | null>('subsection1');
 
   const handleClick = (e: React.MouseEvent, link: string) => {
@@ -29,7 +25,7 @@ const Template: ComponentStory<typeof InPageNavigation> = (args) => {
           linkElement={
             <a
               href="#"
-              className={classNames({ 'idsk-active': selectedLink === 'subsection1' })}
+              className={cn({ 'idsk-active': selectedLink === 'subsection1' })}
               onClick={(e) => handleClick(e, 'subsection1')}
             >
               <PlayArrowIcon />
@@ -38,13 +34,13 @@ const Template: ComponentStory<typeof InPageNavigation> = (args) => {
           }
         />
         <InPageNavigationLink
-          className={classNames({ 'idsk-active': selectedLink === 'subsection2' })}
+          className={cn({ 'idsk-active': selectedLink === 'subsection2' })}
           label="Subsection text"
           href="#"
           onClick={(e) => handleClick(e, 'subsection2')}
         />
         <InPageNavigationLink
-          className={classNames({ 'idsk-active': selectedLink === 'subsection3' })}
+          className={cn({ 'idsk-active': selectedLink === 'subsection3' })}
           label="Subsection text"
           href="#"
           onClick={(e) => handleClick(e, 'subsection3')}
@@ -54,7 +50,7 @@ const Template: ComponentStory<typeof InPageNavigation> = (args) => {
   );
 };
 
-const TemplateWithSubtitle: ComponentStory<typeof InPageNavigation> = (args) => {
+const TemplateWithSubtitle: StoryFn<typeof InPageNavigation> = (args) => {
   const [selectedLink, setSelectedLink] = useState<string | null>('subsection1');
 
   const handleClick = (e: React.MouseEvent, link: string) => {
@@ -69,7 +65,7 @@ const TemplateWithSubtitle: ComponentStory<typeof InPageNavigation> = (args) => 
           linkElement={
             <a
               href="#"
-              className={classNames({ 'idsk-active': selectedLink === 'subsection1' })}
+              className={cn({ 'idsk-active': selectedLink === 'subsection1' })}
               onClick={(e) => handleClick(e, 'subsection1')}
             >
               <PlayArrowIcon />
@@ -78,13 +74,13 @@ const TemplateWithSubtitle: ComponentStory<typeof InPageNavigation> = (args) => 
           }
         />
         <InPageNavigationLink
-          className={classNames({ 'idsk-active': selectedLink === 'subsection2' })}
+          className={cn({ 'idsk-active': selectedLink === 'subsection2' })}
           label="Subsection text"
           href="#"
           onClick={(e) => handleClick(e, 'subsection2')}
         />
         <InPageNavigationLink
-          className={classNames({ 'idsk-active': selectedLink === 'subsection3' })}
+          className={cn({ 'idsk-active': selectedLink === 'subsection3' })}
           label="Subsection text"
           href="#"
           onClick={(e) => handleClick(e, 'subsection3')}
@@ -95,7 +91,7 @@ const TemplateWithSubtitle: ComponentStory<typeof InPageNavigation> = (args) => 
           linkElement={
             <a
               href="#"
-              className={classNames({ 'idsk-active': selectedLink === 'subsection4' })}
+              className={cn({ 'idsk-active': selectedLink === 'subsection4' })}
               onClick={(e) => handleClick(e, 'subsection4')}
             >
               <PlayArrowIcon />
@@ -104,13 +100,13 @@ const TemplateWithSubtitle: ComponentStory<typeof InPageNavigation> = (args) => 
           }
         />
         <InPageNavigationLink
-          className={classNames({ 'idsk-active': selectedLink === 'subsection5' })}
+          className={cn({ 'idsk-active': selectedLink === 'subsection5' })}
           label="Subsection text"
           href="#"
           onClick={(e) => handleClick(e, 'subsection5')}
         />
         <InPageNavigationLink
-          className={classNames({ 'idsk-active': selectedLink === 'subsection6' })}
+          className={cn({ 'idsk-active': selectedLink === 'subsection6' })}
           label="Subsection text"
           href="#"
           onClick={(e) => handleClick(e, 'subsection6')}
@@ -120,12 +116,18 @@ const TemplateWithSubtitle: ComponentStory<typeof InPageNavigation> = (args) => 
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  title: 'Title'
+export const Default = {
+  render: Template,
+
+  args: {
+    title: 'Title'
+  }
 };
 
-export const WithSubtitle = TemplateWithSubtitle.bind({});
-WithSubtitle.args = {
-  title: 'Title'
+export const WithSubtitle = {
+  render: TemplateWithSubtitle,
+
+  args: {
+    title: 'Title'
+  }
 };

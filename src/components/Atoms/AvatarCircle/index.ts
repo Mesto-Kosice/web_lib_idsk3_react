@@ -1,1 +1,1 @@
-export { default, AvatarCircleProps } from './AvatarCircle';
+export { default as AvatarCircle, type AvatarCircleProps } from './AvatarCircle';

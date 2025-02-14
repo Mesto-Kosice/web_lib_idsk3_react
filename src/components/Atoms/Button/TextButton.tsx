@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import BaseButton, { BaseButtonProps } from './BaseButton';
 
 export interface TextButtonProps extends BaseButtonProps {
@@ -8,7 +8,7 @@ export interface TextButtonProps extends BaseButtonProps {
 
 const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
   ({ variant = 'basic', size = 'medium', iconPosition = 'left', ...props }, ref) => {
-    const className = classNames(
+    const className = cn(
       'idsk-link-button',
       {
         'idsk-link-button--basic': variant == 'basic',
@@ -26,5 +26,7 @@ const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
     return <BaseButton ref={ref} {...props} className={className} />;
   }
 );
+
+TextButton.displayName = 'TextButton';
 
 export default TextButton;

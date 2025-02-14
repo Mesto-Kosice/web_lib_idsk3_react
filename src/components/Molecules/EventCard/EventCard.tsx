@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { CardWrapper, CardWrapperProps, Tag } from '../../Atoms';
-import classNames from 'classnames';
+import { CardWrapper, CardWrapperProps, Tag } from '@/components';
+import { cn } from '@/lib';
 
 export interface EventCardProps extends Omit<CardWrapperProps, 'innerClassNames'> {
   date: string | number | Date;
@@ -26,7 +26,7 @@ const defaultMonths: [string, ...string[]] & { length: 12 } = [
   'Dec'
 ];
 
-const EventCard = ({
+const EventCard: React.FC<EventCardProps> = ({
   title,
   date,
   color,
@@ -35,10 +35,10 @@ const EventCard = ({
   months = defaultMonths,
   isComplete = false,
   ...props
-}: EventCardProps) => {
+}) => {
   const dateObject = new Date(date);
 
-  const wrapperClasses = classNames('idsk-event-card', {
+  const wrapperClasses = cn('idsk-event-card', {
     'idsk-event-card--complete': isComplete
   });
 

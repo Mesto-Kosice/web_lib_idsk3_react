@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { HorizontalNavigation, HorizontalNavigationItem } from '../index';
+import { HorizontalNavigation, HorizontalNavigationItem } from '@/components';
 
 describe('Horizontal Navigation', () => {
   test('render items', () => {

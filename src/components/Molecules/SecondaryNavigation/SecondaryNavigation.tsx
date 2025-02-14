@@ -1,10 +1,7 @@
-'use client';
-
 import React, { useState, ReactElement, ReactNode } from 'react';
-import classNames from 'classnames';
-
-import { DropDown } from '../../Atoms';
-import { ExpandMoreIcon } from '../../../svgIcons/Navigation';
+import { DropDown } from '@/components';
+import { ExpandMoreIcon } from '@/svgIcons';
+import { cn } from '@/lib';
 
 export interface SecondaryNavProps extends React.AllHTMLAttributes<HTMLDivElement> {
   heading?: ReactNode;
@@ -35,7 +32,7 @@ const HeadingButton: React.FC<HeadingButtonProps> = ({
 
   const componentProps = {
     id: id ? id + '-heading-button' : undefined,
-    className: classNames('idsk-secondary-navigation__heading-button', {
+    className: cn('idsk-secondary-navigation__heading-button', {
       'idsk-secondary-navigation__heading-button--no-content': !asBtn
     }),
     ...(asBtn
@@ -50,7 +47,7 @@ const HeadingButton: React.FC<HeadingButtonProps> = ({
 
   return (
     <>
-      {!!headingButton && (
+      {headingButton && (
         <Component {...componentProps}>
           {mobileHeadingButton && (
             <span className="idsk-secondary-navigation__heading-mobile">{mobileHeadingButton}</span>
@@ -58,7 +55,7 @@ const HeadingButton: React.FC<HeadingButtonProps> = ({
           <span className="idsk-secondary-navigation__heading-desktop">{headingButton}</span>
           {asBtn && (
             <ExpandMoreIcon
-              className={classNames('idsk-secondary-navigation__heading-button-icon', {
+              className={cn('idsk-secondary-navigation__heading-button-icon', {
                 'rotate-180': opened
               })}
             />
@@ -75,19 +72,19 @@ const SecondaryNavigation: React.FC<SecondaryNavProps> = (props) => {
   const {
     children,
     heading,
-    headingButton,
     mobileHeading,
-    mobileHeadingButton,
     dropDownTitle,
     dropDownOptions = [],
     className,
     bodyClassName,
+    headingButton,
+    mobileHeadingButton,
     id,
     ...other
   } = props;
 
   return (
-    <div className={classNames('idsk-secondary-navigation', className)} {...other}>
+    <div className={cn('idsk-secondary-navigation', className)} {...other}>
       <div className="idsk-secondary-navigation__header">
         <div className="idsk-secondary-navigation__heading">
           <div className="idsk-secondary-navigation__heading-title">
@@ -97,12 +94,18 @@ const SecondaryNavigation: React.FC<SecondaryNavProps> = (props) => {
             {!!heading && (
               <span className="idsk-secondary-navigation__heading-desktop">{heading} </span>
             )}
-            <HeadingButton opened={opened} setOpened={setOpened} {...props} />
+            <HeadingButton
+              opened={opened}
+              setOpened={setOpened}
+              mobileHeadingButton={mobileHeadingButton}
+              headingButton={headingButton}
+              {...props}
+            />
           </div>
           {!!children && (
             <div
               id={id ? id + '-body' : undefined}
-              className={classNames('idsk-secondary-navigation__body', bodyClassName, {
+              className={cn('idsk-secondary-navigation__body', bodyClassName, {
                 hidden: !opened
               })}
               data-testid="secnav-children"
@@ -117,7 +120,6 @@ const SecondaryNavigation: React.FC<SecondaryNavProps> = (props) => {
             id={id ? id : undefined}
             dropDownTitle={dropDownTitle}
             className="idsk-secondary-navigation__dropdown"
-            closeOnOptionClick={true}
             arrowIcon={<ExpandMoreIcon />}
           >
             {dropDownOptions.length &&

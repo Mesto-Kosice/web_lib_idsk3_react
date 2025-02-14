@@ -1,19 +1,19 @@
 import React from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface CardWrapperProps extends React.AllHTMLAttributes<HTMLDivElement> {
   color?: string;
   innerClassNames?: string;
 }
 
-const CardWrapper = ({
+const CardWrapper: React.FC<CardWrapperProps> = ({
   color,
   children,
   innerClassNames,
   className,
   ...props
-}: CardWrapperProps) => {
-  const cssClasses: string = classNames(
+}) => {
+  const cssClasses: string = cn(
     'idsk-card-wrapper',
     { 'idsk-card-wrapper--with-color': !!color },
     className

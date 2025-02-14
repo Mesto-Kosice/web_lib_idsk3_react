@@ -1,12 +1,8 @@
-'use client';
-
 import React, { useState, useRef, ReactNode } from 'react';
-import classNames from 'classnames';
-import BaseButton from '../Button/BaseButton';
-import IconLink from '../IconLink';
-import { SearchIcon } from '../../../svgIcons/Actions';
-import { CancelIcon } from '../../../svgIcons/Navigation';
-import { useForwardRef } from '../../../utils';
+import { cn } from '@/lib';
+import { IconLink, BaseButton } from '@/components';
+import { SearchIcon, CancelIcon } from '@/svgIcons';
+import { useForwardRef } from '@/hooks';
 
 export interface SearchBarProps extends React.InputHTMLAttributes<HTMLInputElement> {
   buttonLabel?: string | ReactNode;
@@ -43,7 +39,6 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       className,
       buttonOnClick,
       id,
-      style,
       error,
       errorMsg,
       label,
@@ -53,12 +48,12 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       suggestions,
       suggestionOnClick,
       ...props
-    }: SearchBarProps,
+    },
     ref
   ) => {
     const [searchbarOpened, setSearchbarOpened] = useState<boolean>(false);
 
-    const inputClasses: string = classNames(
+    const inputClasses: string = cn(
       'idsk-searchbar',
       {
         'idsk-searchbar--large': searchbarSize === 'large',
@@ -69,22 +64,22 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       },
       className
     );
-    const buttonClasses: string = classNames('idsk-searchbar__button', {
+    const buttonClasses: string = cn('idsk-searchbar__button', {
       'idsk-searchbar__button--large': searchbarSize === 'large',
       'idsk-searchbar__button--medium': searchbarSize === 'medium',
       'idsk-searchbar__button--small': searchbarSize === 'small'
     });
-    const iconClasses: string = classNames({
+    const iconClasses: string = cn({
       'idsk-searchbar__icon--large': searchbarSize === 'large',
       'idsk-searchbar__icon--medium': searchbarSize === 'medium',
       'idsk-searchbar__icon--small': searchbarSize === 'small'
     });
 
-    const searchbarCancelIconClasses: string = classNames({
+    const searchbarCancelIconClasses: string = cn({
       'idsk-searchbar__cancel-icon--large': searchbarSize === 'large'
     });
 
-    const contentClasses = classNames(
+    const contentClasses = cn(
       'idsk-searchbar__wrapper',
       {
         'idsk-searchbar__wrapper--full-width': fullWidth,
@@ -97,11 +92,11 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
     const inputRef = useForwardRef<HTMLInputElement>(ref);
 
     const handleCancel = () => {
-      if (!!inputRef.current) {
+      if (inputRef.current) {
         inputRef.current.value = '';
       }
 
-      if (!!onCancel) onCancel();
+      if (onCancel) onCancel();
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -117,10 +112,11 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       <div className={containerClassName}>
         {openable && (
           <IconLink
-            children={<SearchIcon />}
             onClick={() => setSearchbarOpened((p) => !p)}
             className={searchbarOpened ? 'hidden' : ''}
-          />
+          >
+            <SearchIcon />
+          </IconLink>
         )}
         <div className={contentClasses}>
           <label className="sr-only" htmlFor={id ? id + '-input' : undefined}>
@@ -185,5 +181,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
     );
   }
 );
+
+SearchBar.displayName = 'SearchBar';
 
 export default SearchBar;

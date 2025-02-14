@@ -1,12 +1,7 @@
-'use client';
-
 import React, { ReactNode, useEffect, useState } from 'react';
-import classNames from 'classnames';
-import {
-  ChevronLeftIcon as LeftIcon,
-  ChevronRightIcon as RightIcon
-} from '../../../svgIcons/Navigation';
-import BaseButton from '../Button/BaseButton';
+import { ChevronLeftIcon as LeftIcon, ChevronRightIcon as RightIcon } from '@/svgIcons';
+import { BaseButton } from '@/components';
+import { cn } from '@/lib';
 
 export interface PaginationObject {
   selected: number;
@@ -59,7 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const [currentPage, setCurrentPage] = useState(initialPage);
 
   const getLinkClassName = (active: boolean) => {
-    return classNames(
+    return cn(
       'idsk-pagination__button',
       { 'idsk-pagination__button--active': active },
       { activeClassName: !!activeClassName && active },
@@ -67,18 +62,18 @@ const Pagination: React.FC<PaginationProps> = ({
     );
   };
 
-  const breakLabelClassnames = classNames('idsk-pagination__button-break', breakClassName);
+  const breakLabelClassnames = cn('idsk-pagination__button-break', breakClassName);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= pageCount) {
       if (currentPage === page) {
-        if (!!onPageActive) {
+        if (onPageActive) {
           onPageActive({ selected: page });
         }
       } else {
         setCurrentPage(page);
 
-        if (!!onPageChange) {
+        if (onPageChange) {
           onPageChange({ selected: page });
         }
       }
@@ -86,11 +81,11 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const handleAriaLabelBuilder = (page: number): string => {
-    return (!!ariaLabelBuilder ? ariaLabelBuilder(page) : page).toString();
+    return (ariaLabelBuilder ? ariaLabelBuilder(page) : page).toString();
   };
 
   useEffect(() => {
-    if (!!forcePage) {
+    if (forcePage) {
       handlePageChange(forcePage);
     }
   }, [forcePage]);
@@ -134,10 +129,10 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="idsk-pagination__wrapper">
       {caption && <p className="idsk-pagination__caption">{caption}</p>}
-      <div className={classNames('idsk-pagination', className)}>
+      <div className={cn('idsk-pagination', className)}>
         <BaseButton
           key={'prevPage'}
-          className={classNames('idsk-pagination__button', previousClassName)}
+          className={cn('idsk-pagination__button', previousClassName)}
           ariaLabel={previousAriaLabel}
           onClick={() => {
             handlePageChange(currentPage - 1);
@@ -208,7 +203,7 @@ const Pagination: React.FC<PaginationProps> = ({
           ))}
         <BaseButton
           key={'nextPage'}
-          className={classNames('idsk-pagination__button', nextClassName)}
+          className={cn('idsk-pagination__button', nextClassName)}
           ariaLabel={nextAriaLabel}
           onClick={() => {
             handlePageChange(currentPage + 1);

@@ -1,9 +1,6 @@
-'use client';
-
 import React, { ReactNode, useEffect, useState } from 'react';
-import FocusLock from 'react-focus-lock';
-import { ReactFocusLockProps } from 'react-focus-lock/interfaces';
-import classNames from 'classnames';
+import { FocusLock, FocusLockProps } from '@/components';
+import { cn } from '@/lib';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   fixed?: boolean;
@@ -13,10 +10,10 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   largeMenu?: ReactNode;
   mobileMenu?: ReactNode;
   focusLock?: boolean;
-  focusLockProps?: ReactFocusLockProps;
+  focusLockProps?: FocusLockProps;
 }
 
-const HeaderContainer = ({
+const HeaderContainer: React.FC<HeaderProps> = ({
   fixed = false,
   children,
   secondaryNavigation,
@@ -27,10 +24,10 @@ const HeaderContainer = ({
   focusLock = false,
   focusLockProps,
   ...props
-}: HeaderProps) => {
+}) => {
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
 
-  const headerClasses = classNames('idsk-header-container__wrapper', className);
+  const headerClasses = cn('idsk-header-container__wrapper', className);
 
   useEffect(() => {
     function handleWindowResize() {
@@ -48,8 +45,8 @@ const HeaderContainer = ({
 
   return (
     <FocusLock
-      disabled={!!isDesktop ? true : !focusLock}
-      className={classNames({
+      disabled={isDesktop ? true : !focusLock}
+      className={cn({
         'idsk-header-container__wrapper--sticky': fixed
       })}
       as="header"

@@ -1,7 +1,7 @@
 export {
-  default,
-  DropZoneProps,
-  DropZoneRefProps,
+  default as DropZone,
+  type DropZoneProps,
+  type DropZoneRefProps,
   DropZoneAcceptedFile,
   DropZoneRejectedFile
 } from './DropZone';

@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import copy from 'rollup-plugin-copy';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 export default [
@@ -11,10 +11,9 @@ export default [
     output: {
       dir: 'dist',
       format: 'cjs',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false,
-      exports: 'auto'
+      exports: 'auto',
+      preserveModules: false
     },
     plugins: [
       peerDepsExternal(),

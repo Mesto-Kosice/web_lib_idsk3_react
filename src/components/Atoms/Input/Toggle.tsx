@@ -1,9 +1,7 @@
-'use client';
-
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import React, { ElementType, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';
-import { CheckIcon, CloseIcon } from '../../../svgIcons';
+import { CheckIcon, CloseIcon } from '@/svgIcons';
 
 export interface ToggleProps {
   as?: ElementType;
@@ -30,7 +28,7 @@ const Toggle: React.FC<ToggleProps> = ({
   checked,
   ...props
 }) => {
-  const switchClasses: string = classNames(
+  const switchClasses: string = cn(
     'idsk-toggle',
     {
       'idsk-toggle--checked': checked,
@@ -40,7 +38,7 @@ const Toggle: React.FC<ToggleProps> = ({
     className
   );
 
-  const lableClasses: string = classNames('idsk-toggle__label', {
+  const lableClasses: string = cn('idsk-toggle__label', {
     'idsk-toggle__label--large': inputSize === 'large'
   });
 

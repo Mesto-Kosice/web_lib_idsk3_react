@@ -5,3 +5,5 @@ storybook-static
 src/styles/idsk3_theme.css
 .vscode
 .npmrc
+
+*storybook.log

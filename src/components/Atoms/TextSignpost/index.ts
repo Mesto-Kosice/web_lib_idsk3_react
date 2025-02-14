@@ -1,1 +1,1 @@
-export { default, TextSignpostProps } from './TextSignpost';
+export { default as TextSignpost, type TextSignpostProps } from './TextSignpost';

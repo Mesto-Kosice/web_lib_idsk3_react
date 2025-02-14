@@ -1,1 +1,1 @@
-export { default, SignpostProps, SignpostsGroup } from './Signpost';
+export { default as Signpost, type SignpostProps, SignpostsGroup } from './Signpost';

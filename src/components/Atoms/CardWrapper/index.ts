@@ -1,1 +1,1 @@
-export { default, CardWrapperProps } from './CardWrapper';
+export { default as CardWrapper, type CardWrapperProps } from './CardWrapper';

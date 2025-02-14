@@ -1,1 +1,1 @@
-export { default, InformationBannerProps } from './InformationBanner';
+export { default as InformationBanner, type InformationBannerProps } from './InformationBanner';

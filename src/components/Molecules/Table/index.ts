@@ -1,1 +1,7 @@
-export { default as Table, TableProps, TableRow, TableRowValue, TableHeadValue } from './Table';
+export {
+  default as Table,
+  type TableProps,
+  TableRow,
+  TableRowValue,
+  TableHeadValue
+} from './Table';

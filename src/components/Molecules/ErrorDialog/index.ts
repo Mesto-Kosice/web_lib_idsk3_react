@@ -1,1 +1,1 @@
-export { default, ErrorDialogProps } from './ErrorDialog';
+export { default as ErrorDialog, type ErrorDialogProps } from './ErrorDialog';

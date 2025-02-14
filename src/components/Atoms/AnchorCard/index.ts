@@ -1,1 +1,1 @@
-export { default, AnchorCardProps } from './AnchorCard';
+export { default as AnchorCard, type AnchorCardProps } from './AnchorCard';

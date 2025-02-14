@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
-import ErrorImage from '../../../svgImages/Illustrations/ErrorImg';
-import Dialog from '../Dialog';
-import { Loader } from '../../Atoms';
+import { cn } from '@/lib';
+import { Loader, Dialog } from '@/components';
+import ErrorImage from '@/svgImages/Illustrations/ErrorImg';
 
 export interface ErrorDialogProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -12,7 +11,7 @@ export interface ErrorDialogProps extends React.HTMLAttributes<HTMLDivElement> {
   subtitle?: ReactNode;
 }
 
-const ErrorDialog = ({
+const ErrorDialog: React.FC<ErrorDialogProps> = ({
   opened,
   id,
   className,
@@ -21,15 +20,15 @@ const ErrorDialog = ({
   children,
   isLoading = false,
   img = <ErrorImage className="idsk-error-dialog__img" />
-}: ErrorDialogProps) => {
-  const childrenClasses = classNames('idsk-error-dialog__children', {
+}) => {
+  const childrenClasses = cn('idsk-error-dialog__children', {
     'idsk-error-dialog__children-loading': isLoading
   });
   return (
     <Dialog opened={opened} id={id} className={className}>
       <div className="idsk-error-dialog">
         <div className="idsk-error-dialog__img-wrapper">{img}</div>
-        {!!isLoading ? (
+        {isLoading ? (
           <Loader className="idsk-error-dialog__loader" />
         ) : (
           <div className="idsk-error-dialog__text-wrapper ">

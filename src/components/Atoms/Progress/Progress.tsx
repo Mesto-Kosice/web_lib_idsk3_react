@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface ProgressProps extends React.AllHTMLAttributes<HTMLDivElement> {
   percent?: string;
@@ -10,12 +10,12 @@ export interface ProgressProps extends React.AllHTMLAttributes<HTMLDivElement> {
   fillingColor?: string;
 }
 
-const Progress = ({
+const Progress: React.FC<ProgressProps> = ({
   emptyColor = '#EFF5FE',
   fillingColor = '#126DFF',
   ...props
-}: ProgressProps) => {
-  const progressClasses = classNames('idsk-progress-percent', {
+}) => {
+  const progressClasses = cn('idsk-progress-percent', {
     'idsk-progress-percent-full': props.percent == '100%'
   });
   return (

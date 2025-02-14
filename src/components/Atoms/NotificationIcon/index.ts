@@ -1,1 +1,1 @@
-export { default, NotificationIconProps } from './NotificationIcon';
+export { default as NotificationIcon, type NotificationIconProps } from './NotificationIcon';

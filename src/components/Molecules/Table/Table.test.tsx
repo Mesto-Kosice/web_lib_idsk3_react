@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Table, TableHeadValue, TableRow, TableRowValue } from './index';
-import { MoreVertIcon } from '../../../svgIcons/Navigation';
-import { TextButton } from '../../Atoms';
-import { AddIcon } from '../../../svgIcons/Content';
+import { TextButton } from '@/components';
+import { AddIcon, MoreVertIcon } from '@/svgIcons';
 
 describe('Table', () => {
   test('renders heading, button', () => {

@@ -1,1 +1,1 @@
-export { default, FeedbackProps } from './Feedback';
+export { default as Feedback, type FeedbackProps } from './Feedback';

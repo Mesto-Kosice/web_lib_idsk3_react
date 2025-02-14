@@ -1,7 +1,5 @@
-'use client';
-
 import React, { ReactNode, useRef, useState } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface TooltipProps {
   tooltip: string;
@@ -12,7 +10,7 @@ export interface TooltipProps {
   hideOnClick?: boolean;
 }
 
-const Tooltip = ({
+const Tooltip: React.FC<TooltipProps> = ({
   tooltip,
   children,
   hideOnClick = true,
@@ -20,12 +18,12 @@ const Tooltip = ({
   positionUp,
   alignLeft,
   ...props
-}: TooltipProps) => {
+}) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   const waitingToEnterRef = useRef<boolean>(true);
 
-  const tooltipClasses = classNames('idsk-tooltip', {
+  const tooltipClasses = cn('idsk-tooltip', {
     'idsk-tooltip--left': !!alignLeft,
     'idsk-tooltip--up': !!positionUp,
     'idsk-tooltip--instructive': !!isInstructive

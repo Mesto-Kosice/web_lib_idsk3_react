@@ -1,1 +1,1 @@
-export { default, IconLinkProps } from './IconLink';
+export { default as IconLink, type IconLinkProps } from './IconLink';

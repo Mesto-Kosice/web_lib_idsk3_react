@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 import BaseButton, { BaseButtonProps } from './BaseButton';
 
 export interface SecondaryButtonProps extends BaseButtonProps {
@@ -8,7 +8,7 @@ export interface SecondaryButtonProps extends BaseButtonProps {
 
 const SecondaryButton = forwardRef<HTMLButtonElement, SecondaryButtonProps>(
   ({ variant = 'basic', size = 'medium', iconPosition = 'left', ...props }, ref) => {
-    const className = classNames(
+    const className = cn(
       'idsk-secondary-button',
       {
         'idsk-secondary-button--basic': variant == 'basic',
@@ -27,5 +27,7 @@ const SecondaryButton = forwardRef<HTMLButtonElement, SecondaryButtonProps>(
     return <BaseButton ref={ref} {...props} className={className} />;
   }
 );
+
+SecondaryButton.displayName = 'SecondaryButton';
 
 export default SecondaryButton;

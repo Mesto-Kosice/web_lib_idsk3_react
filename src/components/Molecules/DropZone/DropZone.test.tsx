@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { default as DropZone, DropZoneAcceptedFile, DropZoneRejectedFile } from '../DropZone';
+import { DropZone, DropZoneAcceptedFile, DropZoneRejectedFile } from '@/components';
 
 describe('DropZone', () => {
   test('title', () => {
@@ -14,11 +14,15 @@ describe('DropZone', () => {
     expect(screen.getByText('text')).toBeDefined();
   });
   test('accepted file children', () => {
-    render(<DropZoneAcceptedFile>text</DropZoneAcceptedFile>);
+    render(<DropZoneAcceptedFile onCancel={() => {}}>text</DropZoneAcceptedFile>);
     expect(screen.getByText('text')).toBeDefined();
   });
   test('rejected file children', () => {
-    render(<DropZoneRejectedFile>text</DropZoneRejectedFile>);
+    render(
+      <DropZoneRejectedFile errorMsg="error" errorCode={'400'}>
+        text
+      </DropZoneRejectedFile>
+    );
     expect(screen.getByText('text')).toBeDefined();
   });
 });

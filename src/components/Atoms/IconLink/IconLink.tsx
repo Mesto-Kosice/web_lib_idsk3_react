@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib';
 
 export interface IconLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   active?: boolean;
@@ -7,7 +7,7 @@ export interface IconLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElem
 
 const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
   ({ children, active, className, href, ...props }, ref) => {
-    const linkClasses = classNames(
+    const linkClasses = cn(
       'idsk-icon-link',
       {
         'idsk-icon-link--active': active
@@ -21,5 +21,7 @@ const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
     );
   }
 );
+
+IconLink.displayName = 'IconLink';
 
 export default IconLink;

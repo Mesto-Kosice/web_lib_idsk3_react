@@ -1,27 +1,25 @@
-'use client';
-
 import React, { useRef, ReactElement, SVGProps, ReactNode } from 'react';
-import classNames from 'classnames';
 
-import { ArrowDropDownIcon } from '../../../svgIcons/Navigation';
-import { UseDropDownOptions, cloneThroughFragments, useDropDown } from '../../../utils';
-import BaseButton from '../Button/BaseButton';
+import { ArrowDropDownIcon } from '@/svgIcons';
+import { cloneThroughFragments } from '@/lib';
+import { useDropDown, UseDropDownOptions } from '@/hooks';
+import { BaseButton } from '@/components';
+import { cn } from '@/lib';
 
 export interface DropDownProps extends React.AllHTMLAttributes<HTMLDivElement> {
   id?: string;
-  customTrigger?: ReactElement;
+  customTrigger?: ReactElement<any>;
   dropDownTitle?: ReactNode;
   arrowIcon?: ReactElement<SVGProps<SVGSVGElement>>;
   optionClassName?: string;
   buttonClassName?: string;
   buttonAriaLabel?: string;
   optionsSide?: 'left' | 'right';
-  closeOnOptionClick?: boolean;
   withoutPseudoElement?: boolean;
   hookOptions?: UseDropDownOptions;
 }
 
-const DropDown = ({
+const DropDown: React.FC<DropDownProps> = ({
   id,
   customTrigger,
   dropDownTitle,
@@ -32,20 +30,19 @@ const DropDown = ({
   buttonClassName,
   buttonAriaLabel,
   optionsSide = 'right',
-  closeOnOptionClick = false,
   withoutPseudoElement = false,
   hookOptions,
   ...props
-}: DropDownProps) => {
+}) => {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
 
-  const wrapperClasses = classNames('idsk-dropdown__wrapper', className);
-  const buttonClasses = classNames('idsk-dropdown', buttonClassName);
+  const wrapperClasses = cn('idsk-dropdown__wrapper', className);
+  const buttonClasses = cn('idsk-dropdown', buttonClassName);
 
   const { isOpen, state, handleTriggerClick } = useDropDown(triggerRef, optionsRef, hookOptions);
 
-  const optionClasses = classNames(
+  const optionClasses = cn(
     'idsk-dropdown__options opacity-0',
     {
       hidden: state === 'closed',
@@ -80,10 +77,11 @@ const DropDown = ({
         <li className="idsk-dropdown__option idsk-pseudolabel__wrapper" {...data}>
           {React.cloneElement(child, {
             onClick: (e: React.MouseEvent) => {
-              if (child?.props?.onClick) child.props.onClick(e);
-              if (closeOnOptionClick) handleTriggerClick();
+              const childProps = child?.props as any;
+              childProps.onClick?.(e);
+              handleTriggerClick?.();
             },
-            className: classNames(child.props.className, { absolute: !!data })
+            className: cn((child.props as any).className, { absolute: !!data })
           } as any)}
         </li>
       );
@@ -91,12 +89,12 @@ const DropDown = ({
   });
 
   const renderedIcon = React.cloneElement(arrowIcon, {
-    className: classNames('idsk-dropdown__icon', { 'rotate-180': isOpen })
+    className: cn('idsk-dropdown__icon', { 'rotate-180': isOpen })
   });
 
   return (
     <div {...props} className={wrapperClasses}>
-      {!!customTrigger ? (
+      {customTrigger ? (
         React.cloneElement(customTrigger, {
           ref: triggerRef,
           onClick: handleTriggerClick

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { AvatarCircle } from '../../Atoms';
+import { AvatarCircle } from '@/components';
 
 export interface IdentificationCardProps extends React.AllHTMLAttributes<HTMLDivElement> {
   firstName: string;
@@ -9,7 +9,7 @@ export interface IdentificationCardProps extends React.AllHTMLAttributes<HTMLDiv
   children?: ReactNode;
 }
 
-const IdentificationCard = ({
+const IdentificationCard: React.FC<IdentificationCardProps> = ({
   firstName,
   lastName,
   fullName,
@@ -17,7 +17,7 @@ const IdentificationCard = ({
   children,
   className = '',
   ...props
-}: IdentificationCardProps) => {
+}) => {
   return (
     <div className={`idsk-identification-card ${className}`} {...props}>
       <AvatarCircle

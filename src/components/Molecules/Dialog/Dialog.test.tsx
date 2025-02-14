@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Dialog from './index';
-import { PrimaryButton, SecondaryButton } from '../../Atoms';
+import { Dialog, PrimaryButton, SecondaryButton } from '@/components';
 
 describe('Dialog', () => {
   test('renders children', () => {

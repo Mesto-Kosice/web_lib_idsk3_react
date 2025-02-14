@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import React, { ReactElement, ReactNode } from 'react';
+import { cn } from '@/lib';
+import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 export interface NavigationLinkOptionProps {
   label?: ReactNode;
   href?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-  linkElement?: ReactElement;
+  linkElement?: ReactElement<HTMLAttributes<HTMLElement>>;
   title?: string;
   selected?: boolean;
 }
@@ -14,9 +14,9 @@ const NavigationLinkOption = React.forwardRef<HTMLAnchorElement, NavigationLinkO
   ({ label, href, onClick, linkElement, title, selected }, ref) => {
     return (
       <>
-        {!!linkElement ? (
+        {linkElement ? (
           React.cloneElement(linkElement, {
-            className: classNames(linkElement.props.className, 'absolute')
+            className: cn(linkElement.props.className, 'absolute')
           })
         ) : (
           <a
@@ -24,7 +24,7 @@ const NavigationLinkOption = React.forwardRef<HTMLAnchorElement, NavigationLinkO
             onClick={onClick}
             ref={ref}
             title={title}
-            className={classNames({
+            className={cn({
               'idsk-navigation__link--dropdown-link': selected
             })}
           >
@@ -35,5 +35,7 @@ const NavigationLinkOption = React.forwardRef<HTMLAnchorElement, NavigationLinkO
     );
   }
 );
+
+NavigationLinkOption.displayName = 'NavigationLinkOption';
 
 export default NavigationLinkOption;
