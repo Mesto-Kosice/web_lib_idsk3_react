@@ -7,7 +7,7 @@
     "rollup": "npm run clean-dist && npm run build-styles-prod && rollup -c",
     "prettier": "prettier --write src",
     "lint": "npx tsc --noEmit && npx eslint src",
-    "test": "jest",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest",
     "build-styles-dev": "tailwindcss -i ./src/styles/index.css -o ./src/styles/idsk3_theme.css --watch",
     "build-styles-prod": "tailwindcss -i ./src/styles/index.css -o ./src/styles/idsk3_theme.css -m",
     "storybook": "storybook dev -p 6006",
